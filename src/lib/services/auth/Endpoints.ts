@@ -1,18 +1,23 @@
 const apiURL = new URL(process.env.NEXT_PUBLIC_API_URL || "");
+const authEndpoint = "/auth";
 
-const loginRequestEndpoint = apiURL.href.concat("/auth/login");
-const registerRequestEndpoint = apiURL.href.concat("/auth/register");
-const loginGoogleRequestEndpoint = apiURL.href.concat("/auth/loginGoogle");
-const resendConfirmEmailRequestEndpoint = apiURL.href.concat(
-  "/resendConfirmEmail",
+const loginRequestEndpoint = apiURL.href.concat(`${authEndpoint}/login`);
+const registerRequestEndpoint = apiURL.href.concat(`${authEndpoint}/register`);
+const loginGoogleRequestEndpoint = apiURL.href.concat(
+  `${authEndpoint}/loginGoogle`,
 );
-const forgotPasswordRequestEndpoint = apiURL.href.concat(
-  "/auth/forgotPassword",
+const resendConfirmEmailRequestEndpoint = apiURL.href.concat(`
+  /resendConfirmEmail`);
+const forgotPasswordRequestEndpoint = apiURL.href.concat(`
+  ${authEndpoint}/forgotPassword`);
+const resetPasswordRequestEndpoint = apiURL.href.concat(
+  `${authEndpoint}/resetPassword`,
 );
-const resetPasswordRequestEndpoint = apiURL.href.concat("/auth/resetPassword");
-const confirmEmailRequestEndpoint = apiURL.href.concat("/auth/confirmEmail");
+const confirmEmailRequestEndpoint = apiURL.href.concat(
+  `${authEndpoint}/confirmEmail`,
+);
 
-const getUserInfoRequestEndpoint = apiURL.href.concat("/auth/info");
+const getUserInfoRequestEndpoint = apiURL.href.concat(`${authEndpoint}/info`);
 
 export {
   loginRequestEndpoint,

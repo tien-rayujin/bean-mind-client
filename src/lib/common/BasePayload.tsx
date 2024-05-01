@@ -29,14 +29,17 @@ async function fetchData<TResponse>(
   } = options;
 
   try {
-    const response = await fetch(url, {
+    const requestPayload: RequestInit = {
       method,
       headers: {
         "Content-Type": contentType,
         Authorization: accessToken ? `Bearer ${accessToken}` : "",
       },
-      body: body ? JSON.stringify(body) : undefined,
-    });
+    };
+    if (method !== "GET")
+      requestPayload.body = body ? JSON.stringify(body) : undefined;
+
+    const response = await fetch(url, requestPayload);
 
     // Logging
     logResponse(method, response);

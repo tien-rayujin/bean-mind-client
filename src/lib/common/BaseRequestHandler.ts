@@ -17,10 +17,13 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   okCallback?: (arg: TResponse) => void,
 ): Promise<FormState> => {
   const rawFormData = Object.fromEntries(formData.entries());
+  const payload = Object.fromEntries(
+    Object.entries(rawFormData).filter(([key]) => !key.startsWith("$ACTION_")),
+  ) as TRequest;
 
   // schema validation if provided
   if (options.schema) {
-    let validatedFields = await options.schema.safeParseAsync(rawFormData);
+    let validatedFields = await options.schema.safeParseAsync(payload);
 
     if (!validatedFields.success) {
       return {
@@ -33,17 +36,16 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   }
 
   const response = await fetchData<BaseResponse<TResponse>>(options.endpoint, {
-    body: rawFormData.data as TRequest,
+    body: payload,
     method: options.method,
     accessToken: options.accessToken,
   });
 
   // server response with fail resulst
-  if (!response?.isSuccess || !response.result) {
+  if (!response) {
     return {
       isSuccess: false,
-      message: response?.message,
-      errorMessages: response?.errorMessages,
+      message: "Server error",
       responseType: "server",
     };
   }
@@ -52,7 +54,7 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   okCallback && okCallback(response.result);
 
   return {
-    isSuccess: response?.isSuccess || false,
+    isSuccess: response.isSuccess,
     message: response?.message,
     errorMessages: response?.errorMessages,
     responseType: "server",
