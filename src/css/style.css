@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-poppin: "Poppin";
+}
+
+@layer base {
+  :root {
+    --text: 248, 240, 227;
+    /* #F8F0E3 */
+    --background: 43, 45, 66;
+    /* #2B2D42 */
+    --primary: 239, 131, 84;
+    /* #EF8354 */
+    --secondary: 79, 93, 117;
+    /* #4F5D75 */
+    --accent: 214, 87, 128;
+    /* #D65780 */
+
+  }
+
+
+  /* .dark {
+    --text: #040316;
+    --background: #577a43;
+    --primary: #e2f0db;
+    --secondary: #d4e7c5;
+    --accent: #bed8b0;
+  } */
+
+  .dark {
+    --text: 248 240 227;
+    --background: 43 45 66;
+    --primary: 239 131 84;
+    --secondary: 79 93 117;
+    --accent: 214 87 128;
+  }
+
+  body {
+    @apply relative z-1 bg-whiten font-poppin text-base font-normal text-text;
+  }
+}
+
+@layer components {}
+
+@layer utilities {
+
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
+
+/* third-party libraries CSS */
+
+.StyFormInput+.StyFormInput {
+  margin-top: 1rem;
+}
