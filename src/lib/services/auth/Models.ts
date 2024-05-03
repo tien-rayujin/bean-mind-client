@@ -70,6 +70,7 @@ type GetUserInfoResponseModel = {
   phoneNumber: string;
   email: string;
   emailConfirmed: boolean;
+  roles: Array<string>;
 };
 
 export type {

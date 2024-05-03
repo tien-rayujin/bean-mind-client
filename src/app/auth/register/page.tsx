@@ -5,17 +5,17 @@ import { RegisterRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import StyFormInput from "@/components/FormInput";
 import { useFormState } from "react-dom";
-import { FormState } from "@/lib/types";
 import { useEffect } from "react";
 import Link from "next/link";
 import { Toast } from "@/components/Toast";
+import { BaseResponse } from "@/lib/common/BasePayload";
+import { RegisterResponseModel } from "@/lib/services/auth/Models";
 
 const Page: React.FC = () => {
-  const initialState: FormState = {
+  const initialState: BaseResponse<RegisterResponseModel> = {
     isSuccess: false,
     message: "",
     fieldErrors: {},
-    responseType: "server",
   };
   const [formState, formAction] = useFormState(
     RegisterRequestHandler,
@@ -23,7 +23,7 @@ const Page: React.FC = () => {
   );
 
   useEffect(() => {
-    if (formState.message != "" && formState.responseType === "server") {
+    if (formState.message != "") {
       Toast({
         message: formState.message,
         type: formState.isSuccess ? "success" : "error",

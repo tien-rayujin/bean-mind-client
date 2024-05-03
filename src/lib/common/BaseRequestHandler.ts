@@ -1,7 +1,6 @@
 "use server";
 
 import { ZodSchema } from "zod";
-import { FormState } from "../types";
 import { fetchData, BaseResponse } from "./BasePayload";
 
 interface RequestHandlerOptions<T> {
@@ -11,11 +10,17 @@ interface RequestHandlerOptions<T> {
   accessToken?: string;
 }
 
+interface BaseRequestHandlerProps<TRequest, TResponse> {
+  formData: FormData;
+  options: RequestHandlerOptions<TRequest>;
+  okCallback?: (arg?: TResponse) => void;
+}
+
 const BaseRequestHandler = async <TRequest, TResponse>(
-  formData: FormData,
-  options: RequestHandlerOptions<TRequest>,
-  okCallback?: (arg: TResponse) => void,
-): Promise<FormState> => {
+  props: BaseRequestHandlerProps<TRequest, TResponse>,
+): Promise<BaseResponse<TResponse>> => {
+  const { formData, options, okCallback } = props;
+
   const rawFormData = Object.fromEntries(formData.entries());
   const payload = Object.fromEntries(
     Object.entries(rawFormData).filter(([key]) => !key.startsWith("$ACTION_")),
@@ -30,11 +35,11 @@ const BaseRequestHandler = async <TRequest, TResponse>(
         isSuccess: false,
         message: "Field Validation Failed",
         fieldErrors: validatedFields.error.formErrors.fieldErrors,
-        responseType: "validation",
       };
     }
   }
 
+  // request API
   const response = await fetchData<BaseResponse<TResponse>>(options.endpoint, {
     body: payload,
     method: options.method,
@@ -42,11 +47,10 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   });
 
   // server response with fail resulst
-  if (!response) {
+  if (!response || !response.isSuccess) {
     return {
       isSuccess: false,
-      message: "Server error",
-      responseType: "server",
+      message: response?.message || "Server error",
     };
   }
 
@@ -56,8 +60,8 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   return {
     isSuccess: response.isSuccess,
     message: response?.message,
+    result: response.result,
     errorMessages: response?.errorMessages,
-    responseType: "server",
   };
 };
 

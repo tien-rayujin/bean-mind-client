@@ -2,12 +2,16 @@
 
 import { logResponse } from "./Logging";
 
+type FieldErrors = {
+  [key in string]?: string[];
+};
+
 interface BaseResponse<T> {
   isSuccess: boolean;
   message: string;
-  result: T;
+  result?: T;
   errorMessages?: string[];
-  fieldErrors: Map<string, string>;
+  fieldErrors?: FieldErrors;
 }
 
 interface RequestOptions {

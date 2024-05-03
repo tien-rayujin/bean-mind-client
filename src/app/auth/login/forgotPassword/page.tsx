@@ -5,17 +5,18 @@ import { ForgotPasswordRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineMail } from "react-icons/ai";
 import StyFormInput from "@/components/FormInput";
 import { useFormState } from "react-dom";
-import { FormState } from "@/lib/types";
 import { useEffect } from "react";
 import { Toast } from "@/components/Toast";
 import Link from "next/link";
+import { ForgotPasswordRequestModel } from "@/lib/services/auth/Models";
+import { BaseResponse } from "@/lib/common/BasePayload";
 
 const Page: React.FC = () => {
-  const initialState: FormState = {
+  const initialState: BaseResponse<ForgotPasswordRequestModel> = {
     isSuccess: false,
     message: "",
+    result: undefined,
     fieldErrors: {},
-    responseType: "server",
   };
   const [formState, formAction] = useFormState(
     ForgotPasswordRequestHandler,
@@ -23,7 +24,7 @@ const Page: React.FC = () => {
   );
 
   useEffect(() => {
-    if (formState.message != "" && formState.responseType === "server") {
+    if (formState.message != "") {
       Toast({
         message: formState.message,
         type: formState.isSuccess ? "success" : "error",

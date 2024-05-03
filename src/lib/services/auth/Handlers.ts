@@ -9,7 +9,6 @@ import {
   resendConfirmEmailRequestEndpoint,
   resetPasswordRequestEndpoint,
 } from "@/lib/services/auth/Endpoints";
-import { BaseResponse, fetchData } from "@/lib/common/BasePayload";
 import {
   ConfirmEmailRequestModel,
   ConfirmEmailResponseModel,
@@ -35,48 +34,54 @@ import {
   resendConfirmEmailSchema,
   resetPasswordSchema,
 } from "./Validators";
-import { FormState } from "@/lib/types";
 import { queryBuilder } from "@/lib/utils";
 import { createSession, decrypt, deleteSession } from "@/lib/actions/session";
 import { cookies } from "next/headers";
 import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
+import { BaseResponse } from "@/lib/common/BasePayload";
 
 const LoginRequestHandler = async (
-  prevState: FormState,
+  prevState: BaseResponse<LoginResponseModel>,
   formData: FormData,
-): Promise<FormState> => {
-  return BaseRequestHandler<LoginRequestModel, LoginResponseModel>(
+): Promise<BaseResponse<LoginResponseModel>> => {
+  return BaseRequestHandler<LoginRequestModel, LoginResponseModel>({
     formData,
-    {
+    options: {
       method: "POST",
       endpoint: loginRequestEndpoint,
       schema: loginSchema,
     },
-    async (modelResult) => {
+    async okCallback(modelResult) {
+      if (!modelResult) {
+        return {
+          isSuccess: false,
+          message: "Server Error: Server reply with no result",
+        };
+      }
       // create session to store basic user information
       const { accessToken, refreshToken, expiresIn } = modelResult;
       await createSession(accessToken, refreshToken, expiresIn);
     },
-  );
+  });
 };
 
 const RegisterRequestHandler = async (
-  prevState: FormState,
+  prevState: BaseResponse<RegisterResponseModel>,
   formData: FormData,
-): Promise<FormState> => {
-  return BaseRequestHandler<RegisterRequestModel, RegisterResponseModel>(
+): Promise<BaseResponse<RegisterResponseModel>> => {
+  return BaseRequestHandler<RegisterRequestModel, RegisterResponseModel>({
     formData,
-    {
+    options: {
       endpoint: registerRequestEndpoint,
       method: "POST",
       schema: registerSchema,
     },
-  );
+  });
 };
 
 const ConfirmEmailRequestHandler = async (
   formData: FormData,
-): Promise<FormState> => {
+): Promise<BaseResponse<ConfirmEmailResponseModel>> => {
   const urlQuery = queryBuilder({
     userId: formData.get("userId"),
     code: formData.get("code"),
@@ -86,57 +91,69 @@ const ConfirmEmailRequestHandler = async (
   return BaseRequestHandler<
     ConfirmEmailRequestModel,
     ConfirmEmailResponseModel
-  >(formData, {
-    endpoint: requestEndpoint,
-    method: "GET",
-    schema: confirmEmailSchema,
+  >({
+    formData,
+    options: {
+      endpoint: requestEndpoint,
+      method: "GET",
+      schema: confirmEmailSchema,
+    },
   });
 };
 
 const ResendConfirmEmailRequestHandler = async (
   formData: FormData,
-): Promise<FormState> => {
+): Promise<BaseResponse<ResendConfirmEmailResponseModel>> => {
   return BaseRequestHandler<
     ResendConfirmEmailRequestModel,
     ResendConfirmEmailResponseModel
-  >(formData, {
-    endpoint: resendConfirmEmailRequestEndpoint,
-    method: "POST",
-    schema: resendConfirmEmailSchema,
+  >({
+    formData,
+    options: {
+      endpoint: resendConfirmEmailRequestEndpoint,
+      method: "POST",
+      schema: resendConfirmEmailSchema,
+    },
   });
 };
 
 const ForgotPasswordRequestHandler = async (
-  prevState: FormState,
+  prevState: BaseResponse<ForgotPasswordResponseModel>,
   formData: FormData,
-): Promise<FormState> => {
+): Promise<BaseResponse<ForgotPasswordResponseModel>> => {
   return BaseRequestHandler<
     ForgotPasswordRequestModel,
     ForgotPasswordResponseModel
-  >(formData, {
-    endpoint: forgotPasswordRequestEndpoint,
-    method: "POST",
-    schema: forgotPasswordSchema,
+  >({
+    formData,
+    options: {
+      endpoint: forgotPasswordRequestEndpoint,
+      method: "POST",
+      schema: forgotPasswordSchema,
+    },
   });
 };
 
 const ResetPasswordRequestHandler = async (
-  prevState: FormState,
+  prevState: BaseResponse<ResetPasswordResponseModel>,
   formData: FormData,
-): Promise<FormState> => {
+): Promise<BaseResponse<ResetPasswordResponseModel>> => {
   return BaseRequestHandler<
     ResetPasswordRequestModel,
     ResetPasswordResponseModel
-  >(formData, {
-    endpoint: resetPasswordRequestEndpoint,
-    method: "POST",
-    schema: resetPasswordSchema,
+  >({
+    formData,
+    options: {
+      endpoint: resetPasswordRequestEndpoint,
+      method: "POST",
+      schema: resetPasswordSchema,
+    },
   });
 };
 
 const GetUserInfoRequestHandler = async (
   formData: FormData,
-): Promise<FormState> => {
+): Promise<BaseResponse<GetUserInfoResponseModel>> => {
   const urlQuery = queryBuilder({});
   const requestEndpoint = getUserInfoRequestEndpoint.concat("?", urlQuery);
 
@@ -144,15 +161,15 @@ const GetUserInfoRequestHandler = async (
   const session = await decrypt(cookieSession);
   const accessToken = session?.accessToken as string;
 
-  return BaseRequestHandler<GetUserInfoRequestModel, GetUserInfoResponseModel>(
+  return BaseRequestHandler<GetUserInfoRequestModel, GetUserInfoResponseModel>({
     formData,
-    {
+    options: {
       endpoint: requestEndpoint,
       method: "GET",
       schema: getUserInfoSchema,
       accessToken: accessToken,
     },
-  );
+  });
 };
 
 const IsUserAuthenticated = async (): Promise<boolean> => {

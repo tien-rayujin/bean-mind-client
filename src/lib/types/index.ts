@@ -1,14 +1,15 @@
-type FieldErrors = {
-  [key in string]?: string[];
-};
+// type FieldErrors = {
+//   [key in string]?: string[];
+// };
 
-type FormState = {
-  isSuccess: boolean;
-  message?: string;
-  fieldErrors?: FieldErrors;
-  errorMessages?: string[];
-  responseType: "server" | "validation";
-};
+// type FormState<TResponse> = {
+//   isSuccess: boolean;
+//   message?: string;
+//   result?: TResponse;
+//   fieldErrors?: FieldErrors;
+//   errorMessages?: string[];
+//   responseType: "server" | "validation";
+// };
 
 type SessionPayload = {
   accessToken: string;
@@ -20,4 +21,4 @@ type SessionPayload = {
   // isEmailConfirmed: boolean;
 };
 
-export type { FormState, SessionPayload };
+export type { SessionPayload };
