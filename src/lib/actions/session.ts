@@ -1,8 +1,17 @@
 import "server-only";
 
 import { SignJWT, jwtVerify } from "jose";
-import { SessionPayload } from "../types";
 import { cookies } from "next/headers";
+
+export type SessionPayload = {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+  // userId: string;
+  // expiresAt: Date;
+  // userName: string;
+  // isEmailConfirmed: boolean;
+};
 
 const secretKey = process.env.SESSION_SECRET;
 if (!secretKey) throw new Error("Missing SESSION_SECRET");
