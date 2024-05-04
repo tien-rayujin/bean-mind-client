@@ -8,7 +8,7 @@ import {
   registerRequestEndpoint,
   resendConfirmEmailRequestEndpoint,
   resetPasswordRequestEndpoint,
-} from "@/lib/services/auth/Endpoints";
+} from "@/lib/services/Endpoints";
 import {
   ConfirmEmailRequestModel,
   ConfirmEmailResponseModel,
