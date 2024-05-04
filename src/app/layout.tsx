@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   description: "BeanMind Interactive Learning",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="en" className={inter.variable}>
       <body>
@@ -31,4 +31,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

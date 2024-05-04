@@ -18,15 +18,15 @@ if (!secretKey) throw new Error("Missing SESSION_SECRET");
 
 const encodedKey = new TextEncoder().encode(secretKey);
 
-async function encrypt(payload: SessionPayload) {
+const encrypt = async (payload: SessionPayload) => {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("7d")
     .sign(encodedKey);
-}
+};
 
-async function decrypt(session: string | undefined = "") {
+const decrypt = async (session: string | undefined = "") => {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
@@ -35,13 +35,21 @@ async function decrypt(session: string | undefined = "") {
   } catch (error) {
     console.error("Failed to verify session");
   }
-}
+};
 
-async function createSession(
+const getAccessTokenSession = async () => {
+  const cookieSession = cookies().get("session")?.value;
+  const session = await decrypt(cookieSession);
+  const accessToken = session?.accessToken as string;
+
+  return accessToken;
+};
+
+const createSession = async (
   accessToken: string,
   refreshToken: string,
   expiresIn: number,
-) {
+) => {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
   const session = await encrypt({
     accessToken,
@@ -56,9 +64,9 @@ async function createSession(
     sameSite: "lax",
     path: "/",
   });
-}
+};
 
-async function updateSession() {
+const updateSession = async () => {
   const session = cookies().get("session")?.value;
   const payload = await decrypt(session);
 
@@ -74,10 +82,17 @@ async function updateSession() {
     sameSite: "lax",
     path: "/",
   });
-}
+};
 
-function deleteSession() {
+const deleteSession = () => {
   cookies().delete("session");
-}
+};
 
-export { encrypt, decrypt, createSession, updateSession, deleteSession };
+export {
+  encrypt,
+  decrypt,
+  createSession,
+  updateSession,
+  deleteSession,
+  getAccessTokenSession,
+};

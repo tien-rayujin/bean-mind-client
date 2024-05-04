@@ -21,7 +21,7 @@ interface RequestOptions {
   accessToken?: string;
 }
 
-async function fetchData<TResponse>(
+const fetchData = async function <TResponse>(
   url: string | URL,
   options: RequestOptions,
 ): Promise<TResponse | null> {
@@ -63,6 +63,6 @@ async function fetchData<TResponse>(
     }
     return null;
   }
-}
+};
 
 export { type BaseResponse, type RequestOptions, fetchData };

@@ -1,4 +1,4 @@
-function logResponse(method: string, response: Response) {
+const logResponse = (method: string, response: Response) => {
   // Define a color for each HTTP status code category
   const statusColors: { [key: number]: string } = {
     2: "\x1b[32m", // Green for 2xx 'Success' status codes
@@ -24,6 +24,6 @@ function logResponse(method: string, response: Response) {
   console.log(
     `${statusEmoji} ${method}: ${response.url} - ${statusColors[statusCategory]}${response.status} ${response.statusText}\x1b[0m`,
   );
-}
+};
 
 export { logResponse };

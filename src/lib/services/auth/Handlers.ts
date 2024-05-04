@@ -28,14 +28,18 @@ import {
 import {
   confirmEmailSchema,
   forgotPasswordSchema,
-  getUserInfoEmailSchema as getUserInfoSchema,
+  getUserInfoSchema,
   loginSchema,
   registerSchema,
   resendConfirmEmailSchema,
   resetPasswordSchema,
 } from "./Validators";
 import { queryBuilder } from "@/lib/utils";
-import { createSession, decrypt, deleteSession } from "@/lib/actions/session";
+import {
+  createSession,
+  deleteSession,
+  getAccessTokenSession,
+} from "@/lib/actions/session";
 import { cookies } from "next/headers";
 import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
@@ -157,9 +161,13 @@ const GetUserInfoRequestHandler = async (
   const urlQuery = queryBuilder({});
   const requestEndpoint = getUserInfoRequestEndpoint.concat("?", urlQuery);
 
-  const cookieSession = cookies().get("session")?.value;
-  const session = await decrypt(cookieSession);
-  const accessToken = session?.accessToken as string;
+  const accessToken = await getAccessTokenSession();
+  if (!accessToken) {
+    return {
+      isSuccess: false,
+      message: "Authentication required to perform this action",
+    };
+  }
 
   return BaseRequestHandler<GetUserInfoRequestModel, GetUserInfoResponseModel>({
     formData,

@@ -25,7 +25,7 @@ const Page: React.FC<ConfirmationPageProps> = (props) => {
   const { userId, code, email } = props.searchParams;
   const router = useRouter();
 
-  function handleResendConfirmEmail() {
+  const handleResendConfirmEmail = () => {
     setIsLoading(true);
 
     const formData = new FormData();
@@ -41,7 +41,7 @@ const Page: React.FC<ConfirmationPageProps> = (props) => {
         console.error(reason);
       })
       .finally(() => setIsLoading(false));
-  }
+  };
 
   const successNotification = (
     <div className="text-center">
