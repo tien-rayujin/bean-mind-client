@@ -3,4 +3,16 @@ const queryBuilder = (query: Object) => {
   return queryString.toString();
 };
 
-export { queryBuilder };
+const test__delayTime = async (times?: number) => {
+  // delay to test
+  return new Promise((resolve, reject) => {
+    setTimeout(
+      () => {
+        resolve(null);
+      },
+      times ? times : 3000,
+    );
+  });
+};
+
+export { queryBuilder, test__delayTime };
