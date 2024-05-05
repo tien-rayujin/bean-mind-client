@@ -4,12 +4,12 @@ import { IsUserAuthenticated, Logout } from "@/lib/services/auth/Handlers";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { LogoutButton, LoginButton } from "../Button";
-import { Toast } from "../Toast";
+import { LogoutButton, LoginButton } from "../../Button";
+import { Toast } from "../../Toast";
 
-interface HeaderProps {}
+interface UserHeaderProps {}
 
-const Header: React.FC<HeaderProps> = () => {
+const UserHeader: React.FC<UserHeaderProps> = () => {
   const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
 
@@ -68,4 +68,4 @@ const Header: React.FC<HeaderProps> = () => {
   );
 };
 
-export { Header };
+export { UserHeader };
