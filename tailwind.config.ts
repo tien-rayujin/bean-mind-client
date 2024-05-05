@@ -27,6 +27,12 @@ const config: Config = {
         secondary: "rgba(var(--secondary), var(--tw-bg-opacity))",
         accent: "rgba(var(--accent), var(--tw-bg-opacity))",
 
+        textDark: "rgba(var(--text-dark), var(--tw-bg-opacity))",
+        backgroundDark: "rgba(var(--background-dark), var(--tw-bg-opacity))",
+        primaryDark: "rgba(var(--primary-dark), var(--tw-bg-opacity))",
+        secondaryDark: "rgba(var(--secondary-dark), var(--tw-bg-opacity))",
+        accentDark: "rgba(var(--accent-dark), var(--tw-bg-opacity))",
+
         whiten: "#F1F5F9",
         whiter: "#F5F7FD",
         body: "#64748B",
@@ -242,4 +248,3 @@ const config: Config = {
   plugins: [],
 };
 export default config;
-

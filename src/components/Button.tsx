@@ -5,6 +5,9 @@ import { FC, ReactNode } from "react";
 import Loader from "./Loader";
 import Link from "next/link";
 import clsx from "clsx";
+import { Logout } from "@/lib/services/auth/Handlers";
+import { useRouter } from "next/navigation";
+import { Toast } from "./Toast";
 
 interface BaseButtonProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   extras?: string;
@@ -95,17 +98,32 @@ const LoginButton: React.FC<{}> = (props) => {
 };
 
 interface LogoutButtonProps {
-  handleClick: () => void;
+  // handleClick: () => void;
+  extras?: string;
+  isIconOnly?: boolean;
 }
 
 const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
+  const { extras, isIconOnly = false } = props;
+  const router = useRouter();
   return (
     <button
-      onClick={props.handleClick}
-      className="flex items-center justify-center gap-x-2.5 rounded-md bg-accent/70 px-6 py-2 duration-150 hover:bg-accent/80 hover:shadow-layoutPopup hover:shadow-accent"
+      className={clsx(
+        "flex items-center justify-center gap-x-2.5 rounded-md bg-accent/70 px-6 py-2 duration-150 hover:bg-accent/80 hover:shadow-layoutPopup hover:shadow-accent",
+        extras,
+      )}
+      onClick={() => {
+        if (!confirm("Are you sure to logout ?")) {
+          return;
+        }
+        Logout().then(() => {
+          router.push("/auth/login");
+          Toast({ message: "Logout successfully", type: "success" });
+        });
+      }}
     >
       <AiOutlineLogout />
-      <span className="font-semibold">Logout</span>
+      {!isIconOnly && <span className="font-semibold">Logout</span>}
     </button>
   );
 };
