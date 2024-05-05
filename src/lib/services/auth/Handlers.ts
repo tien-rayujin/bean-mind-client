@@ -155,9 +155,9 @@ const ResetPasswordRequestHandler = async (
   });
 };
 
-const GetUserInfoRequestHandler = async (
-  formData: FormData,
-): Promise<BaseResponse<GetUserInfoResponseModel>> => {
+const GetUserInfoRequestHandler = async (): Promise<
+  BaseResponse<GetUserInfoResponseModel>
+> => {
   const urlQuery = queryBuilder({});
   const requestEndpoint = getUserInfoRequestEndpoint.concat("?", urlQuery);
 
@@ -170,7 +170,6 @@ const GetUserInfoRequestHandler = async (
   }
 
   return BaseRequestHandler<GetUserInfoRequestModel, GetUserInfoResponseModel>({
-    formData,
     options: {
       endpoint: requestEndpoint,
       method: "GET",

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const Page: React.FC = () => {
   const handleClick = async () => {
-    const response = await GetUserInfoRequestHandler(new FormData());
+    const response = await GetUserInfoRequestHandler();
     Toast({
       message: response.message,
       type: response.isSuccess ? "info" : "error",

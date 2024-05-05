@@ -21,11 +21,10 @@ import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { getAccessTokenSession } from "@/lib/actions/session";
 
-const GetActivitiesRequestHandler = async (
-  formData: FormData,
-): Promise<BaseResponse<GetActivitiesResonseModel>> => {
+const GetActivitiesRequestHandler = async (): Promise<
+  BaseResponse<GetActivitiesResonseModel>
+> => {
   return BaseRequestHandler<object, GetActivitiesResonseModel>({
-    formData,
     options: {
       method: "GET",
       endpoint: getActivitiesEndpoint,
@@ -36,10 +35,8 @@ const GetActivitiesRequestHandler = async (
 // use bind to catch it Fn.bind(null, id)
 const GetActivityRequestHandler = async (
   id: string,
-  formData: FormData,
 ): Promise<BaseResponse<GetActivityResponseModel>> => {
   return BaseRequestHandler<object, GetActivityResponseModel>({
-    formData,
     options: {
       method: "GET",
       endpoint: getActivityEndpoint(id),
@@ -101,7 +98,6 @@ const UpdateActivityRequestHandler = async (
 
 const DeleteActivityRequestHandler = async (
   id: string,
-  formData: FormData,
 ): Promise<BaseResponse<DeleteActivityResponseModel>> => {
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
@@ -112,9 +108,8 @@ const DeleteActivityRequestHandler = async (
   }
 
   return BaseRequestHandler<object, DeleteActivityResponseModel>({
-    formData,
     options: {
-      method: "GET",
+      method: "DELETE",
       endpoint: deleteActivityEndpoint(id),
       accessToken: accessToken,
     },

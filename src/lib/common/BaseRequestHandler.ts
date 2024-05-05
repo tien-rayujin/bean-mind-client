@@ -11,7 +11,7 @@ interface RequestHandlerOptions<T> {
 }
 
 interface BaseRequestHandlerProps<TRequest, TResponse> {
-  formData: FormData;
+  formData?: FormData;
   options: RequestHandlerOptions<TRequest>;
   okCallback?: (arg?: TResponse) => void;
 }
@@ -21,7 +21,9 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 ): Promise<BaseResponse<TResponse>> => {
   const { formData, options, okCallback } = props;
 
-  const rawFormData = Object.fromEntries(formData.entries());
+  const rawFormData = Object.fromEntries(
+    formData ? formData.entries() : new FormData(),
+  );
   const payload = Object.fromEntries(
     Object.entries(rawFormData).filter(([key]) => !key.startsWith("$ACTION_")),
   ) as TRequest;

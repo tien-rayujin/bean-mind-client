@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GetUserInfoRequestHandler } from "./lib/services/auth/Handlers";
-import { Toast } from "./components/Toast";
 
 export const config = {
-  matcher: ["/manager/:path*"],
+  matcher: ["/manager/:path*", "/admin/:path*"],
 };
 
 const middleware = async (request: NextRequest) => {
   // get user infor if existed in cookies("session")
-  const getUserInfo = await GetUserInfoRequestHandler(new FormData());
+  const getUserInfo = await GetUserInfoRequestHandler();
   if (!getUserInfo.isSuccess) {
     console.log("Can not get user information");
     return NextResponse.redirect(new URL("/auth/login", request.url));
@@ -18,9 +17,26 @@ const middleware = async (request: NextRequest) => {
   //   return NextResponse.rewrite(new URL("/auth/login", request.url));
   // }
 
-  // user is not login as manager, redirect
-  if (!getUserInfo.result?.roles.includes("Manager")) {
-    console.log(`Can not access with role: ${getUserInfo.result?.roles}`);
+  const user = getUserInfo.result;
+  // user tried to access manager page
+  if (
+    request.nextUrl.pathname.startsWith("/admin") &&
+    !user?.roles.includes("Administrator")
+  ) {
+    console.log(
+      `Invalid access: From [${user?.email} - ${user?.roles}] To [${request.nextUrl.pathname}]`,
+    );
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  // user tried to access manager page
+  if (
+    request.nextUrl.pathname.startsWith("/manager") &&
+    !user?.roles.includes("Manager")
+  ) {
+    console.log(
+      `Invalid access: From [${user?.email} - ${user?.roles}] To [${request.nextUrl.pathname}]`,
+    );
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 };
