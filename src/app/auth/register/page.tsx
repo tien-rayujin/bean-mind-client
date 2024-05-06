@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleLoginButton, SubmitButton } from "@/components/Button";
+import { GoogleLoginButton } from "@/components/Button";
 import { RegisterRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import StyFormInput from "@/components/FormInput";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { RegisterResponseModel } from "@/lib/services/auth/Models";
+import { SubmitButton } from "@/components/Form/Button";
 
 const Page: React.FC = () => {
   const initialState: BaseResponse<RegisterResponseModel> = {

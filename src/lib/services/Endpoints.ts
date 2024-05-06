@@ -1,3 +1,5 @@
+import { queryBuilder } from "../utils";
+
 const apiURL = new URL(process.env.NEXT_PUBLIC_API_URL || "");
 
 // #region Auth
@@ -11,8 +13,9 @@ export const loginGoogleRequestEndpoint = apiURL.href.concat(
 );
 export const resendConfirmEmailRequestEndpoint = apiURL.href.concat(`
   /resendConfirmEmail`);
-export const forgotPasswordRequestEndpoint = apiURL.href.concat(`
-  ${authEndpoint}/forgotPassword`);
+export const forgotPasswordRequestEndpoint = apiURL.href.concat(
+  `${authEndpoint}/forgotPassword`,
+);
 export const resetPasswordRequestEndpoint = apiURL.href.concat(
   `${authEndpoint}/resetPassword`,
 );
@@ -119,7 +122,10 @@ export const deleteQuestionTypeEndpoint = (id: string) =>
 
 // #region Subject
 const subjectEndpoint = "/subjects";
-export const getSubjectsEndpoint = apiURL.href.concat(`${subjectEndpoint}`);
+export const getSubjectsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${subjectEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getSubjectEndpoint = (id: string) =>
   apiURL.href.concat(`${subjectEndpoint}/${id}`);
 export const createSubjectEndpoint = apiURL.href.concat(`${subjectEndpoint}`);

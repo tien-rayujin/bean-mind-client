@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ManagerSideNav from "./Sidenav/ManagerSidenav";
+import Breadcrumb from "../Breadcrumb";
 
 const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (

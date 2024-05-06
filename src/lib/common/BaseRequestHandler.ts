@@ -50,9 +50,12 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 
   // server response with fail resulst
   if (!response || !response.isSuccess) {
+    console.error({ response });
     return {
       isSuccess: false,
       message: response?.message || "Server error",
+      errorMessages: response?.errorMessages,
+      fieldErrors: response?.fieldErrors,
     };
   }
 

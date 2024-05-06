@@ -26,18 +26,22 @@ const SubmitButton: React.FC<SubmitButtonProp> = (props) => {
   );
 };
 
-interface ActionButtonProp {
+interface ActionButtonProp
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   color: string;
+  extras?: string;
 }
 
 const ActionButton: React.FC<ActionButtonProp> = (props) => {
-  const { icon, color } = props;
+  const { icon, color, extras, ...rest } = props;
   return (
     <button
+      {...rest}
       className={clsx(
         "grid h-8 w-8 place-items-center rounded-md border-strokedark bg-background",
         `text-${color} duration-500 ease-in-out hover:-translate-y-1`,
+        extras,
       )}
     >
       {icon}

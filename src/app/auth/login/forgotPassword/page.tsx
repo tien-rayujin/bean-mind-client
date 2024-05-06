@@ -1,6 +1,6 @@
 "use client";
 
-import { StyButton, SubmitButton } from "@/components/Button";
+import { StyButton } from "@/components/Button";
 import { ForgotPasswordRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineMail } from "react-icons/ai";
 import StyFormInput from "@/components/FormInput";
@@ -10,6 +10,7 @@ import { Toast } from "@/components/Toast";
 import Link from "next/link";
 import { ForgotPasswordRequestModel } from "@/lib/services/auth/Models";
 import { BaseResponse } from "@/lib/common/BasePayload";
+import { SubmitButton } from "@/components/Form/Button";
 
 const Page: React.FC = () => {
   const initialState: BaseResponse<ForgotPasswordRequestModel> = {

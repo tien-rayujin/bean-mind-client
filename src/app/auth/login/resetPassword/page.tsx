@@ -1,6 +1,6 @@
 "use client";
 
-import { StyButton, SubmitButton } from "@/components/Button";
+import { StyButton } from "@/components/Button";
 import { ResetPasswordRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock } from "react-icons/ai";
 import StyFormInput from "@/components/FormInput";
@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { ResetPasswordResponseModel } from "@/lib/services/auth/Models";
+import { SubmitButton } from "@/components/Form/Button";
 
 interface ResetPasswordPageProps {
   searchParams: {

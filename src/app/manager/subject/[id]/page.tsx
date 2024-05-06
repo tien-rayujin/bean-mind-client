@@ -1,7 +1,9 @@
 import { AlertSnack } from "@/components/Alert";
 import Breadcrumb from "@/components/Breadcrumb";
 import { ActionButton } from "@/components/Form/Button";
-import { seed_Subjects } from "@/lib/seed";
+import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { FaEye, FaFolder, FaPen, FaSearch, FaTrash } from "react-icons/fa";
 
 interface PageProps {
@@ -10,9 +12,17 @@ interface PageProps {
   };
 }
 
-const Page: React.FC<PageProps> = (props) => {
+const Page: React.FC<PageProps> = async (props) => {
   const { id } = props.params;
-  const itemDetail = seed_Subjects.find((x) => x.id === id);
+  const subject = (await GetSubjectRequestHandler(id)).result;
+
+  if (!subject) return notFound();
+
+  const { title, description, isDeleted, courses } = subject;
+
+  const courseList = courses.map((course) => (
+    <StyDirectoryItem key={course.id} name={course.title} />
+  ));
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
@@ -20,17 +30,19 @@ const Page: React.FC<PageProps> = (props) => {
 
       <div className="grid h-full max-h-full flex-1 grid-cols-12 gap-4">
         {/* Content */}
-        <div className="col-span-9">
+        <div className="col-span-8">
           <AlertSnack
             status="success"
             message="Update successful"
             extras="mb-6"
           />
 
-          <div className="relative bg-secondary/30 p-12 leading-relaxed">
+          <div className="relative bg-secondary/30 p-8 leading-relaxed">
             {/* Action button */}
             <div className="absolute right-4 top-4 flex items-center gap-2.5">
-              <ActionButton color="primary" icon={<FaPen size={16} />} />
+              <Link href={`/manager/subject/${id}/update`}>
+                <ActionButton color="primary" icon={<FaPen size={16} />} />
+              </Link>
               <ActionButton color="accent" icon={<FaTrash size={16} />} />
             </div>
 
@@ -38,25 +50,25 @@ const Page: React.FC<PageProps> = (props) => {
               <span className="font-semibold tracking-wide text-primary">
                 Title:{" "}
               </span>
-              {itemDetail?.title}
+              {title}
             </p>
             <p className="block max-w-[50%]">
               <span className="font-semibold tracking-wide text-primary">
                 Description:{" "}
               </span>
-              {itemDetail?.description}
+              {description}
             </p>
             <p>
               <span className="font-semibold tracking-wide text-primary">
                 Status:{" "}
               </span>
-              {itemDetail?.isDeleted ? "Disabled" : "Enabled"}
+              {isDeleted ? "Disabled" : "Enabled"}
             </p>
           </div>
         </div>
 
         {/* Directory */}
-        <div className="scrollbar col-span-3 overflow-auto">
+        <div className="scrollbar col-span-4 overflow-auto">
           {/* <h2 className="text-title mb-6 font-semibold text-primary">
               Course list
             </h2> */}
@@ -72,20 +84,7 @@ const Page: React.FC<PageProps> = (props) => {
             </div>
 
             {/* Directory list */}
-            <StyDirectoryItem name="Grade 1" />
-            <StyDirectoryItem name="Grade 2" />
-            <StyDirectoryItem name="Grade 3" />
-            <StyDirectoryItem name="Grade 4" />
-
-            <StyDirectoryItem name="Grade 5" />
-            <StyDirectoryItem name="Grade 6" />
-            <StyDirectoryItem name="Grade 7" />
-            <StyDirectoryItem name="Grade 8" />
-
-            <StyDirectoryItem name="Grade 5" />
-            <StyDirectoryItem name="Grade 6" />
-            <StyDirectoryItem name="Grade 7" />
-            <StyDirectoryItem name="Grade 8" />
+            {courseList}
           </div>
         </div>
       </div>
