@@ -68,6 +68,26 @@
     scrollbar-width: none;
     /* Firefox */
   }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: var(--background);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(239, 131, 84, 1);
+    border-radius: 100vh;
+    /* border: 1px solid transparent; */
+  }
+
+  /* .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  } */
 }
 
 /* third-party libraries CSS */

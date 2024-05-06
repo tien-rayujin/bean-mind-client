@@ -1,11 +1,11 @@
 interface BaseAuditableEntity {
   id: string;
-  created: Date;
-  createdBy: string;
-  LastModified: Date;
-  lastModifiedBy: string;
-  deletedDate: Date;
-  deletedBy: string;
+  created?: Date;
+  createdBy?: string;
+  LastModified?: Date;
+  lastModifiedBy?: string;
+  deletedDate?: Date;
+  deletedBy?: string;
 
   isDeleted: boolean;
 }

@@ -1,8 +1,6 @@
 import { AiOutlineLogout } from "react-icons/ai";
-import { useFormStatus } from "react-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FC, ReactNode } from "react";
-import Loader from "./Loader";
 import Link from "next/link";
 import clsx from "clsx";
 import { Logout } from "@/lib/services/auth/Handlers";
@@ -64,27 +62,6 @@ const NavigationButton: React.FC<NavigationButtonProp> = (props) => {
   );
 };
 
-interface SubmitButtonProp {
-  title: string;
-  extras?: string;
-}
-
-const SubmitButton: React.FC<SubmitButtonProp> = (props) => {
-  const { pending } = useFormStatus();
-  return (
-    <StyButton
-      extras={clsx(
-        "mt-4 flex w-full items-center justify-center tracking-wide",
-        props.extras,
-      )}
-      disabled={pending}
-      type="submit"
-    >
-      {pending ? <Loader /> : props.title}
-    </StyButton>
-  );
-};
-
 const LoginButton: React.FC<{}> = (props) => {
   return (
     <Link
@@ -132,7 +109,6 @@ export {
   StyButton,
   GoogleLoginButton,
   NavigationButton,
-  SubmitButton,
   LoginButton,
   LogoutButton,
 };

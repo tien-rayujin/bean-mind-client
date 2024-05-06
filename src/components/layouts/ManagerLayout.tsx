@@ -9,8 +9,8 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       {/* <!-- ===== Navigation End ===== --> */}
       <div className="h-full flex-1 rounded-2xl bg-cover p-12">
         {/* <!-- ===== Content Start ===== --> */}
-        <main>
-          <div>{children}</div>
+        <main className="h-full w-full">
+          <div className="h-full">{children}</div>
         </main>
         {/* <!-- ===== Content End ===== --> */}
       </div>
