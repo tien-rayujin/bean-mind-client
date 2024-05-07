@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const Page: React.FC<{}> = async (props) => {
   const getActivitiesRequest = await GetActivitiesRequestHandler();
-  const activities = getActivitiesRequest.result;
+  const activities = getActivitiesRequest.data;
 
   const activitiesList = activities?.items.length ? (
     activities?.items.map((activity) => {

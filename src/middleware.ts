@@ -8,7 +8,7 @@ export const config = {
 const middleware = async (request: NextRequest) => {
   // get user infor if existed in cookies("session")
   const getUserInfo = await GetUserInfoRequestHandler();
-  if (!getUserInfo.isSuccess) {
+  if (!getUserInfo.success) {
     console.log("Can not get user information");
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
@@ -17,7 +17,7 @@ const middleware = async (request: NextRequest) => {
   //   return NextResponse.rewrite(new URL("/auth/login", request.url));
   // }
 
-  const user = getUserInfo.result;
+  const user = getUserInfo.data;
   // user tried to access manager page
   if (
     request.nextUrl.pathname.startsWith("/admin") &&

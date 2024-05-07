@@ -14,9 +14,9 @@ import { SubmitButton } from "@/components/Form/Button";
 
 const Page: React.FC = () => {
   const initialState: BaseResponse<ForgotPasswordRequestModel> = {
-    isSuccess: false,
+    success: false,
     message: "",
-    result: undefined,
+    data: undefined,
     fieldErrors: {},
   };
   const [formState, formAction] = useFormState(
@@ -28,7 +28,7 @@ const Page: React.FC = () => {
     if (formState.message != "") {
       Toast({
         message: formState.message,
-        type: formState.isSuccess ? "success" : "error",
+        type: formState.success ? "success" : "error",
       });
     }
   }, [formState]);
@@ -40,9 +40,9 @@ const Page: React.FC = () => {
         action={formAction}
       >
         <h2 className="mb-4 text-2xl font-bold text-text">Forgot password</h2>
-        {!formState.isSuccess &&
-          formState.errorMessages &&
-          formState.errorMessages.map((eMsg) => (
+        {!formState.success &&
+          formState.errors &&
+          formState.errors.map((eMsg) => (
             <p key={eMsg} className="text-sm font-semibold text-accent">
               {eMsg}
             </p>
@@ -56,7 +56,7 @@ const Page: React.FC = () => {
           required
           extras="tracking-wide"
         ></StyFormInput>
-        {!formState.isSuccess && formState.fieldErrors?.email && (
+        {!formState.success && formState.fieldErrors?.email && (
           <span className="text-sm font-semibold text-accent">
             {formState.fieldErrors?.email}
           </span>

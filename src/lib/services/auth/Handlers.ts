@@ -164,7 +164,7 @@ const GetUserInfoRequestHandler = async (): Promise<
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }

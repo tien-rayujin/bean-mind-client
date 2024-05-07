@@ -51,7 +51,7 @@ const CreateActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }
@@ -77,7 +77,7 @@ const UpdateActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }
@@ -102,7 +102,7 @@ const DeleteActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }

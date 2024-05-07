@@ -7,10 +7,10 @@ type FieldErrors = {
 };
 
 interface BaseResponse<T> {
-  isSuccess: boolean;
+  success: boolean;
   message: string;
-  result?: T;
-  errorMessages?: string[];
+  data?: T;
+  errors?: string[];
   fieldErrors?: FieldErrors;
 }
 

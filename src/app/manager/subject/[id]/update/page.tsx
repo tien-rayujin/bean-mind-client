@@ -9,7 +9,7 @@ interface UpdateSubjectPageProps {
 
 const UpdateSubjectPage: React.FC<UpdateSubjectPageProps> = async (props) => {
   const { id } = props.params;
-  const subject = (await GetSubjectRequestHandler(id)).result;
+  const subject = (await GetSubjectRequestHandler(id)).data;
 
   if (!subject) return notFound();
 

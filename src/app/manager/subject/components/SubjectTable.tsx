@@ -18,7 +18,7 @@ const SubjectTable: React.FC<SubjectTableProps> = async (props) => {
       pageIndex,
       pageSize,
     })
-  ).result;
+  ).data;
   const items = subjects?.items;
 
   return (

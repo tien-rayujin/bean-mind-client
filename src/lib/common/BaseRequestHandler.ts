@@ -34,7 +34,7 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 
     if (!validatedFields.success) {
       return {
-        isSuccess: false,
+        success: false,
         message: "Field Validation Failed",
         fieldErrors: validatedFields.error.formErrors.fieldErrors,
       };
@@ -49,24 +49,24 @@ const BaseRequestHandler = async <TRequest, TResponse>(
   });
 
   // server response with fail resulst
-  if (!response || !response.isSuccess) {
+  if (!response || !response.success) {
     console.error({ response });
     return {
-      isSuccess: false,
+      success: false,
       message: response?.message || "Server error",
-      errorMessages: response?.errorMessages,
+      errors: response?.errors,
       fieldErrors: response?.fieldErrors,
     };
   }
 
   // callback function
-  okCallback && okCallback(response.result);
+  okCallback && okCallback(response.data);
 
   return {
-    isSuccess: response.isSuccess,
+    success: response.success,
     message: response?.message,
-    result: response.result,
-    errorMessages: response?.errorMessages,
+    data: response.data,
+    errors: response?.errors,
   };
 };
 

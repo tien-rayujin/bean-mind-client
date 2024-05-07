@@ -11,7 +11,7 @@ const Page: React.FC = () => {
     const response = await GetUserInfoRequestHandler();
     Toast({
       message: response.message,
-      type: response.isSuccess ? "info" : "error",
+      type: response.success ? "info" : "error",
     });
   };
 

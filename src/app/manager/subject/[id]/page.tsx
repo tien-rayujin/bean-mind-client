@@ -14,7 +14,7 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = async (props) => {
   const { id } = props.params;
-  const subject = (await GetSubjectRequestHandler(id)).result;
+  const subject = (await GetSubjectRequestHandler(id)).data;
 
   if (!subject) return notFound();
 
@@ -31,11 +31,11 @@ const Page: React.FC<PageProps> = async (props) => {
       <div className="grid h-full max-h-full flex-1 grid-cols-12 gap-4">
         {/* Content */}
         <div className="col-span-8">
-          <AlertSnack
+          {/* <AlertSnack
             status="success"
             message="Update successful"
             extras="mb-6"
-          />
+          /> */}
 
           <div className="relative bg-secondary/30 p-8 leading-relaxed">
             {/* Action button */}
@@ -74,7 +74,7 @@ const Page: React.FC<PageProps> = async (props) => {
             </h2> */}
           <div className="grid grid-cols-1 gap-2.5 bg-secondary/30 p-8">
             {/* Search bar */}
-            <div className="relative h-12 rounded-md bg-secondary/30">
+            <div className="relative mb-4 h-12 rounded-md bg-secondary/30">
               <input
                 type="text"
                 className="h-full w-full bg-transparent pl-4 pr-12 outline-none"

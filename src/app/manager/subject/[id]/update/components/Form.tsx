@@ -14,10 +14,10 @@ interface UpdateSubjectFormProps {
 }
 
 const updateSubjectFormInit: BaseResponse<GetSubjectResponseModel> = {
-  isSuccess: false,
+  success: false,
   message: "",
-  result: undefined,
-  errorMessages: [],
+  data: undefined,
+  errors: [],
   fieldErrors: {},
 };
 
@@ -32,9 +32,9 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
     if (formState.message != "") {
       Toast({
         message: formState.message,
-        type: formState.isSuccess ? "success" : "error",
+        type: formState.success ? "success" : "error",
       });
-      if (formState.isSuccess) {
+      if (formState.success) {
         // router.push("/");
       }
     }
@@ -43,6 +43,13 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
   return (
     <form action={formAction} className="">
       <input type="hidden" name="id" value={subject.id} />
+      {!formState.success &&
+        formState.errors &&
+        formState.errors.map((eMsg) => (
+          <p key={eMsg} className="text-sm font-semibold text-accent">
+            {eMsg}
+          </p>
+        ))}
 
       <StyFormInput
         type="title"
@@ -52,7 +59,7 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
         extras="tracking-wide"
         defaultValue={subject.title}
       />
-      {!formState.isSuccess && formState.fieldErrors?.title && (
+      {!formState.success && formState.fieldErrors?.title && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.title}
         </span>
@@ -66,7 +73,7 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
         extras="tracking-wide"
         defaultValue={subject.description}
       />
-      {!formState.isSuccess && formState.fieldErrors?.description && (
+      {!formState.success && formState.fieldErrors?.description && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.description}
         </span>
