@@ -28,13 +28,13 @@ const SubmitButton: React.FC<SubmitButtonProp> = (props) => {
 
 interface ActionButtonProp
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactNode;
+  children: React.ReactNode;
   color: string;
   extras?: string;
 }
 
 const ActionButton: React.FC<ActionButtonProp> = (props) => {
-  const { icon, color, extras, ...rest } = props;
+  const { children, color, extras, ...rest } = props;
   return (
     <button
       {...rest}
@@ -44,7 +44,7 @@ const ActionButton: React.FC<ActionButtonProp> = (props) => {
         extras,
       )}
     >
-      {icon}
+      {children}
     </button>
   );
 };

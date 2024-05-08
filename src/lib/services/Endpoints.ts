@@ -34,7 +34,7 @@ export const getActivityEndpoint = (id: string) =>
 export const createActivityEndpoint = apiURL.href.concat(`${activityEndpoint}`);
 export const updateActivityEndpoint = apiURL.href.concat(`${activityEndpoint}`);
 export const deleteActivityEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityEndpoint}`);
+  apiURL.href.concat(`${activityEndpoint}/${id}`);
 
 // #region ActivityType
 const activityTypeEndpoint = "/activity-types";
@@ -50,7 +50,7 @@ export const updateActivityTypeEndpoint = apiURL.href.concat(
   `${activityTypeEndpoint}`,
 );
 export const deleteActivityTypeEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityTypeEndpoint}`);
+  apiURL.href.concat(`${activityTypeEndpoint}/${id}`);
 
 // #region Chapter
 const chapterEndpoint = "/chapters";
@@ -60,7 +60,7 @@ export const getChapterEndpoint = (id: string) =>
 export const createChapterEndpoint = apiURL.href.concat(`${chapterEndpoint}`);
 export const updateChapterEndpoint = apiURL.href.concat(`${chapterEndpoint}`);
 export const deleteChapterEndpoint = (id: string) =>
-  apiURL.href.concat(`${chapterEndpoint}`);
+  apiURL.href.concat(`${chapterEndpoint}/${id}`);
 
 // #region Question
 const questionEndpoint = "/questions";
@@ -70,7 +70,7 @@ export const getQuestionEndpoint = (id: string) =>
 export const createQuestionEndpoint = apiURL.href.concat(`${questionEndpoint}`);
 export const updateQuestionEndpoint = apiURL.href.concat(`${questionEndpoint}`);
 export const deleteQuestionEndpoint = (id: string) =>
-  apiURL.href.concat(`${questionEndpoint}`);
+  apiURL.href.concat(`${questionEndpoint}/${id}`);
 
 // #region QuestionAnswer
 const questionAnswerEndpoint = "/question-answers";
@@ -86,7 +86,7 @@ export const updateQuestionAnswerEndpoint = apiURL.href.concat(
   `${questionAnswerEndpoint}`,
 );
 export const deleteQuestionAnswerEndpoint = (id: string) =>
-  apiURL.href.concat(`${questionAnswerEndpoint}`);
+  apiURL.href.concat(`${questionAnswerEndpoint}/${id}`);
 
 // #region QuestionLevel
 const questionLevelEndpoint = "/question-levels";
@@ -102,7 +102,7 @@ export const updateQuestionLevelEndpoint = apiURL.href.concat(
   `${questionLevelEndpoint}`,
 );
 export const deleteQuestionLevelEndpoint = (id: string) =>
-  apiURL.href.concat(`${questionLevelEndpoint}`);
+  apiURL.href.concat(`${questionLevelEndpoint}/${id}`);
 
 // #region QuestionType
 const questionTypeEndpoint = "/question-types";
@@ -118,7 +118,7 @@ export const updateQuestionTypeEndpoint = apiURL.href.concat(
   `${questionTypeEndpoint}`,
 );
 export const deleteQuestionTypeEndpoint = (id: string) =>
-  apiURL.href.concat(`${questionTypeEndpoint}`);
+  apiURL.href.concat(`${questionTypeEndpoint}/${id}`);
 
 // #region Subject
 const subjectEndpoint = "/subjects";
@@ -131,7 +131,7 @@ export const getSubjectEndpoint = (id: string) =>
 export const createSubjectEndpoint = apiURL.href.concat(`${subjectEndpoint}`);
 export const updateSubjectEndpoint = apiURL.href.concat(`${subjectEndpoint}`);
 export const deleteSubjectEndpoint = (id: string) =>
-  apiURL.href.concat(`${subjectEndpoint}`);
+  apiURL.href.concat(`${subjectEndpoint}/${id}`);
 
 // #region Course
 const courseEndpoint = "/courses";
@@ -141,7 +141,7 @@ export const getCourseEndpoint = (id: string) =>
 export const createCourseEndpoint = apiURL.href.concat(`${courseEndpoint}`);
 export const updateCourseEndpoint = apiURL.href.concat(`${courseEndpoint}`);
 export const deleteCourseEndpoint = (id: string) =>
-  apiURL.href.concat(`${courseEndpoint}`);
+  apiURL.href.concat(`${courseEndpoint}/${id}`);
 
 // #region Topic
 const topicEndpoint = "/topics";
@@ -151,7 +151,7 @@ export const getTopicEndpoint = (id: string) =>
 export const createTopicEndpoint = apiURL.href.concat(`${topicEndpoint}`);
 export const updateTopicEndpoint = apiURL.href.concat(`${topicEndpoint}`);
 export const deleteTopicEndpoint = (id: string) =>
-  apiURL.href.concat(`${topicEndpoint}`);
+  apiURL.href.concat(`${topicEndpoint}/${id}`);
 
 // #region Worksheet
 const worksheetEndpoint = "/worksheets";
@@ -165,7 +165,7 @@ export const updateWorksheetEndpoint = apiURL.href.concat(
   `${worksheetEndpoint}`,
 );
 export const deleteWorksheetEndpoint = (id: string) =>
-  apiURL.href.concat(`${worksheetEndpoint}`);
+  apiURL.href.concat(`${worksheetEndpoint}/${id}`);
 
 // #region WorksheetQuesiton
 const worksheetQuestionEndpoint = "/worksheet-questions";
@@ -181,7 +181,7 @@ export const updateWorksheetQuestionEndpoint = apiURL.href.concat(
   `${worksheetQuestionEndpoint}`,
 );
 export const deleteWorksheetQuestionEndpoint = (id: string) =>
-  apiURL.href.concat(`${worksheetQuestionEndpoint}`);
+  apiURL.href.concat(`${worksheetQuestionEndpoint}/${id}`);
 
 // #region WorksheetTemplate
 const worksheetTemplateEndpoint = "/worksheet-templates";
@@ -197,4 +197,4 @@ export const updateworksheetTemplateEndpoint = apiURL.href.concat(
   `${worksheetTemplateEndpoint}`,
 );
 export const deleteworksheetTemplateEndpoint = (id: string) =>
-  apiURL.href.concat(`${worksheetTemplateEndpoint}`);
+  apiURL.href.concat(`${worksheetTemplateEndpoint}/${id}`);

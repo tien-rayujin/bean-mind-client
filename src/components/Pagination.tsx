@@ -1,5 +1,6 @@
 "use client";
 
+import { createPageUrl } from "@/lib/utils";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -14,22 +15,27 @@ const Pagination = ({ page, totalPage }: PaginationProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  function createPageUrl(page: number | string) {
-    const params = new URLSearchParams(searchParams);
-    params.set("pageIndex", page.toString());
-    return `${pathname}?${params.toString()}`;
-  }
+  const back = page > 1 ? page - 1 : 1;
+  const next = page === totalPage ? page : page + 1;
 
   return (
     <div className="flex items-center justify-center gap-4 rounded-sm border-stroke py-4 text-primary dark:border-strokedark dark:text-white md:gap-6 md:py-6 2xl:gap-7.5 2xl:py-7.5">
       <NavigationArrow
-        href={createPageUrl(page - 1)}
+        href={createPageUrl({
+          terms: { pageIndex: String(back) },
+          pathname,
+          searchParams,
+        })}
         disabled={page === 1}
         direction="left"
       />
       <p>{page}</p>
       <NavigationArrow
-        href={createPageUrl(page + 1)}
+        href={createPageUrl({
+          terms: { pageIndex: String(next) },
+          pathname,
+          searchParams,
+        })}
         disabled={page === totalPage}
         direction="right"
       />

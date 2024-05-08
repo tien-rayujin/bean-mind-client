@@ -1,32 +1,36 @@
-import Pagination from "@/components/Pagination";
 import TableThree from "@/components/Table";
 import { columns } from "./TableColumnDefinition";
 import { GetSubjectsRequestHandler } from "@/lib/services/subject/Handlers";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
+import { notFound } from "next/navigation";
+import Pagination from "@/components/Pagination";
 
 interface SubjectTableProps {
   pageIndex: number;
   pageSize: number;
+  term: string;
 }
 
 const SubjectTable: React.FC<SubjectTableProps> = async (props) => {
-  const { pageIndex, pageSize } = props;
-
+  const { term, pageIndex, pageSize } = props;
   const subjects = (
     await GetSubjectsRequestHandler({
+      term,
       pageIndex,
       pageSize,
     })
   ).data;
-  const items = subjects?.items;
+  if (!subjects) return notFound();
+  const { items, totalPage } = subjects;
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
+      <Suspense key={term + pageIndex} fallback={<Loader />}>
         <TableThree columns={columns} objData={items} />
       </Suspense>
-      <Pagination page={pageIndex} totalPage={pageSize} />
+
+      <Pagination page={pageIndex} totalPage={totalPage} />
     </>
   );
 };

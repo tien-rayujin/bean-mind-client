@@ -20,6 +20,7 @@ import { createSubjectSchema, updateSubjectSchema } from "./Validators";
 import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { getAccessTokenSession } from "@/lib/actions/session";
+import { revalidatePath } from "next/cache";
 
 const GetSubjectsRequestHandler = async (
   query: Object,
@@ -81,6 +82,8 @@ const UpdateSubjectRequestHandler = async (
       message: "Authentication required to perform this action",
     };
   }
+
+  revalidatePath("/manager/subject");
 
   return BaseRequestHandler<
     UpdateSubjectRequestModel,
