@@ -40,6 +40,9 @@ const Page: React.FC<{}> = async (props) => {
         <Link href="/manage/course">
           <StyButton>Manage Course</StyButton>
         </Link>
+        <Link href="/manage/chapter">
+          <StyButton>Manage Chapter</StyButton>
+        </Link>
       </div>
 
       <Pagination page={1} totalPage={10} />
