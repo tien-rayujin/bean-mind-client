@@ -8,7 +8,7 @@ const CreateSubjectPage: React.FC<CreateSubjectPageProps> = (props) => {
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
       <Breadcrumb pageName="Create subject" />
 
-      <CreateSubjectForm payload={null} />
+      <CreateSubjectForm />
     </div>
   );
 };

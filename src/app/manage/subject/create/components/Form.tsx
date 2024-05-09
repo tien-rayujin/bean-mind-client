@@ -4,18 +4,14 @@ import { SubmitButton } from "@/components/Form/Button";
 import StyFormInput from "@/components/FormInput";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
+import { FormWithPayload } from "@/lib/common/FormWithPayload";
 import { CreateSubjectRequestHandler } from "@/lib/services/subject/Handlers";
 import { GetSubjectResponseModel } from "@/lib/services/subject/Models";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
-interface PageWithPayload<T> {
-  payload: T;
-}
-
-interface CreateSubjectFormProps extends PageWithPayload<null> {}
+interface CreateSubjectFormProps extends FormWithPayload<null> {}
 
 const createSubjectFormInit: BaseResponse<GetSubjectResponseModel> = {
   success: false,
@@ -39,7 +35,6 @@ const CreateSubjectForm: React.FC<CreateSubjectFormProps> = (props) => {
         type: formState.success ? "success" : "error",
       });
       if (formState.success) {
-        revalidatePath("/manage");
         router.back();
       }
     }

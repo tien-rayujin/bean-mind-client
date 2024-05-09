@@ -4,13 +4,14 @@ import { SubmitButton } from "@/components/Form/Button";
 import StyFormInput from "@/components/FormInput";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
+import { FormWithPayload } from "@/lib/common/FormWithPayload";
 import { UpdateSubjectRequestHandler } from "@/lib/services/subject/Handlers";
 import { GetSubjectResponseModel } from "@/lib/services/subject/Models";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
-interface UpdateSubjectFormProps {
+interface UpdateSubjectFormProps extends FormWithPayload<null> {
   subject: Subject;
 }
 

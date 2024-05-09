@@ -1,6 +1,7 @@
 "use client";
 
 import { StyButton } from "@/components/Button";
+import { Chip } from "@/components/Chips";
 import { createColumnHelper } from "@tanstack/react-table";
 import Link from "next/link";
 
@@ -14,6 +15,15 @@ const columns = [
   columnHelper.accessor("description", {
     header: "Title",
     cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("isDeleted", {
+    header: "Status",
+    cell: (info) =>
+      info.getValue() ? (
+        <Chip title="Disable" type="danger" />
+      ) : (
+        <Chip title="Enable" type="success" />
+      ),
   }),
   columnHelper.display({
     header: "Actions",

@@ -1,5 +1,8 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { CreateSubjectButton } from "./components/ActionButton";
+import {
+  CreateSubjectButton,
+  FilterSubjectButton,
+} from "./components/ActionButton";
 import SearchBar from "@/components/SearchBar";
 import { FaFilter } from "react-icons/fa";
 import SubjectTable from "./components/SubjectTable";
@@ -23,15 +26,13 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
     <div className="relative h-full">
       <Breadcrumb pageName="Subject" />
 
-      <CreateSubjectButton />
+      {/* <CreateSubjectButton /> */}
 
       {/* Search area */}
       <div className="mb-4 flex items-center gap-4">
         <SearchBar extras="w-full" />
         {/* Filter button */}
-        <button className="grid h-12 w-12 place-items-center rounded-md bg-secondary/30 text-text ">
-          <FaFilter />
-        </button>
+        <FilterSubjectButton />
       </div>
 
       <SubjectTable pageIndex={pageIndex} pageSize={pageSize} term={term} />

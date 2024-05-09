@@ -2,6 +2,7 @@
 
 import { LogoutButton } from "@/components/Button";
 import clsx from "clsx";
+import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { FaBook, FaHome, FaUser } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
@@ -35,13 +36,18 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
 const SideNavList = () => {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <SideNavItem
-        color="accent"
-        text="Home"
-        icon={
-          <FaHome size={24} className={" text-accent group-hover:text-text"} />
-        }
-      />
+      <Link href={"/manage"}>
+        <SideNavItem
+          color="accent"
+          text="Home"
+          icon={
+            <FaHome
+              size={24}
+              className={" text-accent group-hover:text-text"}
+            />
+          }
+        />
+      </Link>
       <SideNavItem
         color="accent"
         text="User"

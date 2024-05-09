@@ -28,7 +28,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = (props) => {
   };
 
   return (
-    <StyButton onClick={handleDelete} {...rest} extras="!bg-danger">
+    <StyButton onClick={handleDelete} {...rest} extras="!bg-danger !w-full">
       Delete
     </StyButton>
   );
@@ -56,7 +56,7 @@ const RestoreButton: React.FC<RestoreButtonProps> = (props) => {
   };
 
   return (
-    <StyButton onClick={handleRestore} {...rest} extras="!bg-warning">
+    <StyButton onClick={handleRestore} {...rest} extras="!bg-warning !w-full">
       Restore
     </StyButton>
   );
