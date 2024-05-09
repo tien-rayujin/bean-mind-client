@@ -8,7 +8,7 @@ interface StyDirectoryItemProps<T> {
 const StyDirectoryItem: React.FC<StyDirectoryItemProps<Course>> = (props) => {
   const { id, title, description } = props.item;
   return (
-    <Link href={`/manager/course/${id}`}>
+    <Link href={`/manage/course/${id}`}>
       <div className="relative flex w-full items-center gap-2.5 rounded-md bg-background/50 p-2.5 transition-all duration-300 hover:scale-105 hover:cursor-pointer">
         <FaFolder strokeWidth={1.25} className="text-primary" />
         <h2 className="font-semibold text-primary">{title}</h2>

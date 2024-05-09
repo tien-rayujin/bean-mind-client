@@ -39,7 +39,7 @@ const CreateSubjectForm: React.FC<CreateSubjectFormProps> = (props) => {
         type: formState.success ? "success" : "error",
       });
       if (formState.success) {
-        revalidatePath("/manager");
+        revalidatePath("/manage");
         router.back();
       }
     }

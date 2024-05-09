@@ -35,17 +35,17 @@ const Page: React.FC<PageProps> = async (props) => {
           <div className="relative bg-secondary/30 p-8 leading-relaxed">
             {/* Action button */}
             <div className="absolute right-4 top-4 flex items-center gap-2.5">
-              <Link href={`/manager/subject/${id}/update`}>
+              <Link href={`/manage/subject/${id}/update`}>
                 <ActionButton color="primary">
                   <FaPen />
                 </ActionButton>
               </Link>
-              <Link href={`/manager/subject/${id}/restore`}>
+              <Link href={`/manage/subject/${id}/restore`}>
                 <ActionButton color="accent">
                   <FaRedo />
                 </ActionButton>
               </Link>
-              <Link href={`/manager/subject/${id}/delete`}>
+              <Link href={`/manage/subject/${id}/delete`}>
                 <ActionButton color="accent">
                   <FaTrash />
                 </ActionButton>

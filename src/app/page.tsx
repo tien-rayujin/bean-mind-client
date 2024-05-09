@@ -23,7 +23,7 @@ const Page: React.FC = () => {
           Show user information
         </StyButton>
         <StyButton extras="mt-4">
-          <Link href="/manager">Go to Manager page</Link>
+          <Link href="/manage">Go to Manager page</Link>
         </StyButton>
       </div>
     </UserLayout>

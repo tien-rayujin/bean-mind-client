@@ -83,7 +83,7 @@ const UpdateSubjectRequestHandler = async (
     };
   }
 
-  revalidatePath("/manager/subject");
+  revalidatePath("/manage/subject");
 
   return BaseRequestHandler<
     UpdateSubjectRequestModel,

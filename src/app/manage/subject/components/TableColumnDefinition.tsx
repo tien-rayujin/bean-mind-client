@@ -19,7 +19,7 @@ const columns = [
     header: "Actions",
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
-        <Link href={`/manager/subject/${info.row.original.id}`}>
+        <Link href={`/manage/subject/${info.row.original.id}`}>
           <StyButton extras="hover:!translate-y-0">View</StyButton>
         </Link>
       </div>

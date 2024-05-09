@@ -33,7 +33,7 @@ const Page: React.FC<{}> = async (props) => {
       {activitiesList}
 
       <h2 className="text-xl">Goto</h2>
-      <Link href="/manager/subject">
+      <Link href="/manage/subject">
         <StyButton>Manage Subject</StyButton>
       </Link>
 
