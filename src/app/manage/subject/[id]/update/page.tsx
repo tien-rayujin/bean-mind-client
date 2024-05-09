@@ -1,4 +1,3 @@
-import Breadcrumb from "@/components/Breadcrumb";
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
 import { UpdateSubjectForm } from "../components/Form";
 import { notFound } from "next/navigation";
@@ -15,8 +14,6 @@ const UpdateSubjectPage: React.FC<UpdateSubjectPageProps> = async (props) => {
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
-      <Breadcrumb pageName="Subject Detail" />
-
       <UpdateSubjectForm subject={subject} />
     </div>
   );

@@ -1,21 +1,21 @@
 "use client";
 
 import { SubmitButton } from "@/components/Form/Button";
-import { StyFormInput } from "@/components/Form/FormInput";
+import { StyFormInput, StyFormSelect } from "@/components/Form/FormInput";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { FormWithPayload } from "@/lib/common/FormWithPayload";
-import { UpdateSubjectRequestHandler } from "@/lib/services/subject/Handlers";
-import { GetSubjectResponseModel } from "@/lib/services/subject/Models";
+import { UpdateCourseRequestHandler } from "@/lib/services/course/Handlers";
+import { GetCourseResponseModel } from "@/lib/services/course/Models";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
-interface UpdateSubjectFormProps extends FormWithPayload<null> {
-  subject: Subject;
+interface UpdateCourseFormProps extends FormWithPayload<Subject[]> {
+  course: Course;
 }
 
-const updateSubjectFormInit: BaseResponse<GetSubjectResponseModel> = {
+const updateCourseFormInit: BaseResponse<GetCourseResponseModel> = {
   success: false,
   message: "",
   data: undefined,
@@ -23,12 +23,13 @@ const updateSubjectFormInit: BaseResponse<GetSubjectResponseModel> = {
   fieldErrors: {},
 };
 
-const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
+const UpdateCourseForm: React.FC<UpdateCourseFormProps> = (props) => {
+  const { payload } = props;
   const [formState, formAction] = useFormState(
-    UpdateSubjectRequestHandler,
-    updateSubjectFormInit,
+    UpdateCourseRequestHandler,
+    updateCourseFormInit,
   );
-  const subject = props.subject;
+  const course = props.course;
   const router = useRouter();
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
 
   return (
     <form action={formAction} className="">
-      <input type="hidden" name="id" value={subject.id} />
+      <input type="hidden" name="id" value={course.id} />
       {!formState.success &&
         formState.errors &&
         formState.errors.map((eMsg) => (
@@ -60,7 +61,7 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
         placeholder="Title"
         required
         extras="tracking-wide"
-        defaultValue={subject.title}
+        defaultValue={course.title}
       />
       {!formState.success && formState.fieldErrors?.title && (
         <span className="text-sm font-semibold text-accent">
@@ -74,11 +75,27 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
         placeholder="Description"
         required
         extras="tracking-wide"
-        defaultValue={subject.description}
+        defaultValue={course.description}
       />
       {!formState.success && formState.fieldErrors?.description && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.description}
+        </span>
+      )}
+
+      {/* {JSON.stringify(course.subject)} */}
+      <StyFormSelect<Subject & { [key: string]: any }>
+        name="subjectId"
+        placeholder="Please select subject"
+        required
+        displayProp={"title"}
+        valueProp={"id"}
+        datas={payload}
+        defaultValue={course.subject.id}
+      />
+      {!formState.success && formState.fieldErrors?.subjectId && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.subjectId}
         </span>
       )}
 
@@ -87,4 +104,4 @@ const UpdateSubjectForm: React.FC<UpdateSubjectFormProps> = (props) => {
   );
 };
 
-export { UpdateSubjectForm };
+export { UpdateCourseForm };

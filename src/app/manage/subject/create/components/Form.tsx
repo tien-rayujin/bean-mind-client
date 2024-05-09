@@ -1,7 +1,7 @@
 "use client";
 
 import { SubmitButton } from "@/components/Form/Button";
-import StyFormInput from "@/components/FormInput";
+import { StyFormInput } from "@/components/Form/FormInput";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { FormWithPayload } from "@/lib/common/FormWithPayload";
@@ -51,7 +51,7 @@ const CreateSubjectForm: React.FC<CreateSubjectFormProps> = (props) => {
         ))}
 
       <StyFormInput
-        type="title"
+        type="text"
         name="title"
         placeholder="Title"
         required
@@ -65,7 +65,7 @@ const CreateSubjectForm: React.FC<CreateSubjectFormProps> = (props) => {
       )}
 
       <StyFormInput
-        type="description"
+        type="text"
         name="description"
         placeholder="Description"
         required

@@ -1,23 +1,23 @@
 import { Alert } from "@/components/Alert";
-import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { GetCourseRequestHandler } from "@/lib/services/course/Handlers";
 import { notFound } from "next/navigation";
 import { DeleteButton } from "../components/Button";
 
-interface DeleteSubjectPageProps {
+interface DeleteCoursePageProps {
   params: { id: string };
 }
 
-const DeleteSubjectPage: React.FC<DeleteSubjectPageProps> = async (props) => {
+const DeleteCoursePage: React.FC<DeleteCoursePageProps> = async (props) => {
   const { id } = props.params;
-  const subject = (await GetSubjectRequestHandler(id)).data;
+  const course = (await GetCourseRequestHandler(id)).data;
 
-  if (!subject) return notFound();
+  if (!course) return notFound();
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
       <Alert
         status={"danger"}
-        title={`Confirm delete for item \"${subject.title}\"`}
+        title={`Confirm delete for item \"${course.title}\"`}
         message="Are you sure to delete(disable) this item?"
         extras="mb-4"
       />
@@ -27,4 +27,4 @@ const DeleteSubjectPage: React.FC<DeleteSubjectPageProps> = async (props) => {
   );
 };
 
-export default DeleteSubjectPage;
+export default DeleteCoursePage;

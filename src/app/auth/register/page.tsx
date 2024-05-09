@@ -3,7 +3,7 @@
 import { GoogleLoginButton } from "@/components/Button";
 import { RegisterRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
-import StyFormInput from "@/components/FormInput";
+import { StyFormInput } from "@/components/Form/FormInput";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import Link from "next/link";

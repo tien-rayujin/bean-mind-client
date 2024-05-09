@@ -1,24 +1,23 @@
 import { Alert } from "@/components/Alert";
-import Breadcrumb from "@/components/Breadcrumb";
-import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { GetCourseRequestHandler } from "@/lib/services/course/Handlers";
 import { notFound } from "next/navigation";
 import { RestoreButton } from "../components/Button";
 
-interface RestoreSubjectPageProps {
+interface RestoreCoursePageProps {
   params: { id: string };
 }
 
-const RestoreSubjectPage: React.FC<RestoreSubjectPageProps> = async (props) => {
+const RestoreCoursePage: React.FC<RestoreCoursePageProps> = async (props) => {
   const { id } = props.params;
-  const subject = (await GetSubjectRequestHandler(id)).data;
+  const course = (await GetCourseRequestHandler(id)).data;
 
-  if (!subject) return notFound();
+  if (!course) return notFound();
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
       <Alert
         status={"warning"}
-        title={`Confirm restore for item \"${subject.title}\"`}
+        title={`Confirm restore for item \"${course.title}\"`}
         message="Are you sure to restore(re-enable) this item?"
         extras="mb-4"
       />
@@ -28,4 +27,4 @@ const RestoreSubjectPage: React.FC<RestoreSubjectPageProps> = async (props) => {
   );
 };
 
-export default RestoreSubjectPage;
+export default RestoreCoursePage;

@@ -21,13 +21,13 @@ import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { getAccessTokenSession } from "@/lib/actions/session";
 
-const GetActivitiesRequestHandler = async (): Promise<
-  BaseResponse<GetActivitiesResonseModel>
-> => {
+const GetActivitiesRequestHandler = async (
+  query: Object,
+): Promise<BaseResponse<GetActivitiesResonseModel>> => {
   return BaseRequestHandler<object, GetActivitiesResonseModel>({
     options: {
       method: "GET",
-      endpoint: getActivitiesEndpoint,
+      endpoint: getActivitiesEndpoint(query),
     },
   });
 };

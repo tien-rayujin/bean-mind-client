@@ -1,32 +1,32 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import { StyButton } from "@/components/Button";
-import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { GetCourseRequestHandler } from "@/lib/services/course/Handlers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
 import { FaPen, FaRedo, FaTrash } from "react-icons/fa";
 
-interface SubjectDetailLayoutProps extends PropsWithChildren {
+interface CourseDetailLayoutProps extends PropsWithChildren {
   modal: React.ReactNode;
   params: { id: string };
 }
 
-const Layout: React.FC<SubjectDetailLayoutProps> = async (props) => {
+const Layout: React.FC<CourseDetailLayoutProps> = async (props) => {
   const { children, modal, params } = props;
   const id = params.id;
 
-  const subject = (await GetSubjectRequestHandler(id)).data;
+  const course = (await GetCourseRequestHandler(id)).data;
 
-  if (!subject) return notFound();
+  if (!course) return notFound();
 
-  const { isDeleted } = subject;
+  const { isDeleted } = course;
 
   return (
     <div className="relative h-full">
       {modal}
 
       <div className="flex h-full max-h-full flex-col overflow-y-hidden">
-        <Breadcrumb pageName="Subject Detail" />
+        <Breadcrumb pageName="Course Detail" />
 
         <div className="mb-4 flex items-center justify-end gap-2.5">
           <Link href={`${id}/update`} className="z-10">

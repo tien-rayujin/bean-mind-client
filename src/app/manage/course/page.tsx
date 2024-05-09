@@ -1,9 +1,9 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterSubjectButton } from "./components/ActionButton";
+import { FilterCourseButton } from "./components/ActionButton";
 import SearchBar from "@/components/SearchBar";
-import SubjectTable from "./components/SubjectTable";
+import CourseTable from "./components/Table";
 
-interface SubjectPageProps {
+interface CoursePageProps {
   searchParams: {
     pageIndex: string;
     pageSize?: string;
@@ -11,7 +11,7 @@ interface SubjectPageProps {
   };
 }
 
-const Page: React.FC<SubjectPageProps> = async (props) => {
+const Page: React.FC<CoursePageProps> = async (props) => {
   const searchParams = props.searchParams;
   const pageIndex = Number(searchParams.pageIndex) || 1;
   const pageSize =
@@ -20,16 +20,16 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
 
   return (
     <div className="relative h-full">
-      <Breadcrumb pageName="Subject" />
+      <Breadcrumb pageName="Course" />
 
       {/* Search area */}
       <div className="mb-4 flex items-center gap-4">
         <SearchBar extras="w-full" />
         {/* Filter button */}
-        <FilterSubjectButton />
+        <FilterCourseButton />
       </div>
 
-      <SubjectTable pageIndex={pageIndex} pageSize={pageSize} term={term} />
+      <CourseTable pageIndex={pageIndex} pageSize={pageSize} term={term} />
     </div>
   );
 };

@@ -3,7 +3,7 @@
 import { StyButton } from "@/components/Button";
 import { ForgotPasswordRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineMail } from "react-icons/ai";
-import StyFormInput from "@/components/FormInput";
+import { StyFormInput } from "@/components/Form/FormInput";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { Toast } from "@/components/Toast";

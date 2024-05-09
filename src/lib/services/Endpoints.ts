@@ -28,7 +28,10 @@ export const getUserInfoRequestEndpoint = apiURL.href.concat(
 
 // #region Activity
 const activityEndpoint = "/activities";
-export const getActivitiesEndpoint = apiURL.href.concat(`${activityEndpoint}`);
+export const getActivitiesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${activityEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getActivityEndpoint = (id: string) =>
   apiURL.href.concat(`${activityEndpoint}/${id}`);
 export const createActivityEndpoint = apiURL.href.concat(`${activityEndpoint}`);
@@ -38,9 +41,10 @@ export const deleteActivityEndpoint = (id: string) =>
 
 // #region ActivityType
 const activityTypeEndpoint = "/activity-types";
-export const getActivityTypeTypesEndpoint = apiURL.href.concat(
-  `${activityTypeEndpoint}`,
-);
+export const getActivityTypeTypesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${activityTypeEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getActivityTypeEndpoint = (id: string) =>
   apiURL.href.concat(`${activityTypeEndpoint}/${id}`);
 export const createActivityTypeEndpoint = apiURL.href.concat(
@@ -54,7 +58,10 @@ export const deleteActivityTypeEndpoint = (id: string) =>
 
 // #region Chapter
 const chapterEndpoint = "/chapters";
-export const getChaptersEndpoint = apiURL.href.concat(`${chapterEndpoint}`);
+export const getChaptersEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${chapterEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getChapterEndpoint = (id: string) =>
   apiURL.href.concat(`${chapterEndpoint}/${id}`);
 export const createChapterEndpoint = apiURL.href.concat(`${chapterEndpoint}`);
@@ -64,7 +71,10 @@ export const deleteChapterEndpoint = (id: string) =>
 
 // #region Question
 const questionEndpoint = "/questions";
-export const getQuestionsEndpoint = apiURL.href.concat(`${questionEndpoint}`);
+export const getQuestionsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${questionEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getQuestionEndpoint = (id: string) =>
   apiURL.href.concat(`${questionEndpoint}/${id}`);
 export const createQuestionEndpoint = apiURL.href.concat(`${questionEndpoint}`);
@@ -74,9 +84,10 @@ export const deleteQuestionEndpoint = (id: string) =>
 
 // #region QuestionAnswer
 const questionAnswerEndpoint = "/question-answers";
-export const getQuestionAnswersEndpoint = apiURL.href.concat(
-  `${questionAnswerEndpoint}`,
-);
+export const getQuestionAnswersEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${questionAnswerEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getQuestionAnswerEndpoint = (id: string) =>
   apiURL.href.concat(`${questionAnswerEndpoint}/${id}`);
 export const createQuestionAnswerEndpoint = apiURL.href.concat(
@@ -90,9 +101,10 @@ export const deleteQuestionAnswerEndpoint = (id: string) =>
 
 // #region QuestionLevel
 const questionLevelEndpoint = "/question-levels";
-export const getQuestionLevelsEndpoint = apiURL.href.concat(
-  `${questionLevelEndpoint}`,
-);
+export const getQuestionLevelsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${questionLevelEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getQuestionLevelEndpoint = (id: string) =>
   apiURL.href.concat(`${questionLevelEndpoint}/${id}`);
 export const createQuestionLevelEndpoint = apiURL.href.concat(
@@ -106,9 +118,10 @@ export const deleteQuestionLevelEndpoint = (id: string) =>
 
 // #region QuestionType
 const questionTypeEndpoint = "/question-types";
-export const getQuestionTypesEndpoint = apiURL.href.concat(
-  `${questionTypeEndpoint}`,
-);
+export const getQuestionTypesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${questionTypeEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getQuestionTypeEndpoint = (id: string) =>
   apiURL.href.concat(`${questionTypeEndpoint}/${id}`);
 export const createQuestionTypeEndpoint = apiURL.href.concat(
@@ -135,7 +148,10 @@ export const deleteSubjectEndpoint = (id: string) =>
 
 // #region Course
 const courseEndpoint = "/courses";
-export const getCoursesEndpoint = apiURL.href.concat(`${courseEndpoint}`);
+export const getCoursesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${courseEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getCourseEndpoint = (id: string) =>
   apiURL.href.concat(`${courseEndpoint}/${id}`);
 export const createCourseEndpoint = apiURL.href.concat(`${courseEndpoint}`);
@@ -145,7 +161,10 @@ export const deleteCourseEndpoint = (id: string) =>
 
 // #region Topic
 const topicEndpoint = "/topics";
-export const getTopicsEndpoint = apiURL.href.concat(`${topicEndpoint}`);
+export const getTopicsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${topicEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getTopicEndpoint = (id: string) =>
   apiURL.href.concat(`${topicEndpoint}/${id}`);
 export const createTopicEndpoint = apiURL.href.concat(`${topicEndpoint}`);
@@ -155,7 +174,10 @@ export const deleteTopicEndpoint = (id: string) =>
 
 // #region Worksheet
 const worksheetEndpoint = "/worksheets";
-export const getWorksheetsEndpoint = apiURL.href.concat(`${worksheetEndpoint}`);
+export const getWorksheetsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${worksheetEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getWorksheetEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetEndpoint}/${id}`);
 export const createWorksheetEndpoint = apiURL.href.concat(
@@ -169,9 +191,10 @@ export const deleteWorksheetEndpoint = (id: string) =>
 
 // #region WorksheetQuesiton
 const worksheetQuestionEndpoint = "/worksheet-questions";
-export const getWorksheetQuestionsEndpoint = apiURL.href.concat(
-  `${worksheetQuestionEndpoint}`,
-);
+export const getWorksheetQuestionsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${worksheetQuestionEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getWorksheetQuestionEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetQuestionEndpoint}/${id}`);
 export const createWorksheetQuestionEndpoint = apiURL.href.concat(
@@ -185,9 +208,10 @@ export const deleteWorksheetQuestionEndpoint = (id: string) =>
 
 // #region WorksheetTemplate
 const worksheetTemplateEndpoint = "/worksheet-templates";
-export const getworksheetTemplatesEndpoint = apiURL.href.concat(
-  `${worksheetTemplateEndpoint}`,
-);
+export const getworksheetTemplatesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${worksheetTemplateEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
 export const getworksheetTemplateEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetTemplateEndpoint}/${id}`);
 export const createworksheetTemplateEndpoint = apiURL.href.concat(

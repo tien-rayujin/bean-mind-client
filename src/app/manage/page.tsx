@@ -1,13 +1,12 @@
-import { Alert, AlertSnack } from "@/components/Alert";
+import { AlertSnack } from "@/components/Alert";
 import Breadcrumb from "@/components/Breadcrumb";
 import { StyButton } from "@/components/Button";
 import Pagination from "@/components/Pagination";
-import ManagerLayout from "@/components/layouts/ManagerLayout";
 import { GetActivitiesRequestHandler } from "@/lib/services/activity/Handlers";
 import Link from "next/link";
 
 const Page: React.FC<{}> = async (props) => {
-  const getActivitiesRequest = await GetActivitiesRequestHandler();
+  const getActivitiesRequest = await GetActivitiesRequestHandler({});
   const activities = getActivitiesRequest.data;
 
   const activitiesList = activities?.items.length ? (
@@ -33,9 +32,15 @@ const Page: React.FC<{}> = async (props) => {
       {activitiesList}
 
       <h2 className="text-xl">Goto</h2>
-      <Link href="/manage/subject">
-        <StyButton>Manage Subject</StyButton>
-      </Link>
+
+      <div className="flex flex-wrap gap-2.5">
+        <Link href="/manage/subject">
+          <StyButton>Manage Subject</StyButton>
+        </Link>
+        <Link href="/manage/course">
+          <StyButton>Manage Course</StyButton>
+        </Link>
+      </div>
 
       <Pagination page={1} totalPage={10} />
     </>
