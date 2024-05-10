@@ -2,7 +2,7 @@ import React from "react";
 import { DefaultModal } from "@/components/Modal";
 import { GetChapterRequestHandler } from "@/lib/services/chapter/Handlers";
 import { notFound } from "next/navigation";
-import { RestoreChapterConfirm } from "../../components/Confirm";
+import { RestoreChapterConfirm } from "@/app/manage/chapter/components/Confirm";
 
 interface RestoreInterceptRouteProp {
   params: { id: string };

@@ -3,21 +3,21 @@
 import { StyButton } from "@/components/Button";
 import { Alert } from "@/components/Alert";
 import { Toast } from "@/components/Toast";
-import { DeleteSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { DeleteChapterRequestHandler } from "@/lib/services/chapter/Handlers";
 import { useRouter } from "next/navigation";
 
-interface DeleteSubjectConfirmProps {
-  subject: Subject;
+interface DeleteChapterConfirmProps {
+  chapter: Chapter;
 }
 
-const DeleteSubjectConfirm: React.FC<DeleteSubjectConfirmProps> = async (
+const DeleteChapterConfirm: React.FC<DeleteChapterConfirmProps> = async (
   props,
 ) => {
-  const subject = props.subject;
+  const chapter = props.chapter;
   const router = useRouter();
 
   const handleDelete = async () => {
-    const deleteResult = await DeleteSubjectRequestHandler(subject.id);
+    const deleteResult = await DeleteChapterRequestHandler(chapter.id);
 
     Toast({
       type: "success",
@@ -34,7 +34,7 @@ const DeleteSubjectConfirm: React.FC<DeleteSubjectConfirmProps> = async (
     <>
       <Alert
         status={"danger"}
-        title={`Confirm delete for item \"${subject.title}\"`}
+        title={`Confirm delete for item \"${chapter.title}\"`}
         message="Are you sure to delete(disable) this item?"
         extras="mb-4"
       />
@@ -46,19 +46,19 @@ const DeleteSubjectConfirm: React.FC<DeleteSubjectConfirmProps> = async (
   );
 };
 
-interface RestoreSubjectConfirmProps {
-  subject: Subject;
+interface RestoreChapterConfirmProps {
+  chapter: Chapter;
 }
 
-const RestoreSubjectConfirm: React.FC<RestoreSubjectConfirmProps> = async (
+const RestoreChapterConfirm: React.FC<RestoreChapterConfirmProps> = async (
   props,
 ) => {
-  const subject = props.subject;
+  const chapter = props.chapter;
   const router = useRouter();
 
   const handleRestore = async () => {
     alert("Restoring...");
-    // const restoreResult = await RestoreSubjectRequestHandler(id);
+    // const restoreResult = await RestoreChapterRequestHandler(id);
     // Toast({
     //   type: "info",
     //   message: restoreResult.message,
@@ -72,7 +72,7 @@ const RestoreSubjectConfirm: React.FC<RestoreSubjectConfirmProps> = async (
     <>
       <Alert
         status={"warning"}
-        title={`Confirm restore for item \"${subject.title}\"`}
+        title={`Confirm restore for item \"${chapter.title}\"`}
         message="Are you sure to restore(re-enable) this item?"
         extras="mb-4"
       />
@@ -84,4 +84,4 @@ const RestoreSubjectConfirm: React.FC<RestoreSubjectConfirmProps> = async (
   );
 };
 
-export { DeleteSubjectConfirm, RestoreSubjectConfirm };
+export { DeleteChapterConfirm, RestoreChapterConfirm };

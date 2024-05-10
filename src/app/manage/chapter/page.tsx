@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterChapterButton } from "./components/ActionButton";
+import { FilterChapterButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
 import ChapterTable from "./components/Table";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { DefaultModal } from "@/components/Modal";
 import { GetCourseRequestHandler } from "@/lib/services/course/Handlers";
 import { notFound } from "next/navigation";
-import { RestoreCourseConfirm } from "../../components/Confirm";
+import { RestoreCourseConfirm } from "@/app/manage/course/components/Confirm";
 
 interface RestoreInterceptRouteProp {
   params: { id: string };

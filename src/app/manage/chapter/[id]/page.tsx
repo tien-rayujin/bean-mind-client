@@ -48,20 +48,3 @@ const Page: React.FC<PageProps> = async (props) => {
 };
 
 export default Page;
-
-/* Directory */
-
-/* <div className="scrollbar col-span-4 overflow-auto">
-          <div className="grid grid-cols-1 gap-2.5 bg-secondary/30 p-8">
-            <div className="relative mb-4 h-12 rounded-md bg-secondary/30">
-              <input
-                type="text"
-                className="h-full w-full bg-transparent pl-4 pr-12 outline-none"
-                placeholder="Search..."
-              />
-              <FaSearch className="absolute right-4 top-1/2 -translate-y-1/2" />
-            </div>
-
-            {chapterList}
-          </div>
-        </div> */

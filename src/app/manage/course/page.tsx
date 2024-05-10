@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterCourseButton } from "./components/ActionButton";
+import { FilterCourseButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
 import CourseTable from "./components/Table";
 

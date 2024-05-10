@@ -2,7 +2,7 @@ import React from "react";
 import { DefaultModal } from "@/components/Modal";
 import { GetChapterRequestHandler } from "@/lib/services/chapter/Handlers";
 import { notFound } from "next/navigation";
-import { DeleteChapterConfirm } from "../../components/Confirm";
+import { DeleteChapterConfirm } from "@/app/manage/chapter/components/Confirm";
 
 interface DeleteInterceptRouteProp {
   params: { id: string };

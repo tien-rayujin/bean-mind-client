@@ -1,7 +1,6 @@
-import { Alert } from "@/components/Alert";
 import { GetCourseRequestHandler } from "@/lib/services/course/Handlers";
+import { DeleteCourseConfirm } from "../../components/Confirm";
 import { notFound } from "next/navigation";
-import { DeleteButton } from "../components/Button";
 
 interface DeleteCoursePageProps {
   params: { id: string };
@@ -15,14 +14,7 @@ const DeleteCoursePage: React.FC<DeleteCoursePageProps> = async (props) => {
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
-      <Alert
-        status={"danger"}
-        title={`Confirm delete for item \"${course.title}\"`}
-        message="Are you sure to delete(disable) this item?"
-        extras="mb-4"
-      />
-
-      <DeleteButton id={id} />
+      <DeleteCourseConfirm course={course} />
     </div>
   );
 };

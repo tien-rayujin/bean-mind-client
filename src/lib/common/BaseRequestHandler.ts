@@ -41,6 +41,9 @@ const BaseRequestHandler = async <TRequest, TResponse>(
     }
   }
 
+  // log out the payload request
+  // console.log({ payload });
+
   // request API
   const response = await fetchData<BaseResponse<TResponse>>(options.endpoint, {
     body: payload,
