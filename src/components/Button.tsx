@@ -7,6 +7,7 @@ import { Logout } from "@/lib/services/auth/Handlers";
 import { useRouter } from "next/navigation";
 import { Toast } from "./Toast";
 
+// #region Client buttons
 interface BaseButtonProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   extras?: string;
 }
@@ -16,7 +17,7 @@ const StyButton: FC<BaseButtonProp> = ({ extras, ...rest }) => {
     <button
       {...rest}
       className={clsx(
-        "rounded-md bg-primary/70 px-8 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/90 hover:shadow-md",
+        "rounded-md bg-primary/70 px-4 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/90 hover:shadow-md",
         extras,
       )}
     >
@@ -62,6 +63,7 @@ const NavigationButton: React.FC<NavigationButtonProp> = (props) => {
   );
 };
 
+// #region Action buttons
 const LoginButton: React.FC<{}> = (props) => {
   return (
     <Link

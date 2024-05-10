@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultModal } from "@/components/Modal";
-import { UpdateSubjectForm } from "@/app/manage/subject/[id]/components/Form";
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { UpdateSubjectForm } from "@/app/manage/subject/components/Form";
 import { notFound } from "next/navigation";
 
 interface UpdateInterceptRouteProp {

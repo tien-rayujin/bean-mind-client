@@ -27,12 +27,12 @@ const bgStyle = (status: "warning" | "success" | "info" | "danger") =>
 
 const titleTextStyle = (status: "warning" | "success" | "info" | "danger") =>
   status === "warning"
-    ? "text-[#9D5425]"
+    ? "text-[#FBBF24]"
     : status === "success"
-      ? "text-[#2F855A]"
+      ? "text-[#34D399]"
       : status === "danger"
-        ? "text-[#B45454]"
-        : "text-[#004E8A]";
+        ? "text-[#F87171]"
+        : "text-[#007BFF]";
 
 const Chip: React.FC<ChipProps> = (props) => {
   const { title = "chip", type = "info", size = "sm", extras } = props;
@@ -43,14 +43,14 @@ const Chip: React.FC<ChipProps> = (props) => {
   return (
     <div
       className={clsx(
-        `flex w-30 items-center justify-center rounded-full border`,
+        `flex w-fit items-center justify-center rounded-full border bg-opacity-10`,
         borderStyle(type),
         bgStyle(type),
         chipSizeStyle,
         extras,
       )}
     >
-      <span className={clsx(`font-semibold text-text`)}>{title}</span>
+      <span className={clsx(``, titleTextStyle(type))}>{title}</span>
     </div>
   );
 };

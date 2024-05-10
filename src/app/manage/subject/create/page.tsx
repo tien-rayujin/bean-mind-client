@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { CreateSubjectForm } from "./components/Form";
+import { CreateSubjectForm } from "../components/Form";
 
 interface CreateSubjectPageProps {}
 

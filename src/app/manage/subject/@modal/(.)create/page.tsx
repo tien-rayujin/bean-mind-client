@@ -1,5 +1,5 @@
 import React from "react";
-import { CreateSubjectForm } from "../../create/components/Form";
+import { CreateSubjectForm } from "@/app/manage/subject/components/Form";
 import { DefaultModal } from "@/components/Modal";
 
 interface CreateInterceptRouteProp {}

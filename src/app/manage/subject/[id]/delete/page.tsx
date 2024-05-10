@@ -1,7 +1,6 @@
-import { Alert } from "@/components/Alert";
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
+import { DeleteSubjectConfirm } from "../../components/Confirm";
 import { notFound } from "next/navigation";
-import { DeleteButton } from "../components/Button";
 
 interface DeleteSubjectPageProps {
   params: { id: string };
@@ -15,14 +14,7 @@ const DeleteSubjectPage: React.FC<DeleteSubjectPageProps> = async (props) => {
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
-      <Alert
-        status={"danger"}
-        title={`Confirm delete for item \"${subject.title}\"`}
-        message="Are you sure to delete(disable) this item?"
-        extras="mb-4"
-      />
-
-      <DeleteButton id={id} />
+      <DeleteSubjectConfirm subject={subject} />
     </div>
   );
 };

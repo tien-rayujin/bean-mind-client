@@ -40,8 +40,12 @@ const fetchData = async function <TResponse>(
         Authorization: accessToken ? `Bearer ${accessToken}` : "",
       },
     };
+    // GET method must excluded body
     if (method !== "GET")
       requestPayload.body = body ? JSON.stringify(body) : undefined;
+
+    // opting out caching from data cache
+    if (method === "GET") requestPayload.cache = "no-store";
 
     const response = await fetch(url, requestPayload);
 

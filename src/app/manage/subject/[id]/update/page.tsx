@@ -1,5 +1,5 @@
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
-import { UpdateSubjectForm } from "../components/Form";
+import { UpdateSubjectForm } from "@/app/manage/subject/components/Form";
 import { notFound } from "next/navigation";
 
 interface UpdateSubjectPageProps {

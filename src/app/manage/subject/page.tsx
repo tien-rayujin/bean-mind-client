@@ -1,7 +1,7 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterSubjectButton } from "./components/ActionButton";
+import { FilterSubjectButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
-import SubjectTable from "./components/SubjectTable";
+import SubjectTable from "./components/Table";
 
 interface SubjectPageProps {
   searchParams: {

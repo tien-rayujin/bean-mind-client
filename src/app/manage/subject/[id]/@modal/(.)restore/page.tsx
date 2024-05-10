@@ -2,7 +2,7 @@ import React from "react";
 import { DefaultModal } from "@/components/Modal";
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
 import { notFound } from "next/navigation";
-import { RestoreSubjectConfirm } from "../../components/Confirm";
+import { RestoreSubjectConfirm } from "@/app/manage/subject/components/Confirm";
 
 interface RestoreInterceptRouteProp {
   params: { id: string };
