@@ -46,6 +46,12 @@ const Page: React.FC<{}> = async (props) => {
         <Link href="/manage/topic">
           <StyButton>Manage Topic</StyButton>
         </Link>
+        <Link href="/manage/activityType">
+          <StyButton>Manage ActivityType</StyButton>
+        </Link>
+        <Link href="/manage/questionType">
+          <StyButton>Manage QuestionType</StyButton>
+        </Link>
       </div>
 
       <Pagination page={1} totalPage={10} />
