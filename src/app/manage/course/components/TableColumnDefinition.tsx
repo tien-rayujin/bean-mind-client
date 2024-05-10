@@ -13,7 +13,7 @@ const columns = [
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("description", {
-    header: "Title",
+    header: "Description",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("isDeleted", {

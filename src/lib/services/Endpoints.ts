@@ -41,7 +41,7 @@ export const deleteActivityEndpoint = (id: string) =>
 
 // #region ActivityType
 const activityTypeEndpoint = "/activity-types";
-export const getActivityTypeTypesEndpoint = (query: Object) =>
+export const getActivityTypesEndpoint = (query: Object) =>
   apiURL.href.concat(
     `${activityTypeEndpoint}${query && "?".concat(queryBuilder(query))}`,
   );

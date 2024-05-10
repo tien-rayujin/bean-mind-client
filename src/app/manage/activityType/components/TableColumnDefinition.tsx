@@ -5,15 +5,11 @@ import { Chip } from "@/components/Chips";
 import { createColumnHelper } from "@tanstack/react-table";
 import Link from "next/link";
 
-const columnHelper = createColumnHelper<Chapter>();
+const columnHelper = createColumnHelper<ActivityType>();
 
 const columns = [
-  columnHelper.accessor("title", {
-    header: "Title",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("description", {
-    header: "Description",
+  columnHelper.accessor("name", {
+    header: "Name",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("isDeleted", {
@@ -29,7 +25,7 @@ const columns = [
     header: "Actions",
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
-        <Link href={`/manage/chapter/${info.row.original.id}`}>
+        <Link href={`/manage/activityType/${info.row.original.id}`}>
           <StyButton extras="hover:!translate-y-0">View</StyButton>
         </Link>
       </div>
