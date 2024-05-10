@@ -55,6 +55,9 @@ const Page: React.FC<{}> = async (props) => {
         <Link href="/manage/questionLevel">
           <StyButton>Manage QuestionLevel</StyButton>
         </Link>
+        <Link href="/manage/question">
+          <StyButton>Manage Question</StyButton>
+        </Link>
       </div>
 
       <Pagination page={1} totalPage={10} />
