@@ -17,8 +17,9 @@ import { useFormState } from "react-dom";
 // #region Create
 interface CreateQuestionFormProps
   extends FormWithPayload<{
-    questionType: QuestionType[];
-    questionLevel: QuestionLevel[];
+    questionTypes: QuestionType[];
+    questionLevels: QuestionLevel[];
+    topics: Topic[];
   }> {}
 
 const createQuestionFormInit: BaseResponse<GetQuestionResponseModel> = {
@@ -61,8 +62,8 @@ const CreateQuestionForm: React.FC<CreateQuestionFormProps> = (props) => {
         ))}
       <StyFormInput
         type="text"
-        name="title"
-        placeholder="Title"
+        name="text"
+        placeholder="Text"
         required
         extras="tracking-wide"
         defaultValue={""}
@@ -72,56 +73,70 @@ const CreateQuestionForm: React.FC<CreateQuestionFormProps> = (props) => {
           {formState.fieldErrors?.title}
         </span>
       )}
-
       <StyFormInput
         type="text"
-        name="description"
-        placeholder="Description"
+        name="imageUrl"
+        placeholder="ImageUrl"
         required
         extras="tracking-wide"
         defaultValue={""}
-      />
-      {!formState.success && formState.fieldErrors?.description && (
+      />{" "}
+      {!formState.success && formState.fieldErrors?.imageUrl && (
         <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.description}
+          {formState.fieldErrors?.imageUrl}
         </span>
       )}
-
+      <StyFormSelect<Topic & { [key: string]: any }>
+        name="topicId"
+        placeholder="Please select topic"
+        required
+        displayProp={"title"}
+        valueProp={"id"}
+        datas={payload?.topics}
+      />
+      {!formState.success && formState.fieldErrors?.topicId && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.topicId}
+        </span>
+      )}
       <StyFormSelect<QuestionType & { [key: string]: any }>
         name="questionTypeId"
         placeholder="Please select questionType"
         required
         displayProp={"name"}
         valueProp={"id"}
-        datas={payload?.questionType}
+        datas={payload?.questionTypes}
       />
       {!formState.success && formState.fieldErrors?.questionTypeId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.questionTypeId}
         </span>
       )}
-
       <StyFormSelect<QuestionLevel & { [key: string]: any }>
         name="questionLevelId"
         placeholder="Please select questionLevel"
         required
         displayProp={"name"}
         valueProp={"id"}
-        datas={payload?.questionLevel}
+        datas={payload?.questionLevels}
       />
       {!formState.success && formState.fieldErrors?.questionLevelId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.questionLevelId}
         </span>
       )}
-
       <SubmitButton title="Create" extras="w-full" />
     </form>
   );
 };
 
 // #region Update
-interface UpdateQuestionFormProps extends FormWithPayload<QuestionType[]> {
+interface UpdateQuestionFormProps
+  extends FormWithPayload<{
+    questionTypes: QuestionType[];
+    questionLevels: QuestionLevel[];
+    topics: Topic[];
+  }> {
   question: Question;
 }
 
@@ -165,11 +180,10 @@ const UpdateQuestionForm: React.FC<UpdateQuestionFormProps> = (props) => {
             {eMsg}
           </p>
         ))}
-
       <StyFormInput
         type="text"
-        name="title"
-        placeholder="Title"
+        name="text"
+        placeholder="Text"
         required
         extras="tracking-wide"
         defaultValue={question.text}
@@ -179,14 +193,39 @@ const UpdateQuestionForm: React.FC<UpdateQuestionFormProps> = (props) => {
           {formState.fieldErrors?.text}
         </span>
       )}
-
+      <StyFormInput
+        type="text"
+        name="imageUrl"
+        placeholder="ImageUrl"
+        required
+        extras="tracking-wide"
+        defaultValue={question.imageUrl}
+      />{" "}
+      {!formState.success && formState.fieldErrors?.imageUrl && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.imageUrl}
+        </span>
+      )}
+      <StyFormSelect<Topic & { [key: string]: any }>
+        name="topicId"
+        placeholder="Please select topic"
+        required
+        displayProp={"title"}
+        valueProp={"id"}
+        datas={payload?.topics}
+      />
+      {!formState.success && formState.fieldErrors?.topicId && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.topicId}
+        </span>
+      )}
       <StyFormSelect<QuestionLevel & { [key: string]: any }>
         name="questionLevelId"
         placeholder="Please select questionLevel"
         required
         displayProp={"name"}
         valueProp={"id"}
-        datas={payload}
+        datas={payload?.questionLevels}
         defaultValue={question.questionLevel.id}
       />
       {!formState.success && formState.fieldErrors?.questionLevelId && (
@@ -194,14 +233,13 @@ const UpdateQuestionForm: React.FC<UpdateQuestionFormProps> = (props) => {
           {formState.fieldErrors?.questionLevelId}
         </span>
       )}
-
       <StyFormSelect<QuestionType & { [key: string]: any }>
         name="questionTypeId"
         placeholder="Please select questionType"
         required
         displayProp={"name"}
         valueProp={"id"}
-        datas={payload}
+        datas={payload?.questionTypes}
         defaultValue={question.questionType.id}
       />
       {!formState.success && formState.fieldErrors?.questionTypeId && (
@@ -209,7 +247,6 @@ const UpdateQuestionForm: React.FC<UpdateQuestionFormProps> = (props) => {
           {formState.fieldErrors?.questionTypeId}
         </span>
       )}
-
       <SubmitButton title="Update" extras="w-full" />
     </form>
   );

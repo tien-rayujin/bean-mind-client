@@ -208,17 +208,17 @@ export const deleteWorksheetQuestionEndpoint = (id: string) =>
 
 // #region WorksheetTemplate
 const worksheetTemplateEndpoint = "/worksheet-templates";
-export const getworksheetTemplatesEndpoint = (query: Object) =>
+export const getWorksheetTemplatesEndpoint = (query: Object) =>
   apiURL.href.concat(
     `${worksheetTemplateEndpoint}${query && "?".concat(queryBuilder(query))}`,
   );
-export const getworksheetTemplateEndpoint = (id: string) =>
+export const getWorksheetTemplateEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetTemplateEndpoint}/${id}`);
-export const createworksheetTemplateEndpoint = apiURL.href.concat(
+export const createWorksheetTemplateEndpoint = apiURL.href.concat(
   `${worksheetTemplateEndpoint}`,
 );
-export const updateworksheetTemplateEndpoint = apiURL.href.concat(
+export const updateWorksheetTemplateEndpoint = apiURL.href.concat(
   `${worksheetTemplateEndpoint}`,
 );
-export const deleteworksheetTemplateEndpoint = (id: string) =>
+export const deleteWorksheetTemplateEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetTemplateEndpoint}/${id}`);

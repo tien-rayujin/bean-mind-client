@@ -4,7 +4,7 @@ interface BaseFormInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode; // Icon prop
   label?: string;
-  showLabel: boolean;
+  showLabel?: boolean;
   extras?: string;
 }
 
@@ -42,7 +42,7 @@ interface BaseFormSelectProps<T extends Record<string, unknown>>
   displayProp: Extract<keyof T, string>;
   valueProp: Extract<keyof T, string>;
   label?: string;
-  showLabel: boolean;
+  showLabel?: boolean;
 }
 
 const StyFormSelect = function <T extends Record<string, unknown>>({

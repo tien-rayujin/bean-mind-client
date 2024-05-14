@@ -141,6 +141,6 @@ interface WorksheetTemplate extends BaseAuditableEntity {
   chapterId: string;
   chapter: Chapter;
   topicId: String;
-  topic: object;
+  topic: Topic;
   worksheets: Array<Worksheet>;
 }
