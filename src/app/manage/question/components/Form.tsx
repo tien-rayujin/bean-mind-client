@@ -177,10 +177,7 @@ interface AnswerInputProps {
 const AnswerInput = (props: AnswerInputProps) => {
   const { ans, index, onTextChange, onToggleState, onRemoveOption } = props;
   return (
-    <div
-      key={ans.text + index}
-      className="StyFormInput flex items-center gap-x-2.5"
-    >
+    <div className="StyFormInput flex items-center gap-x-2.5">
       <BiStateButton
         active={ans.isCorrect}
         onClick={() => onToggleState(index)}
