@@ -11,7 +11,7 @@ interface RequestHandlerOptions<T> {
 }
 
 interface BaseRequestHandlerProps<TRequest, TResponse> {
-  formData?: FormData;
+  formData?: FormData | Object;
   options: RequestHandlerOptions<TRequest>;
   okCallback?: (arg?: TResponse) => void;
 }
@@ -21,15 +21,27 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 ): Promise<BaseResponse<TResponse>> => {
   const { formData, options, okCallback } = props;
 
-  const rawFormData = Object.fromEntries(
-    formData ? formData.entries() : new FormData(),
-  );
-  const payload = Object.fromEntries(
-    Object.entries(rawFormData).filter(([key]) => !key.startsWith("$ACTION_")),
-  ) as TRequest;
+  let payload = undefined;
 
-  // schema validation if provided
-  if (options.schema) {
+  if (formData instanceof FormData) {
+    const rawFormData = Object.fromEntries(
+      formData ? formData.entries() : new FormData(),
+    );
+    payload = Object.fromEntries(
+      Object.entries(rawFormData).filter(
+        ([key]) => !key.startsWith("$ACTION_"),
+      ),
+    ) as TRequest;
+  } else if (typeof formData === "object" && formData !== null) {
+    payload = formData;
+  } else if (typeof formData === "undefined") {
+    payload = undefined;
+  } else {
+    throw new Error("formData type not supported");
+  }
+
+  // schema validation if provided and payload existed
+  if (options.schema && payload) {
     let validatedFields = await options.schema.safeParseAsync(payload);
 
     if (!validatedFields.success) {

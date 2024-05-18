@@ -93,5 +93,5 @@
 /* third-party libraries CSS */
 
 .StyFormInput+.StyFormInput {
-  margin-top: 1rem;
+  @apply mt-4
 }

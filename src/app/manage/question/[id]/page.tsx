@@ -1,4 +1,5 @@
 import { GetQuestionRequestHandler } from "@/lib/services/question/Handlers";
+import clsx from "clsx";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -63,6 +64,23 @@ const Page: React.FC<PageProps> = async (props) => {
           </span>
           {questionType.name}
         </p>
+      </div>
+
+      <div>
+        <h2 className="text-xl font-semibold">Options: </h2>
+        {questionAnswers.map((ans) => {
+          return (
+            <li
+              key={ans.id}
+              className={clsx(
+                "ml-4 w-full p-2",
+                ans.isCorrect && "bg-success/50",
+              )}
+            >
+              {ans.text}
+            </li>
+          );
+        })}
       </div>
     </div>
   );

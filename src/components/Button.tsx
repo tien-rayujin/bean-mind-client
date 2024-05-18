@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Logout } from "@/lib/services/auth/Handlers";
 import { useRouter } from "next/navigation";
 import { Toast } from "./Toast";
+import { FaCircle } from "react-icons/fa";
 
 // #region Client buttons
 interface BaseButtonProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -107,10 +108,34 @@ const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
   );
 };
 
+interface BiStateButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  active?: boolean;
+  extras?: string;
+}
+
+const BiStateButton: React.FC<BiStateButtonProps> = (props) => {
+  const { active = false, extras, ...rest } = props;
+  const style = active ? "text-success" : "text-background";
+  return (
+    <button
+      type="button"
+      className={clsx(
+        "grid h-8 w-8 place-items-center rounded-full bg-backgroundDark/40",
+        style,
+      )}
+      {...rest}
+    >
+      <FaCircle />
+    </button>
+  );
+};
+
 export {
   StyButton,
   GoogleLoginButton,
   NavigationButton,
   LoginButton,
   LogoutButton,
+  BiStateButton,
 };
