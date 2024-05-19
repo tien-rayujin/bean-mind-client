@@ -59,15 +59,34 @@ const CreateWorksheetTemplateRequestHandler = async (
     };
   }
 
+  const rawObject = Object.fromEntries(
+    formData.entries(),
+  ) as unknown as CreateWorksheetTemplateRequestModel;
+
+  const objectRequest: CreateWorksheetTemplateRequestModel = {
+    classification: String(rawObject.classification),
+    easyQuestionCount: Number(rawObject.easyQuestionCount),
+    normalQuestionCount: Number(rawObject.normalQuestionCount),
+    hardQuestionCount: Number(rawObject.hardQuestionCount),
+    totalQuestionCount:
+      Number(rawObject.easyQuestionCount) +
+      Number(rawObject.normalQuestionCount) +
+      Number(rawObject.hardQuestionCount),
+    suffle: Boolean(rawObject.suffle),
+    subjectId: rawObject.subjectId,
+    chapterId: rawObject.chapterId,
+    topicId: rawObject.topicId,
+  };
+
   return BaseRequestHandler<
     CreateWorksheetTemplateRequestModel,
     CreateWorksheetTemplateResponseModel
   >({
-    formData,
+    formData: objectRequest,
     options: {
       method: "POST",
       endpoint: createWorksheetTemplateEndpoint,
-      schema: createWorksheetTemplateSchema,
+      // schema: createWorksheetTemplateSchema,
       accessToken: accessToken,
     },
   });
@@ -85,15 +104,35 @@ const UpdateWorksheetTemplateRequestHandler = async (
     };
   }
 
+  const rawObject = Object.fromEntries(
+    formData.entries(),
+  ) as unknown as UpdateWorksheetTemplateRequestModel;
+
+  const objectRequest: UpdateWorksheetTemplateRequestModel = {
+    id: String(rawObject.id),
+    classification: String(rawObject.classification),
+    easyQuestionCount: Number(rawObject.easyQuestionCount),
+    normalQuestionCount: Number(rawObject.normalQuestionCount),
+    hardQuestionCount: Number(rawObject.hardQuestionCount),
+    totalQuestionCount:
+      Number(rawObject.easyQuestionCount) +
+      Number(rawObject.normalQuestionCount) +
+      Number(rawObject.hardQuestionCount),
+    suffle: Boolean(rawObject.suffle),
+    subjectId: rawObject.subjectId,
+    chapterId: rawObject.chapterId,
+    topicId: rawObject.topicId,
+  };
+
   return BaseRequestHandler<
     UpdateWorksheetTemplateRequestModel,
     UpdateWorksheetTemplateResponseModel
   >({
-    formData,
+    formData: objectRequest,
     options: {
       method: "PUT",
       endpoint: updateWorksheetTemplateEndpoint,
-      schema: updateWorksheetTemplateSchema,
+      // schema: updateWorksheetTemplateSchema,
       accessToken: accessToken,
     },
   });

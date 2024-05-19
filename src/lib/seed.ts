@@ -132,14 +132,13 @@ const seed_Activity: Activity[] = [
     videos: [],
     worksheets: [],
     isDeleted: false,
-    orderIndex: 0,
   },
 ];
 
 const seed_WorksheetTemplates: WorksheetTemplate[] = [
   {
     id: "worksheetTemplate1",
-    classification: 2,
+    classification: "2",
     easyQuestionCount: 5,
     normalQuestionCount: 3,
     hardQuestionCount: 2,

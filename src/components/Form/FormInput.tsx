@@ -83,7 +83,9 @@ const StyFormSelect = function <T extends Record<string, unknown>>({
           name={name}
           className={clsx("w-full bg-transparent focus:outline-none", extras)}
         >
-          <option disabled>{placeholder || "Please select item"}</option>
+          <option value={undefined}>
+            {placeholder || "Please select item"}
+          </option>
           {optionDatas}
         </select>
       </div>

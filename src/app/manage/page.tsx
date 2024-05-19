@@ -61,6 +61,9 @@ const Page: React.FC<{}> = async (props) => {
         <Link href="/manage/activity">
           <StyButton>Manage Activity</StyButton>
         </Link>
+        <Link href="/manage/worksheetTemplate">
+          <StyButton>Manage WorksheetTemplate</StyButton>
+        </Link>
         <Link href="/manage/worksheet">
           <StyButton>Manage Worksheet</StyButton>
         </Link>

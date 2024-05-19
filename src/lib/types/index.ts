@@ -14,7 +14,7 @@ interface Indexable {
   orderIndex: number;
 }
 
-interface Activity extends BaseAuditableEntity, Indexable {
+interface Activity extends BaseAuditableEntity {
   activityTypeId: string;
   activityType: ActivityType;
   topicId: String;
@@ -130,7 +130,7 @@ interface WorksheetQuestion extends BaseAuditableEntity {
 }
 
 interface WorksheetTemplate extends BaseAuditableEntity {
-  classification: 0 | 1 | 2; // subject | chapter | topic
+  classification: string; // subject | chapter | topic
   easyQuestionCount: number;
   normalQuestionCount: number;
   hardQuestionCount: number;
@@ -140,7 +140,7 @@ interface WorksheetTemplate extends BaseAuditableEntity {
   subject: Subject;
   chapterId: string;
   chapter: Chapter;
-  topicId: String;
+  topicId: string;
   topic: Topic;
   worksheets: Array<Worksheet>;
 }

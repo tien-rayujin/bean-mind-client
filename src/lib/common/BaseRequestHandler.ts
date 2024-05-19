@@ -21,6 +21,8 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 ): Promise<BaseResponse<TResponse>> => {
   const { formData, options, okCallback } = props;
 
+  // console.log({ formData });
+
   let payload = undefined;
 
   if (formData instanceof FormData) {
@@ -33,12 +35,14 @@ const BaseRequestHandler = async <TRequest, TResponse>(
       ),
     ) as TRequest;
   } else if (typeof formData === "object" && formData !== null) {
-    payload = formData;
+    payload = formData as TRequest;
   } else if (typeof formData === "undefined") {
     payload = undefined;
   } else {
     throw new Error("formData type not supported");
   }
+
+  console.log({ payload });
 
   // schema validation if provided and payload existed
   if (options.schema && payload) {
