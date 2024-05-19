@@ -16,9 +16,9 @@ interface Indexable {
 
 interface Activity extends BaseAuditableEntity, Indexable {
   activityTypeId: string;
-  activityType: object;
+  activityType: ActivityType;
   topicId: String;
-  topic: object;
+  topic: Topic;
   documents: Array<Document>;
   videos: Array<Video>;
   worksheets: Array<Worksheet>;
