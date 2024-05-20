@@ -1,11 +1,11 @@
 "use server";
 
 import {
-  getActivitiesEndpoint,
   getWorksheetEndpoint,
   createWorksheetEndpoint,
   updateWorksheetEndpoint,
   deleteWorksheetEndpoint,
+  getWorksheetsEndpoint,
 } from "@/lib/services/Endpoints";
 import {
   CreateWorksheetRequestModel,
@@ -21,13 +21,13 @@ import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { getAccessTokenSession } from "@/lib/actions/session";
 
-const GetActivitiesRequestHandler = async (
+const GetWorksheetsRequestHandler = async (
   query: Object,
 ): Promise<BaseResponse<GetActivitiesResonseModel>> => {
   return BaseRequestHandler<object, GetActivitiesResonseModel>({
     options: {
       method: "GET",
-      endpoint: getActivitiesEndpoint(query),
+      endpoint: getWorksheetsEndpoint(query),
     },
   });
 };
@@ -117,7 +117,7 @@ const DeleteWorksheetRequestHandler = async (
 };
 
 export {
-  GetActivitiesRequestHandler,
+  GetWorksheetsRequestHandler,
   GetWorksheetRequestHandler,
   CreateWorksheetRequestHandler,
   UpdateWorksheetRequestHandler,

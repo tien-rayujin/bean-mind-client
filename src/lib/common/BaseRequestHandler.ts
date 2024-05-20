@@ -42,7 +42,7 @@ const BaseRequestHandler = async <TRequest, TResponse>(
     throw new Error("formData type not supported");
   }
 
-  console.log({ payload });
+  // console.log({ payload });
 
   // schema validation if provided and payload existed
   if (options.schema && payload) {
@@ -66,6 +66,9 @@ const BaseRequestHandler = async <TRequest, TResponse>(
     method: options.method,
     accessToken: options.accessToken,
   });
+
+  // log out the response data
+  // console.log(response?.data);
 
   // server response with fail resulst
   if (!response || !response.success) {
