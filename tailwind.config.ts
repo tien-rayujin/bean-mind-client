@@ -27,6 +27,12 @@ const config: Config = {
         secondary: "rgba(var(--secondary), var(--tw-bg-opacity))",
         accent: "rgba(var(--accent), var(--tw-bg-opacity))",
 
+        textDark: "rgba(var(--text-dark), var(--tw-bg-opacity))",
+        backgroundDark: "rgba(var(--background-dark), var(--tw-bg-opacity))",
+        primaryDark: "rgba(var(--primary-dark), var(--tw-bg-opacity))",
+        secondaryDark: "rgba(var(--secondary-dark), var(--tw-bg-opacity))",
+        accentDark: "rgba(var(--accent-dark), var(--tw-bg-opacity))",
+
         whiten: "#F1F5F9",
         whiter: "#F5F7FD",
         body: "#64748B",
@@ -34,9 +40,6 @@ const config: Config = {
         boxdark: "#24303F",
         white: "#FFFFFF",
         black: "#1C2434",
-        success: "#219653",
-        danger: "#D34053",
-        warning: "#FFA70B",
         stroke: "#E2E8F0",
         strokedark: "#2E3A47",
 
@@ -45,6 +48,12 @@ const config: Config = {
         "gray-2": "#F7F9FC",
         "gray-3": "#FAFAFA",
 
+        info: "rgba(0, 123, 255, var(--tw-bg-opacity))",
+        success: "rgba(33, 150, 83, var(--tw-bg-opacity))",
+        danger: "rgba(211, 64, 83, var(--tw-bg-opacity))",
+        warning: "rgba(255, 167, 11, var(--tw-bg-opacity))",
+
+        modalOverlay: "rgba(44, 46, 67, 0.57)",
         // "black-2": "#010101",
         // bodydark1: "#DEE4EE",
         // bodydark2: "#8A99AF",
@@ -242,4 +251,3 @@ const config: Config = {
   plugins: [],
 };
 export default config;
-

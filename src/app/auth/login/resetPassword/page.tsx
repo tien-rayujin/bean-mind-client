@@ -1,9 +1,9 @@
 "use client";
 
-import { StyButton, SubmitButton } from "@/components/Button";
+import { StyButton } from "@/components/Button";
 import { ResetPasswordRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock } from "react-icons/ai";
-import StyFormInput from "@/components/FormInput";
+import { StyFormInput } from "@/components/Form/FormInput";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { Toast } from "@/components/Toast";
@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { ResetPasswordResponseModel } from "@/lib/services/auth/Models";
+import { SubmitButton } from "@/components/Form/Button";
 
 interface ResetPasswordPageProps {
   searchParams: {
@@ -21,7 +22,7 @@ interface ResetPasswordPageProps {
 
 const Page: React.FC<ResetPasswordPageProps> = (props) => {
   const initialState: BaseResponse<ResetPasswordResponseModel> = {
-    isSuccess: false,
+    success: false,
     message: "",
     fieldErrors: {},
   };
@@ -42,9 +43,9 @@ const Page: React.FC<ResetPasswordPageProps> = (props) => {
     if (formState.message != "") {
       Toast({
         message: formState.message,
-        type: formState.isSuccess ? "success" : "error",
+        type: formState.success ? "success" : "error",
       });
-      if (formState.isSuccess) {
+      if (formState.success) {
         router.push("/auth/login");
       }
     }
@@ -57,9 +58,9 @@ const Page: React.FC<ResetPasswordPageProps> = (props) => {
         action={formAction}
       >
         <h2 className="mb-4 text-2xl font-bold text-text">Reset password</h2>
-        {!formState.isSuccess &&
-          formState.errorMessages &&
-          formState.errorMessages.map((eMsg) => (
+        {!formState.success &&
+          formState.errors &&
+          formState.errors.map((eMsg) => (
             <p key={eMsg} className="text-sm font-semibold text-accent">
               {eMsg}
             </p>
@@ -80,7 +81,7 @@ const Page: React.FC<ResetPasswordPageProps> = (props) => {
           required
           extras="tracking-wide"
         ></StyFormInput>
-        {!formState.isSuccess && formState.fieldErrors?.newPassword && (
+        {!formState.success && formState.fieldErrors?.newPassword && (
           <span className="text-sm font-semibold text-accent">
             {formState.fieldErrors?.newPassword}
           </span>

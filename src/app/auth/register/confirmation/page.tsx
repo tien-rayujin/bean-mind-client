@@ -34,7 +34,7 @@ const Page: React.FC<ConfirmationPageProps> = (props) => {
       .then((res) => {
         Toast({
           message: res.message,
-          type: res.isSuccess ? "success" : "error",
+          type: res.success ? "success" : "error",
         });
       })
       .catch((reason) => {
@@ -96,10 +96,10 @@ const Page: React.FC<ConfirmationPageProps> = (props) => {
 
     ConfirmEmailRequestHandler(formData)
       .then((res) => {
-        setIsSuccess(res.isSuccess);
+        setIsSuccess(res.success);
         Toast({
           message: res.message,
-          type: res.isSuccess ? "success" : "error",
+          type: res.success ? "success" : "error",
         });
       })
       .catch((reason) => {

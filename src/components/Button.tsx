@@ -1,11 +1,14 @@
 import { AiOutlineLogout } from "react-icons/ai";
-import { useFormStatus } from "react-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FC, ReactNode } from "react";
-import Loader from "./Loader";
 import Link from "next/link";
 import clsx from "clsx";
+import { Logout } from "@/lib/services/auth/Handlers";
+import { useRouter } from "next/navigation";
+import { Toast } from "./Toast";
+import { FaCircle } from "react-icons/fa";
 
+// #region Client buttons
 interface BaseButtonProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   extras?: string;
 }
@@ -15,7 +18,7 @@ const StyButton: FC<BaseButtonProp> = ({ extras, ...rest }) => {
     <button
       {...rest}
       className={clsx(
-        "rounded-md bg-primary/70 px-8 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/90 hover:shadow-md",
+        "rounded-md bg-primary/70 px-4 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/90 hover:shadow-md",
         extras,
       )}
     >
@@ -61,27 +64,7 @@ const NavigationButton: React.FC<NavigationButtonProp> = (props) => {
   );
 };
 
-interface SubmitButtonProp {
-  title: string;
-  extras?: string;
-}
-
-const SubmitButton: React.FC<SubmitButtonProp> = (props) => {
-  const { pending } = useFormStatus();
-  return (
-    <StyButton
-      extras={clsx(
-        "mt-4 flex w-full items-center justify-center tracking-wide",
-        props.extras,
-      )}
-      disabled={pending}
-      type="submit"
-    >
-      {pending ? <Loader /> : props.title}
-    </StyButton>
-  );
-};
-
+// #region Action buttons
 const LoginButton: React.FC<{}> = (props) => {
   return (
     <Link
@@ -95,17 +78,55 @@ const LoginButton: React.FC<{}> = (props) => {
 };
 
 interface LogoutButtonProps {
-  handleClick: () => void;
+  // handleClick: () => void;
+  extras?: string;
+  isIconOnly?: boolean;
 }
 
 const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
+  const { extras, isIconOnly = false } = props;
+  const router = useRouter();
   return (
     <button
-      onClick={props.handleClick}
-      className="flex items-center justify-center gap-x-2.5 rounded-md bg-accent/70 px-6 py-2 duration-150 hover:bg-accent/80 hover:shadow-layoutPopup hover:shadow-accent"
+      className={clsx(
+        "flex items-center justify-center gap-x-2.5 rounded-md bg-accent/70 px-6 py-2 duration-150 hover:bg-accent/80 hover:shadow-layoutPopup hover:shadow-accent",
+        extras,
+      )}
+      onClick={() => {
+        if (!confirm("Are you sure to logout ?")) {
+          return;
+        }
+        Logout().then(() => {
+          router.push("/auth/login");
+          Toast({ message: "Logout successfully", type: "success" });
+        });
+      }}
     >
       <AiOutlineLogout />
-      <span className="font-semibold">Logout</span>
+      {!isIconOnly && <span className="font-semibold">Logout</span>}
+    </button>
+  );
+};
+
+interface BiStateButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  active?: boolean;
+  extras?: string;
+}
+
+const BiStateButton: React.FC<BiStateButtonProps> = (props) => {
+  const { active = false, extras, ...rest } = props;
+  const style = active ? "text-success" : "text-background";
+  return (
+    <button
+      type="button"
+      className={clsx(
+        "grid h-8 w-8 place-items-center rounded-full bg-backgroundDark/40",
+        style,
+      )}
+      {...rest}
+    >
+      <FaCircle />
     </button>
   );
 };
@@ -114,7 +135,7 @@ export {
   StyButton,
   GoogleLoginButton,
   NavigationButton,
-  SubmitButton,
   LoginButton,
   LogoutButton,
+  BiStateButton,
 };

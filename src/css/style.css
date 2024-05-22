@@ -19,6 +19,16 @@
     --accent: 214, 87, 128;
     /* #D65780 */
 
+    --text-dark: 123, 120, 113;
+    /* #7B7871 */
+    --background-dark: 21, 22, 33;
+    /* #151621 */
+    --primary-dark: 119, 65, 42;
+    /* #77412A */
+    --secondary-dark: 39, 46, 58;
+    /* #272E3A */
+    --accent-dark: 107, 43, 64;
+    /* #6B2B40 */
   }
 
 
@@ -58,10 +68,30 @@
     scrollbar-width: none;
     /* Firefox */
   }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: var(--background);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(239, 131, 84, 1);
+    border-radius: 100vh;
+    /* border: 1px solid transparent; */
+  }
+
+  /* .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  } */
 }
 
 /* third-party libraries CSS */
 
 .StyFormInput+.StyFormInput {
-  margin-top: 1rem;
+  @apply mt-4
 }

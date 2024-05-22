@@ -1,14 +1,11 @@
 import { Pagination } from "@/lib/common/Pagination";
 
 // #region Request Model
-type CreateActivityRequestModel = Pick<
-  Activity,
-  "orderIndex" | "activityTypeId" | "topicId"
->;
+type CreateActivityRequestModel = Pick<Activity, "activityTypeId" | "topicId">;
 
 type UpdateActivityRequestModel = Pick<
   Activity,
-  "id" | "orderIndex" | "activityTypeId" | "topicId"
+  "id" | "activityTypeId" | "topicId"
 >;
 
 // #region Response Model

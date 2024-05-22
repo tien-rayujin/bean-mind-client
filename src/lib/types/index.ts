@@ -1,11 +1,11 @@
 interface BaseAuditableEntity {
   id: string;
-  created: Date;
-  createdBy: string;
-  LastModified: Date;
-  lastModifiedBy: string;
-  deletedDate: Date;
-  deletedBy: string;
+  created?: Date;
+  createdBy?: string;
+  LastModified?: Date;
+  lastModifiedBy?: string;
+  deletedDate?: Date;
+  deletedBy?: string;
 
   isDeleted: boolean;
 }
@@ -14,11 +14,11 @@ interface Indexable {
   orderIndex: number;
 }
 
-interface Activity extends BaseAuditableEntity, Indexable {
+interface Activity extends BaseAuditableEntity {
   activityTypeId: string;
-  activityType: object;
+  activityType: ActivityType;
   topicId: String;
-  topic: object;
+  topic: Topic;
   documents: Array<Document>;
   videos: Array<Video>;
   worksheets: Array<Worksheet>;
@@ -130,7 +130,7 @@ interface WorksheetQuestion extends BaseAuditableEntity {
 }
 
 interface WorksheetTemplate extends BaseAuditableEntity {
-  classification: 0 | 1 | 2; // subject | chapter | topic
+  classification: string; // subject | chapter | topic
   easyQuestionCount: number;
   normalQuestionCount: number;
   hardQuestionCount: number;
@@ -140,7 +140,7 @@ interface WorksheetTemplate extends BaseAuditableEntity {
   subject: Subject;
   chapterId: string;
   chapter: Chapter;
-  topicId: String;
-  topic: object;
+  topicId: string;
+  topic: Topic;
   worksheets: Array<Worksheet>;
 }

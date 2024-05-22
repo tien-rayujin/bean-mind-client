@@ -21,13 +21,13 @@ import { BaseRequestHandler } from "@/lib/common/BaseRequestHandler";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { getAccessTokenSession } from "@/lib/actions/session";
 
-const GetActivitiesRequestHandler = async (): Promise<
-  BaseResponse<GetActivitiesResonseModel>
-> => {
+const GetActivitiesRequestHandler = async (
+  query: Object,
+): Promise<BaseResponse<GetActivitiesResonseModel>> => {
   return BaseRequestHandler<object, GetActivitiesResonseModel>({
     options: {
       method: "GET",
-      endpoint: getActivitiesEndpoint,
+      endpoint: getActivitiesEndpoint(query),
     },
   });
 };
@@ -51,7 +51,7 @@ const CreateActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }
@@ -77,7 +77,7 @@ const UpdateActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }
@@ -102,7 +102,7 @@ const DeleteActivityRequestHandler = async (
   const accessToken = await getAccessTokenSession();
   if (!accessToken) {
     return {
-      isSuccess: false,
+      success: false,
       message: "Authentication required to perform this action",
     };
   }

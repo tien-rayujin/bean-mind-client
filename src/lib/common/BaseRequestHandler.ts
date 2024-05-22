@@ -11,7 +11,7 @@ interface RequestHandlerOptions<T> {
 }
 
 interface BaseRequestHandlerProps<TRequest, TResponse> {
-  formData?: FormData;
+  formData?: FormData | Object;
   options: RequestHandlerOptions<TRequest>;
   okCallback?: (arg?: TResponse) => void;
 }
@@ -21,25 +21,44 @@ const BaseRequestHandler = async <TRequest, TResponse>(
 ): Promise<BaseResponse<TResponse>> => {
   const { formData, options, okCallback } = props;
 
-  const rawFormData = Object.fromEntries(
-    formData ? formData.entries() : new FormData(),
-  );
-  const payload = Object.fromEntries(
-    Object.entries(rawFormData).filter(([key]) => !key.startsWith("$ACTION_")),
-  ) as TRequest;
+  // console.log({ formData });
 
-  // schema validation if provided
-  if (options.schema) {
+  let payload = undefined;
+
+  if (formData instanceof FormData) {
+    const rawFormData = Object.fromEntries(
+      formData ? formData.entries() : new FormData(),
+    );
+    payload = Object.fromEntries(
+      Object.entries(rawFormData).filter(
+        ([key]) => !key.startsWith("$ACTION_"),
+      ),
+    ) as TRequest;
+  } else if (typeof formData === "object" && formData !== null) {
+    payload = formData as TRequest;
+  } else if (typeof formData === "undefined") {
+    payload = undefined;
+  } else {
+    throw new Error("formData type not supported");
+  }
+
+  // console.log({ payload });
+
+  // schema validation if provided and payload existed
+  if (options.schema && payload) {
     let validatedFields = await options.schema.safeParseAsync(payload);
 
     if (!validatedFields.success) {
       return {
-        isSuccess: false,
+        success: false,
         message: "Field Validation Failed",
         fieldErrors: validatedFields.error.formErrors.fieldErrors,
       };
     }
   }
+
+  // log out the payload request
+  // console.log({ payload });
 
   // request API
   const response = await fetchData<BaseResponse<TResponse>>(options.endpoint, {
@@ -48,22 +67,28 @@ const BaseRequestHandler = async <TRequest, TResponse>(
     accessToken: options.accessToken,
   });
 
+  // log out the response data
+  // console.log(response?.data);
+
   // server response with fail resulst
-  if (!response || !response.isSuccess) {
+  if (!response || !response.success) {
+    console.error({ response });
     return {
-      isSuccess: false,
+      success: false,
       message: response?.message || "Server error",
+      errors: response?.errors,
+      fieldErrors: response?.fieldErrors,
     };
   }
 
   // callback function
-  okCallback && okCallback(response.result);
+  okCallback && okCallback(response.data);
 
   return {
-    isSuccess: response.isSuccess,
+    success: response.success,
     message: response?.message,
-    result: response.result,
-    errorMessages: response?.errorMessages,
+    data: response.data,
+    errors: response?.errors,
   };
 };
 

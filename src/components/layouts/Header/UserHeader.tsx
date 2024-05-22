@@ -49,21 +49,7 @@ const UserHeader: React.FC<UserHeaderProps> = () => {
       </ul>
 
       {/* Button Login */}
-      {isAuth ? (
-        <LogoutButton
-          handleClick={() => {
-            if (!confirm("Are you sure to logout ?")) {
-              return;
-            }
-            Logout().then(() => {
-              router.push("/auth/login");
-              Toast({ message: "Logout successfully", type: "success" });
-            });
-          }}
-        />
-      ) : (
-        <LoginButton />
-      )}
+      {isAuth ? <LogoutButton /> : <LoginButton />}
     </div>
   );
 };

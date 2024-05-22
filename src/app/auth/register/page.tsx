@@ -1,19 +1,20 @@
 "use client";
 
-import { GoogleLoginButton, SubmitButton } from "@/components/Button";
+import { GoogleLoginButton } from "@/components/Button";
 import { RegisterRequestHandler } from "@/lib/services/auth/Handlers";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
-import StyFormInput from "@/components/FormInput";
+import { StyFormInput } from "@/components/Form/FormInput";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import Link from "next/link";
 import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { RegisterResponseModel } from "@/lib/services/auth/Models";
+import { SubmitButton } from "@/components/Form/Button";
 
 const Page: React.FC = () => {
   const initialState: BaseResponse<RegisterResponseModel> = {
-    isSuccess: false,
+    success: false,
     message: "",
     fieldErrors: {},
   };
@@ -26,7 +27,7 @@ const Page: React.FC = () => {
     if (formState.message != "") {
       Toast({
         message: formState.message,
-        type: formState.isSuccess ? "success" : "error",
+        type: formState.success ? "success" : "error",
       });
     }
   }, [formState]);
@@ -38,9 +39,9 @@ const Page: React.FC = () => {
         action={formAction}
       >
         <h2 className="mb-4 text-2xl font-bold text-text">Register</h2>
-        {!formState.isSuccess &&
-          formState.errorMessages &&
-          formState.errorMessages.map((eMsg) => (
+        {!formState.success &&
+          formState.errors &&
+          formState.errors.map((eMsg) => (
             <p key={eMsg} className="text-sm font-semibold text-accent">
               {eMsg}
             </p>
@@ -54,7 +55,7 @@ const Page: React.FC = () => {
           required
           extras="tracking-wide"
         ></StyFormInput>
-        {!formState.isSuccess && formState.fieldErrors?.email && (
+        {!formState.success && formState.fieldErrors?.email && (
           <span className="text-sm font-semibold text-accent">
             {formState.fieldErrors?.email}
           </span>
@@ -68,7 +69,7 @@ const Page: React.FC = () => {
           extras="tracking-wide"
           required
         ></StyFormInput>
-        {!formState.isSuccess && formState.fieldErrors?.password && (
+        {!formState.success && formState.fieldErrors?.password && (
           <span className="text-sm font-semibold text-accent">
             {formState.fieldErrors?.password}
           </span>

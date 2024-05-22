@@ -2,22 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 import { GetUserInfoRequestHandler } from "./lib/services/auth/Handlers";
 
 export const config = {
-  matcher: ["/manager/:path*", "/admin/:path*"],
+  matcher: ["/manage/:path*", "/admin/:path*"],
 };
 
 const middleware = async (request: NextRequest) => {
   // get user infor if existed in cookies("session")
   const getUserInfo = await GetUserInfoRequestHandler();
-  if (!getUserInfo.isSuccess) {
+  if (!getUserInfo.success) {
     console.log("Can not get user information");
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 
-  // if (request.nextUrl.pathname.startsWith("/manager")) {
+  // if (request.nextUrl.pathname.startsWith("/manage")) {
   //   return NextResponse.rewrite(new URL("/auth/login", request.url));
   // }
 
-  const user = getUserInfo.result;
+  const user = getUserInfo.data;
   // user tried to access manager page
   if (
     request.nextUrl.pathname.startsWith("/admin") &&
@@ -31,7 +31,7 @@ const middleware = async (request: NextRequest) => {
 
   // user tried to access manager page
   if (
-    request.nextUrl.pathname.startsWith("/manager") &&
+    request.nextUrl.pathname.startsWith("/manage") &&
     !user?.roles.includes("Manager")
   ) {
     console.log(
