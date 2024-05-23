@@ -21,17 +21,17 @@ const config: Config = {
     },
     extend: {
       colors: {
-        text: "rgba(var(--text), var(--tw-bg-opacity))",
-        background: "rgba(var(--background), var(--tw-bg-opacity))",
-        primary: "rgba(var(--primary), var(--tw-bg-opacity))",
-        secondary: "rgba(var(--secondary), var(--tw-bg-opacity))",
-        accent: "rgba(var(--accent), var(--tw-bg-opacity))",
+        text: "rgba(var(--text), <alpha-value>)",
+        background: "rgba(var(--background), <alpha-value>)",
+        primary: "rgba(var(--primary), <alpha-value>)",
+        secondary: "rgba(var(--secondary), <alpha-value>)",
+        accent: "rgba(var(--accent), <alpha-value>)",
 
-        textDark: "rgba(var(--text-dark), var(--tw-bg-opacity))",
-        backgroundDark: "rgba(var(--background-dark), var(--tw-bg-opacity))",
-        primaryDark: "rgba(var(--primary-dark), var(--tw-bg-opacity))",
-        secondaryDark: "rgba(var(--secondary-dark), var(--tw-bg-opacity))",
-        accentDark: "rgba(var(--accent-dark), var(--tw-bg-opacity))",
+        textDark: "rgba(var(--text-dark), <alpha-value>)",
+        backgroundDark: "rgba(var(--background-dark), <alpha-value>)",
+        primaryDark: "rgba(var(--primary-dark), <alpha-value>)",
+        secondaryDark: "rgba(var(--secondary-dark), <alpha-value>)",
+        accentDark: "rgba(var(--accent-dark), <alpha-value>)",
 
         whiten: "#F1F5F9",
         whiter: "#F5F7FD",

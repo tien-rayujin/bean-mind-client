@@ -12,7 +12,20 @@ const nextConfig = {
           { key: "Access-Control-Allow-Methods", value: "GET,DELETE,PATCH,POST,PUT" },
           { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
         ]
-      }
+      },
+      // {
+      //   source: "/manage/:path*",
+      //   headers: [
+      //     // {
+      //     //   key: 'X-Frame-Options',
+      //     //   value: 'ALLOW-FROM https://bean-mind-demo-qclqcs135-chanhxaosas-projects.vercel.app'
+      //     // },
+      //     {
+      //       key: "Content-Security-Policy",
+      //       value: "frame-ancestors https://bean-mind-demo.vercel.app"
+      //     }
+      //   ]
+      // }
     ];
   },
   images: {
@@ -24,4 +37,4 @@ const nextConfig = {
   }
 };
 
-export default nextConfig;
+module.exports = nextConfig;
