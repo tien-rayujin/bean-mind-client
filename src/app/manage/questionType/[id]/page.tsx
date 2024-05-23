@@ -17,7 +17,7 @@ const Page: React.FC<PageProps> = async (props) => {
 
   return (
     <div className="col-span-12">
-      <div className="relative bg-secondary/30 p-8 leading-relaxed">
+      <div className="relative bg-background p-8 leading-relaxed">
         <p className="block max-w-[50%]">
           <span className="font-semibold tracking-wide text-primary">
             Name:{" "}
