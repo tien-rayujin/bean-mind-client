@@ -36,7 +36,7 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
 const SideNavList = () => {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <Link href={"/manage"}>
+      <Link href={"/dashboard/admin"}>
         <SideNavItem
           color="accent"
           text="Home"
@@ -48,6 +48,7 @@ const SideNavList = () => {
           }
         />
       </Link>
+      <Link href={"/dashboard/admin/users"}>
       <SideNavItem
         color="accent"
         text="User"
@@ -55,6 +56,7 @@ const SideNavList = () => {
           <FaUser size={24} className={"text-accent group-hover:text-text"} />
         }
       />
+      </Link>
       <SideNavItem
         color="accent"
         text="Learn"
