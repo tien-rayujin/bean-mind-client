@@ -32,7 +32,7 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
         <div className="mb-4 flex items-center gap-4">
           <SearchBar extras="flex-1" />
           <Link href={"subject/create"}>
-            <CreateButton text="Create Subject" extras="h-12" />
+            <CreateButton text="Create subject" extras="h-12" />
           </Link>
           <FilterButton />
           <ReloadButton />

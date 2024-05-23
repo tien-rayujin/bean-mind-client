@@ -38,15 +38,15 @@ const columns = [
           <ViewDetailButton />
         </Link>
         <Link href={`/manage/course/${info.row.original.id}/update`}>
-          <UpdateButton />
+          <UpdateButton isIconOnly />
         </Link>
         {info.row.original.isDeleted ? (
           <Link href={`/manage/course/${info.row.original.id}/restore`}>
-            <RestoreButton />
+            <RestoreButton isIconOnly />
           </Link>
         ) : (
           <Link href={`/manage/course/${info.row.original.id}/delete`}>
-            <DeleteButton />
+            <DeleteButton isIconOnly />
           </Link>
         )}
       </div>

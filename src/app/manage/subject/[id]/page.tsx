@@ -1,4 +1,9 @@
 import { StyButton } from "@/components/Button";
+import {
+  DeleteButton,
+  RestoreButton,
+  UpdateButton,
+} from "@/components/Form/Button";
 import { GetSubjectRequestHandler } from "@/lib/services/subject/Handlers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -45,24 +50,15 @@ const Page: React.FC<PageProps> = async (props) => {
 
       <div className="mt-4 flex items-center justify-end gap-2.5">
         <Link href={`${id}/update`} className="z-10">
-          <StyButton extras="flex items-center gap-2">
-            <FaPen />
-            <span>Edit</span>
-          </StyButton>
+          <UpdateButton />
         </Link>
         {!isDeleted ? (
           <Link href={`${id}/delete`} className="z-10">
-            <StyButton extras="flex items-center gap-2 !bg-accent">
-              <FaTrash />
-              <span>Delete</span>
-            </StyButton>
+            <DeleteButton />
           </Link>
         ) : (
           <Link href={`${id}/restore`} className="z-10">
-            <StyButton extras="flex items-center gap-2 !bg-accent">
-              <FaRedo />
-              <span>Restore</span>
-            </StyButton>
+            <RestoreButton />
           </Link>
         )}
       </div>

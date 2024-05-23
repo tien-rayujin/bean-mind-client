@@ -1,7 +1,12 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterTopicButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
 import TopicTable from "./components/Table";
+import {
+  CreateButton,
+  FilterButton,
+  ReloadButton,
+} from "@/components/Form/Button";
+import Link from "next/link";
 
 interface TopicPageProps {
   searchParams: {
@@ -22,12 +27,19 @@ const Page: React.FC<TopicPageProps> = async (props) => {
     <div className="relative h-full">
       <Breadcrumb pageName="Topic" />
 
-      {/* Search area */}
-      <div className="mb-4 flex items-center gap-4">
-        <SearchBar extras="w-full" />
-        {/* Filter button */}
-        <FilterTopicButton />
-      </div>
+      <section className="mb-4 w-full rounded-md bg-background/30 p-4 shadow-md">
+        {/* Search area */}
+        <div className="mb-4 flex items-center gap-4">
+          <SearchBar extras="flex-1" />
+          <Link href={"topic/create"}>
+            <CreateButton text="Create topic" extras="h-12" />
+          </Link>
+          <FilterButton />
+          <ReloadButton />
+        </div>
+
+        {/* Filter area */}
+      </section>
 
       <TopicTable pageIndex={pageIndex} pageSize={pageSize} term={term} />
     </div>
