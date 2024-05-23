@@ -21,11 +21,11 @@ const Modal: React.FC<ModalProps> = (props) => {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-0 z-20 grid h-full w-full place-items-center bg-modalOverlay">
+    <div className="absolute inset-0 z-20 grid h-full w-full place-items-center bg-whiter bg-opacity-70">
       {/* Modal content */}
       <div
         className={clsx(
-          "rounded-xls scrollbar max-h-[76%] min-w-75 overflow-scroll rounded-xl border border-strokedark bg-background p-8 shadow-md",
+          "rounded-xls scrollbar max-h-[76%] min-w-75 overflow-scroll rounded-xl border border-stroke bg-background p-8 shadow-md",
           extras,
         )}
       >

@@ -39,4 +39,10 @@ const test__delayTime = async (times?: number) => {
   });
 };
 
-export { createPageUrl, queryBuilder, test__delayTime };
+const isGuid = (input: string) => {
+  const guidRegex =
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  return guidRegex.test(input);
+};
+
+export { createPageUrl, queryBuilder, test__delayTime, isGuid };

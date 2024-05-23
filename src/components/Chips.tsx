@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { FaCircle, FaDotCircle } from "react-icons/fa";
 
 interface ChipProps {
   title?: string;
@@ -43,14 +44,15 @@ const Chip: React.FC<ChipProps> = (props) => {
   return (
     <div
       className={clsx(
-        `flex w-fit items-center justify-center rounded-full border bg-opacity-10`,
+        `flex w-fit items-center justify-center rounded-md border bg-opacity-10`,
         borderStyle(type),
         bgStyle(type),
         chipSizeStyle,
         extras,
       )}
     >
-      <span className={clsx(``, titleTextStyle(type))}>{title}</span>
+      <FaCircle size={10} className={clsx(titleTextStyle(type))} />
+      <span className={clsx(`ml-2.5`, titleTextStyle(type))}>{title}</span>
     </div>
   );
 };

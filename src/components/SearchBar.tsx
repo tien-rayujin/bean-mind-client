@@ -33,7 +33,12 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
     );
   }, [pathname, router, searchParams, value]);
   return (
-    <div className={clsx("relative h-12 rounded-md bg-secondary/30", extras)}>
+    <div
+      className={clsx(
+        "relative h-12 rounded-sm bg-background text-body shadow-md",
+        extras,
+      )}
+    >
       <input
         type="text"
         onChange={(e) => setTerm(e.target.value)}

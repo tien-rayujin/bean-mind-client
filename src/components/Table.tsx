@@ -32,7 +32,7 @@ const TableThree = ({ columns, objData }: TableProps) => {
   });
 
   return (
-    <div className="shadow-default rounded-sm border border-strokedark bg-backgroundDark/30 px-5 pb-2.5 pt-6 dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="shadow-default rounded-xl px-5 pb-2.5 pt-6 shadow-md  sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -69,7 +69,7 @@ const TableThree = ({ columns, objData }: TableProps) => {
                   <td
                     key={cell.id}
                     className={clsx(
-                      "border-stroke px-4 py-5 dark:border-strokedark",
+                      "border-stroke px-4 py-5 dark:border-stroke",
                       index === 0 && "pl-9 xl:pl-11",
                       index < data.length,
                     )}

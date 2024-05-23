@@ -1,7 +1,12 @@
 "use client";
 
-import { StyButton } from "@/components/Button";
 import { Chip } from "@/components/Chips";
+import {
+  DeleteButton,
+  RestoreButton,
+  UpdateButton,
+  ViewDetailButton,
+} from "@/components/Form/Button";
 import { createColumnHelper } from "@tanstack/react-table";
 import Link from "next/link";
 
@@ -30,8 +35,20 @@ const columns = [
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
         <Link href={`/manage/subject/${info.row.original.id}`}>
-          <StyButton extras="hover:!translate-y-0">View</StyButton>
+          <ViewDetailButton />
         </Link>
+        <Link href={`/manage/subject/${info.row.original.id}/update`}>
+          <UpdateButton isIconOnly />
+        </Link>
+        {info.row.original.isDeleted ? (
+          <Link href={`/manage/subject/${info.row.original.id}/restore`}>
+            <RestoreButton isIconOnly />
+          </Link>
+        ) : (
+          <Link href={`/manage/subject/${info.row.original.id}/delete`}>
+            <DeleteButton isIconOnly />
+          </Link>
+        )}
       </div>
     ),
   }),

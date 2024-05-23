@@ -4,6 +4,12 @@ import { StyButton } from "@/components/Button";
 import { Chip } from "@/components/Chips";
 import { createColumnHelper } from "@tanstack/react-table";
 import Link from "next/link";
+import {
+  RestoreButton,
+  DeleteButton,
+  UpdateButton,
+  ViewDetailButton,
+} from "@/components/Form/Button";
 
 const columnHelper = createColumnHelper<Chapter>();
 
@@ -30,8 +36,20 @@ const columns = [
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
         <Link href={`/manage/chapter/${info.row.original.id}`}>
-          <StyButton extras="hover:!translate-y-0">View</StyButton>
+          <ViewDetailButton />
         </Link>
+        <Link href={`/manage/chapter/${info.row.original.id}/update`}>
+          <UpdateButton />
+        </Link>
+        {info.row.original.isDeleted ? (
+          <Link href={`/manage/chapter/${info.row.original.id}/restore`}>
+            <RestoreButton />
+          </Link>
+        ) : (
+          <Link href={`/manage/chapter/${info.row.original.id}/delete`}>
+            <DeleteButton />
+          </Link>
+        )}
       </div>
     ),
   }),

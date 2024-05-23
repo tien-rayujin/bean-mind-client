@@ -17,11 +17,11 @@ const StyFormInput: React.FC<BaseFormInputProps> = ({
   ...rest
 }) => {
   return (
-    <div className="StyFormInput ">
+    <div className="StyFormInput">
       {showLabel && (
         <h2 className="font-semibold capitalize">{label || name || "Title"}</h2>
       )}
-      <div className="flex items-center rounded-md border border-stroke bg-whiten px-3 py-2 text-base font-normal text-body transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring">
+      <div className="flex items-center rounded-sm bg-background px-3 py-2 text-base font-normal text-body shadow-md transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring">
         {icon && <span className="mr-2">{icon}</span>}
         <input
           {...rest}
@@ -72,18 +72,20 @@ const StyFormSelect = function <T extends Record<string, unknown>>({
     );
 
   return (
-    <div className="StyFormInput ">
+    <div className="StyFormInput relative">
       {showLabel && (
-        <h2 className="font-semibold capitalize">{label || name || "Title"}</h2>
+        <h2 className="font-semibold capitalize tracking-wide text-primary">
+          {label || name || "Title"}
+        </h2>
       )}
-      <div className="flex items-center rounded-md border border-stroke bg-whiten px-3 py-2 text-base font-normal text-body transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring">
+      <div className="flex items-center rounded-sm bg-background px-3 py-2 text-base font-normal text-body shadow-md transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring">
         {icon && <span className="mr-2">{icon}</span>}
         <select
           {...rest}
           name={name}
           className={clsx("w-full bg-transparent focus:outline-none", extras)}
         >
-          <option value={undefined}>
+          <option value={undefined} disabled>
             {placeholder || "Please select item"}
           </option>
           {optionDatas}

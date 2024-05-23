@@ -1,12 +1,13 @@
 "use client";
 
 import { LogoutButton } from "@/components/Button";
+import { AppLogoIcon } from "@/components/Logo";
 import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 import { FaBook, FaHome, FaUser } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
-import { GiJellyBeans } from "react-icons/gi";
 
 interface ManagerSideNavProps {}
 
@@ -14,19 +15,20 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
   props: ManagerSideNavProps,
 ) => {
   return (
-    <div className="overflow-x-hiddencj relative h-full w-25 bg-backgroundDark/20 py-2.5">
+    <div className="relative h-full w-25 overflow-x-hidden bg-primary py-2.5">
       {/* <AppLogo /> */}
-      <div className="absolute left-0 right-0 top-0 grid h-20 w-full place-items-center">
-        <GiJellyBeans
-          size={48}
-          className={"text-primary group-hover:text-text"}
-        />
+      {/* <div className="absolute left-0 right-0 top-0 grid h-30 w-full place-items-center">
+        <AppLogoIcon />
+      </div> */}
+
+      <div className="relative grid h-30 w-full place-items-center">
+        <AppLogoIcon />
       </div>
 
       <SideNavList />
 
       <LogoutButton
-        extras="absolute bottom-1 left-1 right-1 bg-gradient-to-r from-primary to-accent"
+        extras="absolute bottom-4 left-1 right-1 mx-auto"
         isIconOnly
       />
     </div>
@@ -34,69 +36,42 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
 };
 
 const SideNavList = () => {
+  const pathName = usePathname();
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4">
-      <Link href={"/manage"}>
+    <div className="flex flex-col items-center justify-start gap-4">
+      <Link href={"/manage"} className="w-full">
         <SideNavItem
-          color="accent"
+          active={pathName.includes("/manage")}
           text="Home"
-          icon={
-            <FaHome
-              size={24}
-              className={" text-accent group-hover:text-text"}
-            />
-          }
+          icon={<FaHome size={24} />}
         />
       </Link>
-      <SideNavItem
-        color="accent"
-        text="User"
-        icon={
-          <FaUser size={24} className={"text-accent group-hover:text-text"} />
-        }
-      />
-      <SideNavItem
-        color="accent"
-        text="Learn"
-        icon={
-          <FaBook size={24} className={"text-accent group-hover:text-text"} />
-        }
-      />
-      <SideNavItem
-        color="accent"
-        text="Setting"
-        icon={
-          <FaGear size={24} className={"text-accent group-hover:text-text"} />
-        }
-      />
+      <SideNavItem text="User" icon={<FaUser size={24} />} />
+      <SideNavItem text="Learn" icon={<FaBook size={24} />} />
+      <SideNavItem text="Setting" icon={<FaGear size={24} />} />
     </div>
   );
 };
 
 interface SideNavItemProps extends PropsWithChildren {
-  color?: string;
   text?: string;
   icon?: React.ReactNode;
+  active?: boolean;
 }
 
 const SideNavItem: React.FC<SideNavItemProps> = (props) => {
-  const { color = "primary", text, icon } = props;
-
-  const textColor = `text-${color}`;
-  const hoverBgColor = `hover:bg-${color}`;
+  const { text, icon, active = false } = props;
 
   return (
     <div
       className={clsx(
-        "group flex h-16 w-16 flex-col items-center justify-center gap-1 bg-background transition-all duration-200 hover:scale-105 hover:cursor-pointer",
-        "hover:bg-accent",
-        "rounded-full duration-500 hover:rounded-full",
+        "group flex h-16 w-full flex-col items-center justify-center gap-1 bg-white bg-opacity-0 text-white hover:cursor-pointer",
+        "hover:bg-opacity-25",
+        active && "bg-opacity-25",
       )}
     >
       {icon}
-      {/* <h2 className={clsx("font-semibold group-hover:text-text", textColor)}>
-        {text}
-      </h2> */}
+      {/* <h2 className={clsx("font-semibold group-hover:text-text")}>{text}</h2> */}
     </div>
   );
 };

@@ -1,7 +1,12 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterSubjectButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
 import SubjectTable from "./components/Table";
+import {
+  CreateButton,
+  FilterButton,
+  ReloadButton,
+} from "@/components/Form/Button";
+import Link from "next/link";
 
 interface SubjectPageProps {
   searchParams: {
@@ -22,12 +27,36 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
     <div className="relative h-full">
       <Breadcrumb pageName="Subject" />
 
-      {/* Search area */}
-      <div className="mb-4 flex items-center gap-4">
-        <SearchBar extras="w-full" />
-        {/* Filter button */}
-        <FilterSubjectButton />
-      </div>
+      <section className="mb-4 w-full rounded-md bg-background/30 p-4 shadow-md">
+        {/* Search area */}
+        <div className="mb-4 flex items-center gap-4">
+          <SearchBar extras="flex-1" />
+          <Link href={"subject/create"}>
+            <CreateButton text="Create Subject" extras="h-12" />
+          </Link>
+          <FilterButton />
+          <ReloadButton />
+        </div>
+
+        {/* Filter area */}
+        {/* <div className="grid grid-cols-6">
+          <div>
+            <StyFormSelect
+              displayProp={"key"}
+              valueProp={"value"}
+              showLabel={false}
+              datas={[
+                { key: "both", value: "both" },
+                { key: "active", value: "active" },
+                { key: "inactive", value: "inactive" },
+              ]}
+              label={"Status"}
+              placeholder="Select Status"
+              extras="py-1"
+            />
+          </div>
+        </div> */}
+      </section>
 
       <SubjectTable pageIndex={pageIndex} pageSize={pageSize} term={term} />
     </div>

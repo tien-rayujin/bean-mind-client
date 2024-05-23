@@ -19,7 +19,7 @@ const Pagination = ({ page, totalPage }: PaginationProps) => {
   const next = page === totalPage ? page : page + 1;
 
   return (
-    <div className="flex items-center justify-center gap-4 rounded-sm border-stroke py-4 text-primary dark:border-strokedark dark:text-white md:gap-6 md:py-6 2xl:gap-7.5 2xl:py-7.5">
+    <div className="flex items-center justify-center gap-4 rounded-sm border-stroke py-4 text-primary dark:border-stroke dark:text-white md:gap-6 md:py-6 2xl:gap-7.5 2xl:py-7.5">
       <NavigationArrow
         href={createPageUrl({
           terms: { pageIndex: String(back) },

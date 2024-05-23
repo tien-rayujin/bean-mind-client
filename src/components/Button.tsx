@@ -1,12 +1,13 @@
 import { AiOutlineLogout } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useContext } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Logout } from "@/lib/services/auth/Handlers";
 import { useRouter } from "next/navigation";
 import { Toast } from "./Toast";
-import { FaCircle } from "react-icons/fa";
+import { FaCircle, FaMoon, FaSun } from "react-icons/fa";
+import { ThemeContext } from "@/lib/contexts/themeProvider";
 
 // #region Client buttons
 interface BaseButtonProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,7 +19,7 @@ const StyButton: FC<BaseButtonProp> = ({ extras, ...rest }) => {
     <button
       {...rest}
       className={clsx(
-        "rounded-md bg-primary/70 px-4 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/90 hover:shadow-md",
+        "rounded-md bg-primary px-4 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/80 hover:shadow-md",
         extras,
       )}
     >
@@ -77,6 +78,34 @@ const LoginButton: React.FC<{}> = (props) => {
   );
 };
 
+interface ThemeToggleButtonProps {
+  extras?: string;
+}
+
+const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = (props) => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error("ThemeToggleButton must be used within a ThemeProvider");
+  }
+
+  const { theme, toggleTheme } = context;
+
+  const icon = theme === "light" ? <FaMoon /> : <FaSun />;
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className={clsx(
+        "grid h-10 w-10 place-items-center rounded-full bg-background",
+        props.extras,
+      )}
+    >
+      <div className="text-text">{icon}</div>
+    </button>
+  );
+};
+
 interface LogoutButtonProps {
   // handleClick: () => void;
   extras?: string;
@@ -89,7 +118,7 @@ const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
   return (
     <button
       className={clsx(
-        "flex items-center justify-center gap-x-2.5 rounded-md bg-accent/70 px-6 py-2 duration-150 hover:bg-accent/80 hover:shadow-layoutPopup hover:shadow-accent",
+        "group flex h-12 w-12 flex-col items-center justify-center gap-1 rounded-xl bg-white text-primary duration-300 hover:scale-110 hover:cursor-pointer",
         extras,
       )}
       onClick={() => {
@@ -138,4 +167,6 @@ export {
   LoginButton,
   LogoutButton,
   BiStateButton,
+  ThemeToggleButton,
+  type BaseButtonProp,
 };
