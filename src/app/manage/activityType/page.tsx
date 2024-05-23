@@ -1,7 +1,12 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import { FilterActivityTypeButton } from "./components/Button";
 import SearchBar from "@/components/SearchBar";
 import ActivityTypeTable from "./components/Table";
+import {
+  CreateButton,
+  FilterButton,
+  ReloadButton,
+} from "@/components/Form/Button";
+import Link from "next/link";
 
 interface ActivityTypePageProps {
   searchParams: {
@@ -22,12 +27,19 @@ const Page: React.FC<ActivityTypePageProps> = async (props) => {
     <div className="relative h-full">
       <Breadcrumb pageName="ActivityType" />
 
-      {/* Search area */}
-      <div className="mb-4 flex items-center gap-4">
-        <SearchBar extras="w-full" />
-        {/* Filter button */}
-        <FilterActivityTypeButton />
-      </div>
+      <section className="mb-4 w-full rounded-md bg-background/30 p-4 shadow-md">
+        {/* Search area */}
+        <div className="mb-4 flex items-center gap-4">
+          <SearchBar extras="flex-1" />
+          <Link href={"topic/create"}>
+            <CreateButton text="Create topic" extras="h-12" />
+          </Link>
+          <FilterButton />
+          <ReloadButton />
+        </div>
+
+        {/* Filter area */}
+      </section>
 
       <ActivityTypeTable
         pageIndex={pageIndex}
