@@ -10,23 +10,18 @@ interface SubjectTableProps {
   pageIndex: number;
   pageSize: number;
   term: string;
+  isDeleted: string;
 }
 
 const SubjectTable: React.FC<SubjectTableProps> = async (props) => {
-  const { term, pageIndex, pageSize } = props;
-  const subjects = (
-    await GetSubjectsRequestHandler({
-      term,
-      pageIndex,
-      pageSize,
-    })
-  ).data;
+  const { term, pageIndex, pageSize, isDeleted } = props;
+  const subjects = (await GetSubjectsRequestHandler({ ...props })).data;
   if (!subjects) return notFound();
   const { items, totalPage } = subjects;
 
   return (
     <>
-      <Suspense key={term + pageIndex} fallback={<Loader />}>
+      <Suspense key={term + isDeleted + pageIndex} fallback={<Loader />}>
         <TableThree columns={columns} objData={items} />
       </Suspense>
 

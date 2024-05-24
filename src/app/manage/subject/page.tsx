@@ -7,14 +7,18 @@ import {
   ReloadButton,
 } from "@/components/Form/Button";
 import Link from "next/link";
+import { SubjectFilter } from "./components/Filter";
 
 interface SubjectPageProps {
   searchParams: {
     pageIndex: string;
     pageSize?: string;
     term?: string;
+    isDeleted?: string;
   };
 }
+
+export const dynamic = "force-dynamic";
 
 const Page: React.FC<SubjectPageProps> = async (props) => {
   const searchParams = props.searchParams;
@@ -22,6 +26,7 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
   const pageSize =
     Number(searchParams.pageSize) || Number(process.env.DEFAULT_PAGE_SIZE) || 2;
   const term = searchParams.term || "";
+  const isDeleted = searchParams.isDeleted || "";
 
   return (
     <div className="relative h-full">
@@ -39,26 +44,15 @@ const Page: React.FC<SubjectPageProps> = async (props) => {
         </div>
 
         {/* Filter area */}
-        {/* <div className="grid grid-cols-6">
-          <div>
-            <StyFormSelect
-              displayProp={"key"}
-              valueProp={"value"}
-              showLabel={false}
-              datas={[
-                { key: "both", value: "both" },
-                { key: "active", value: "active" },
-                { key: "inactive", value: "inactive" },
-              ]}
-              label={"Status"}
-              placeholder="Select Status"
-              extras="py-1"
-            />
-          </div>
-        </div> */}
+        <SubjectFilter />
       </section>
 
-      <SubjectTable pageIndex={pageIndex} pageSize={pageSize} term={term} />
+      <SubjectTable
+        pageIndex={pageIndex}
+        pageSize={pageSize}
+        term={term}
+        isDeleted={isDeleted}
+      />
     </div>
   );
 };

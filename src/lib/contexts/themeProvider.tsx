@@ -12,7 +12,13 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 interface ThemeProviderProps extends PropsWithChildren {}
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      const storedTheme =
+        (localStorage.getItem("theme") as "light" | "dark") || "light";
+      return storedTheme;
+    } else return "light";
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined") {

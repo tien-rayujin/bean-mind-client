@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 
-const queryBuilder = (query: Object) => {
+const queryBuilder = (query: Object): string => {
   let queryString = new URLSearchParams(Object.entries(query));
   return queryString.toString();
 };
@@ -15,11 +15,11 @@ const createPageUrl = ({
   terms,
   pathname,
   searchParams,
-}: CreatePageUrlProps) => {
+}: CreatePageUrlProps): string => {
   const params = new URLSearchParams(searchParams);
   const termsEntry = Object.entries(terms);
 
-  params.values();
+  // params.values();
   termsEntry.forEach((entry) => {
     params.set(entry[0], entry[1]);
   });
