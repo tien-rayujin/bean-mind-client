@@ -19,7 +19,7 @@ const StyButton: FC<BaseButtonProp> = ({ extras, ...rest }) => {
     <button
       {...rest}
       className={clsx(
-        "rounded-md bg-primary px-4 py-2 text-base font-normal text-text transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/80 hover:shadow-md",
+        "rounded-md bg-primary px-4 py-2 text-base font-normal text-white transition-all duration-200 ease-linear hover:-translate-y-1 hover:bg-primary/80 hover:shadow-md",
         extras,
       )}
     >
@@ -145,12 +145,12 @@ interface BiStateButtonProps
 
 const BiStateButton: React.FC<BiStateButtonProps> = (props) => {
   const { active = false, extras, ...rest } = props;
-  const style = active ? "text-success" : "text-background";
+  const style = active ? "text-primary" : "text-background";
   return (
     <button
       type="button"
       className={clsx(
-        "grid h-8 w-8 place-items-center rounded-full bg-backgroundDark/40",
+        "grid h-8 w-8 place-items-center rounded-full bg-body/70",
         style,
       )}
       {...rest}

@@ -19,7 +19,9 @@ const StyFormInput: React.FC<BaseFormInputProps> = ({
   return (
     <div className="StyFormInput">
       {showLabel && (
-        <h2 className="font-semibold capitalize">{label || name || "Title"}</h2>
+        <h2 className="font-semibold capitalize tracking-wide text-primary">
+          {label || name || "Title"}
+        </h2>
       )}
       <div className="flex items-center rounded-sm bg-background px-3 py-2 text-base font-normal text-body shadow-md transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring">
         {icon && <span className="mr-2">{icon}</span>}

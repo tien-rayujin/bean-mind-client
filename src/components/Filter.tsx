@@ -1,10 +1,9 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useState, ChangeEvent, useEffect } from "react";
 import { StyFormSelect } from "./Form/FormInput";
 import { createPageUrl } from "@/lib/utils";
-import { useRouter } from "next/router";
 import clsx from "clsx";
 
 interface BaseFilterProps {

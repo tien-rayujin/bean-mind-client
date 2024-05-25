@@ -48,6 +48,11 @@ const managePage: NavItem[] = [
         label: "Worksheet",
         icon: <FaFolder />,
       },
+      {
+        href: "/manage/question",
+        label: "question",
+        icon: <FaFolder />,
+      },
     ],
   },
 ];

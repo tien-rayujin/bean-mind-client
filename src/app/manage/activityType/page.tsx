@@ -31,8 +31,8 @@ const Page: React.FC<ActivityTypePageProps> = async (props) => {
         {/* Search area */}
         <div className="mb-4 flex items-center gap-4">
           <SearchBar extras="flex-1" />
-          <Link href={"topic/create"}>
-            <CreateButton text="Create topic" extras="h-12" />
+          <Link href={"activityType/create"}>
+            <CreateButton text="Create type" extras="h-12" />
           </Link>
           <FilterButton />
           <ReloadButton />

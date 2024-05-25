@@ -38,7 +38,7 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
 const SideNavList = () => {
   const pathName = usePathname();
   return (
-    <div className="flex flex-col items-center justify-start gap-4">
+    <div className="flex flex-col items-center justify-start">
       <Link href={"/manage"} className="w-full">
         <SideNavItem
           active={pathName.includes("/manage")}

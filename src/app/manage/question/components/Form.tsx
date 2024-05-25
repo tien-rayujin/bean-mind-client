@@ -193,13 +193,9 @@ const AnswerInput = (props: AnswerInputProps) => {
           onChange={(e) => onTextChange(index, e.currentTarget.value)}
         />
       </div>
-      <button
-        type="button"
-        onClick={() => onRemoveOption(index)}
-        className="rounded-sm bg-accent p-3 text-text"
-      >
+      <StyButton onClick={() => onRemoveOption(index)}>
         <FaTimes />
-      </button>
+      </StyButton>
     </div>
   );
 };
@@ -409,13 +405,9 @@ const CreateQuestionAnswerForm: React.FC<CreateQuestionAnswerFormProps> = (
   return (
     <>
       <div className="flex gap-2.5 text-xl font-semibold">
-        <button
-          type="button"
-          className="grid h-8 w-8 place-items-center rounded-md bg-success text-sm text-text"
-          onClick={handleAddOption}
-        >
+        <StyButton onClick={handleAddOption} className="hover:!-translate-y-0">
           <FaPlus />
-        </button>
+        </StyButton>
         <span>Options</span>
       </div>
 
