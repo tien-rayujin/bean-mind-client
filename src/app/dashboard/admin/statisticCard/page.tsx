@@ -4,10 +4,10 @@ import { DataStatisticCard } from "./components/dataStatisticCard";
 
 const CardData: React.FC = () => {
   return (
-    <div className="ml-auto mr-auto flex">
+    <div className=" w-full grid grid-cols-4 mt-5 mx-2">
       {DataStatisticCard.map((data, index) => (
-        <div className="rounded-2xl ">
-          <div key={index} className="grid-cols-4 m-10">
+        <div className="rounded-2xl w-90 ml-auto mr-auto">
+          <div key={data.description} className=" ">
             <CardDataStats data={data} />
           </div>
         </div>

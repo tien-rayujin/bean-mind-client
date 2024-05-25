@@ -1,31 +1,35 @@
-import { FaUsers, FaGlobe, FaEye , FaClock} from "react-icons/fa6";
+import { FaUsers, FaGlobe, FaEye , FaClock, FaCreditCard, FaMoneyCheckDollar} from "react-icons/fa6";
 export const DataStatisticCard = [
   {
-    icon: <FaUsers/>,
-    title: "Tổng số lượng account",
-    description: "100.000",
+    icon: <FaCreditCard/>,
+    title: "Payment - Today",
+    description: "$6781.00",
+    rate:"4.2",
+    rateDetail:'40.85 this week',
+    status: true,
+  },
+  {
+    icon: <FaCreditCard/>,
+    title: "Payment - This Month",
+    description: "$935,270.16",
+    rate:"3.2",
+    rateDetail:'28.90k this week',
+    status: true,
+  },
+  {
+    icon:<FaMoneyCheckDollar/>,
+    title: "Invoices - Due",
+    description: "$1.000",
     rate:"10%",
+    rateDetail:'40.85 this week',
     status: true
   },
   {
-    icon:<FaGlobe/>,
-    title: "Tổng truy cập hôm nay",
-    description: "10.000",
-    rate:"10%",
-    status:false
-  },
-  {
-    icon:<FaEye/>,
-    title: "Số người đang sử dụng",
-    description: "1.000",
-    rate:"10%",
-    status: true
-  },
-  {
-    icon:<FaClock/>,
-    title: "Số giờ trung bình sử dụng",
-    description: "3h",
-    rate:"10%",
+    icon:<FaMoneyCheckDollar/>,
+    title: "Invoices - Overdue",
+    description: "$9,700.6",
+    rate:"4.0",
+    rateDetail:'28.85 this week',
     status: false
   }
 ];

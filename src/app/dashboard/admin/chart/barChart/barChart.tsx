@@ -2,9 +2,9 @@
 "use client"
 import React, { useEffect, useRef } from 'react';
 import { Chart, ChartConfiguration } from 'chart.js/auto';
-import { chartConfig, donutChartConfig } from './data'; // Adjust the path as necessary
+import { chartConfig } from '../barChart/data'; // Adjust the path as necessary
 
-export default function ChartDoughnut() {
+export default function BarChart() {
     const chartRef = useRef<HTMLCanvasElement | null>(null);
     const chartInstanceRef = useRef<Chart | null>(null);
 
@@ -17,7 +17,7 @@ export default function ChartDoughnut() {
 
             const ctx = chartRef.current.getContext('2d');
             if (ctx) {
-                const newChartInstance = new Chart(ctx, donutChartConfig);
+                const newChartInstance = new Chart(ctx, chartConfig);
                 chartInstanceRef.current = newChartInstance;
             }
         }
@@ -32,7 +32,7 @@ export default function ChartDoughnut() {
     }, [chartRef]);
 
     return (
-        <div>
+        <div className='h-[550px] flex justify-start items-start ml-5'>
             <canvas ref={chartRef}></canvas>
         </div>
     );
