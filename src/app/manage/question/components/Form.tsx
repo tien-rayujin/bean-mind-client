@@ -38,7 +38,6 @@ const createQuestionFormInit: BaseResponse<GetQuestionResponseModel> = {
 const answersQuestionInit: CreateQuestionAnswerRequestModel = {
   text: "",
   questionId: "",
-  orderIndex: 0,
   isCorrect: false,
 };
 
@@ -416,7 +415,7 @@ const CreateQuestionAnswerForm: React.FC<CreateQuestionAnswerFormProps> = (
           questionAnswers.map((ans, index) => {
             return (
               <AnswerInput
-                key={"___" + ans.orderIndex}
+                key={"___" + index}
                 ans={ans}
                 index={index}
                 onTextChange={handleUpdateAnswer}

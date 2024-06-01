@@ -2,20 +2,9 @@ import { AlertSnack } from "@/components/Alert";
 import Breadcrumb from "@/components/Breadcrumb";
 import { StyButton } from "@/components/Button";
 import Pagination from "@/components/Pagination";
-import { GetActivitiesRequestHandler } from "@/lib/services/activity/Handlers";
 import Link from "next/link";
 
 const Page: React.FC<{}> = async (props) => {
-  const getActivitiesRequest = await GetActivitiesRequestHandler({});
-  const activities = getActivitiesRequest.data;
-
-  const activitiesList = activities?.items.length ? (
-    activities?.items.map((activity) => {
-      return <div key={activity.id}>{activity.id}</div>;
-    })
-  ) : (
-    <h2 className="text-secondary">No data to display</h2>
-  );
   return (
     <>
       <Breadcrumb pageName="Home" />
@@ -28,8 +17,6 @@ const Page: React.FC<{}> = async (props) => {
         <AlertSnack message="Some message" status="danger" title="Danger" />
         <AlertSnack message="Some message" status="success" title="Success" />
       </div>
-
-      {activitiesList}
 
       <h2 className="text-xl">Goto</h2>
 

@@ -64,7 +64,7 @@ const CreateWorksheetTemplateRequestHandler = async (
   ) as unknown as CreateWorksheetTemplateRequestModel;
 
   const objectRequest: CreateWorksheetTemplateRequestModel = {
-    classification: String(rawObject.classification),
+    classification: Number(rawObject.classification),
     easyQuestionCount: Number(rawObject.easyQuestionCount),
     normalQuestionCount: Number(rawObject.normalQuestionCount),
     hardQuestionCount: Number(rawObject.hardQuestionCount),
@@ -72,7 +72,6 @@ const CreateWorksheetTemplateRequestHandler = async (
       Number(rawObject.easyQuestionCount) +
       Number(rawObject.normalQuestionCount) +
       Number(rawObject.hardQuestionCount),
-    suffle: Boolean(rawObject.suffle),
     subjectId: rawObject.subjectId,
     chapterId: rawObject.chapterId,
     topicId: rawObject.topicId,
@@ -110,7 +109,7 @@ const UpdateWorksheetTemplateRequestHandler = async (
 
   const objectRequest: UpdateWorksheetTemplateRequestModel = {
     id: String(rawObject.id),
-    classification: String(rawObject.classification),
+    classification: Number(rawObject.classification),
     easyQuestionCount: Number(rawObject.easyQuestionCount),
     normalQuestionCount: Number(rawObject.normalQuestionCount),
     hardQuestionCount: Number(rawObject.hardQuestionCount),
@@ -118,7 +117,6 @@ const UpdateWorksheetTemplateRequestHandler = async (
       Number(rawObject.easyQuestionCount) +
       Number(rawObject.normalQuestionCount) +
       Number(rawObject.hardQuestionCount),
-    suffle: Boolean(rawObject.suffle),
     subjectId: rawObject.subjectId,
     chapterId: rawObject.chapterId,
     topicId: rawObject.topicId,

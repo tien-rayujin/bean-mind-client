@@ -3,12 +3,12 @@ import { Pagination } from "@/lib/common/Pagination";
 // #region Request Model
 type CreateWorksheetRequestModel = Pick<
   Worksheet,
-  "title" | "description" | "activityId" | "worksheetTemplateId"
+  "title" | "description" | "worksheetTemplateId"
 >;
 
 type UpdateWorksheetRequestModel = Pick<
   Worksheet,
-  "id" | "title" | "description" | "activityId" | "worksheetTemplateId"
+  "id" | "title" | "description" | "worksheetTemplateId"
 >;
 
 // #region Response Model

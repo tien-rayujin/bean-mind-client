@@ -17,7 +17,6 @@ import { useFormState } from "react-dom";
 // #region Create
 interface CreateWorksheetFormProps
   extends FormWithPayload<{
-    activities: Activity[];
     worksheetTemplates: WorksheetTemplate[];
     questions: Question[];
   }> {}
@@ -115,21 +114,6 @@ const CreateWorksheetForm: React.FC<CreateWorksheetFormProps> = (props) => {
         </span>
       )}
 
-      <StyFormSelect<Activity & { [key: string]: any }>
-        name="activityId"
-        placeholder="Please select activity"
-        required
-        displayProp={"activityTypeId"}
-        valueProp={"id"}
-        datas={payload?.activities}
-        // defaultValue={defaultActivity?.id}
-      />
-      {!formState.success && formState.fieldErrors?.activityId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.activityId}
-        </span>
-      )}
-
       {/* Pick Questions to add to this worksheet */}
       {payload?.questions && (
         <QuestionPick
@@ -147,7 +131,6 @@ const CreateWorksheetForm: React.FC<CreateWorksheetFormProps> = (props) => {
 // #region Update
 interface UpdateWorksheetFormProps
   extends FormWithPayload<{
-    activities: Activity[];
     worksheetTemplates: WorksheetTemplate[];
     questions: Question[];
     worksheetQuestions: WorksheetQuestion[];
@@ -252,21 +235,6 @@ const UpdateWorksheetForm: React.FC<UpdateWorksheetFormProps> = (props) => {
       {!formState.success && formState.fieldErrors?.worksheetTemplateId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.worksheetTemplateId}
-        </span>
-      )}
-
-      <StyFormSelect<Activity & { [key: string]: any }>
-        name="activityId"
-        placeholder="Please select activity"
-        required
-        displayProp={"activityTypeId"}
-        valueProp={"id"}
-        datas={payload?.activities}
-        defaultValue={worksheet.activity.id}
-      />
-      {!formState.success && formState.fieldErrors?.activityId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.activityId}
         </span>
       )}
 

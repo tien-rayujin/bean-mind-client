@@ -14,19 +14,92 @@ interface Indexable {
   orderIndex: number;
 }
 
-interface Activity extends BaseAuditableEntity {
-  activityTypeId: string;
-  activityType: ActivityType;
-  topicId: String;
-  topic: Topic;
-  documents: Array<Document>;
-  videos: Array<Video>;
-  worksheets: Array<Worksheet>;
+interface Subject extends BaseAuditableEntity {
+  title: string;
+  description: string;
+  courses: Array<Course>;
 }
 
-interface ActivityType extends BaseAuditableEntity {
-  name: string;
-  activities: Array<Activity>;
+interface Course extends BaseAuditableEntity {
+  title: string;
+  description: string;
+  subjectId: string;
+  gradeLevelId: string;
+  subject: Subject;
+  gradeLevel: GradeLevel;
+  chapters: Array<Chapter>;
+  coursePackages: Array<CoursePackage>;
+  teachables: Array<Teachable>;
+}
+
+interface CoursePackage extends BaseAuditableEntity {
+  courseId: string;
+  packageId: string;
+  course: Course;
+  package: Package;
+}
+
+interface Teachable extends BaseAuditableEntity {
+  courseId: string;
+  // lecturerId: string;
+  course: Course;
+  // lecturer: Lecturer;
+}
+
+interface Package extends BaseAuditableEntity {
+  gradeLevelId: string;
+
+  gradeLevel: GradeLevel;
+  coursePackages: Array<CoursePackage>;
+  packageOrders: Array<PackageOrder>;
+}
+
+interface PackageOrder extends BaseAuditableEntity {
+  packageId: string;
+  package: Package;
+  payments: Array<Payment>;
+  enrollments: Array<Enrollment>;
+  // students: Array<Student>;
+}
+
+interface Payment extends BaseAuditableEntity {
+  packageOrderId: string;
+  packageOrder: PackageOrder;
+}
+
+interface Enrollment extends BaseAuditableEntity {
+  packageOrderId: string;
+  // studentId: string;
+  // lecturerId: string;
+  packageOrder: PackageOrder;
+  // student: Student;
+  // lecturer: Lecturer;
+  sessions: Array<Session>;
+}
+
+interface Session extends BaseAuditableEntity {
+  enrollmentId: string;
+  // lecturerId: string;
+  teachingSlotId: string;
+  enrollment: Enrollment;
+  // lecturer: Lecturer;
+  teachingSlot: TeachingSlot;
+}
+
+interface TeachingSlot extends BaseAuditableEntity {
+  gradeLevelId: string;
+  // lecturerId: string;
+  slotId: string;
+  gradeLevel: GradeLevel;
+  // lecturer: Lecturer;
+  slot: Slot;
+  sessions: Array<Session>;
+}
+
+interface Slot extends BaseAuditableEntity {
+  startTime: string;
+  endTime: string;
+  teachingSlots: Array<TeachingSlot>;
 }
 
 interface Chapter extends BaseAuditableEntity {
@@ -37,37 +110,30 @@ interface Chapter extends BaseAuditableEntity {
   topics: Array<Topic>;
 }
 
-interface Course extends BaseAuditableEntity {
+interface Topic extends BaseAuditableEntity {
   title: string;
   description: string;
-  subjectId: string;
-  subject: Subject;
-  chapters: Array<Chapter>;
-  studentInCourse: Array<StudentInCourse>;
+  chapterId: string;
+  chapter: Chapter;
+  worksheets: Array<Worksheet>;
 }
 
-interface Document extends BaseAuditableEntity {
-  title: string;
-  content: string;
-  author: string;
-  activityId: string;
-  activity: Activity;
-}
+interface GradeLevel extends BaseAuditableEntity {}
 
-interface Question extends BaseAuditableEntity, Indexable {
+interface Question extends BaseAuditableEntity {
   text: string;
   imageUrl: string;
   topicId: string;
-  topic: Topic;
   questionLevelId: string;
-  questionLevel: QuestionLevel;
   questionTypeId: string;
+  topic: Topic;
+  questionLevel: QuestionLevel;
   questionType: QuestionType;
   questionAnswers: Array<QuestionAnswer>;
   worksheetQuestions: Array<WorksheetQuestion>;
 }
 
-interface QuestionAnswer extends BaseAuditableEntity, Indexable {
+interface QuestionAnswer extends BaseAuditableEntity {
   text: string;
   isCorrect: boolean;
   questionId: string;
@@ -84,40 +150,14 @@ interface QuestionType extends BaseAuditableEntity {
   questions: Array<Question>;
 }
 
-interface StudentInCourse extends BaseAuditableEntity {
-  studentId: string;
-  // missing student object here
-  courseId: string;
-  course: Course;
-}
-
-interface Subject extends BaseAuditableEntity {
-  title: string;
-  description: string;
-  courses: Array<Course>;
-}
-
-interface Topic extends BaseAuditableEntity {
-  title: string;
-  description: string;
-  chapterId: string;
-  chapter: Chapter;
-  activities: Array<Activity>;
-}
-
-interface Video extends BaseAuditableEntity {
-  title: string;
-  url: string;
-  activityId: string;
-  activity: Activity;
-}
-
 interface Worksheet extends BaseAuditableEntity {
   title: string;
   description: string;
-  activityId: string;
-  activity: Activity;
+  topicId: string;
+  lecturerId: string;
   worksheetTemplateId?: string;
+  topic: Topic;
+  // lecturer: Lecturer;
   worksheetTemplate?: WorksheetTemplate;
   worksheetQuestions: Array<WorksheetQuestion>;
 }
@@ -130,17 +170,16 @@ interface WorksheetQuestion extends BaseAuditableEntity {
 }
 
 interface WorksheetTemplate extends BaseAuditableEntity {
-  classification: string; // subject | chapter | topic
+  classification: number;
   easyQuestionCount: number;
   normalQuestionCount: number;
   hardQuestionCount: number;
   totalQuestionCount: number;
-  suffle: boolean;
   subjectId: string;
-  subject: Subject;
   chapterId: string;
-  chapter: Chapter;
   topicId: string;
+  subject: Subject;
+  chapter: Chapter;
   topic: Topic;
   worksheets: Array<Worksheet>;
 }

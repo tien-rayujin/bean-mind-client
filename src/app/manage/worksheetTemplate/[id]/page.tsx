@@ -27,7 +27,6 @@ const Page: React.FC<PageProps> = async (props) => {
     normalQuestionCount,
     hardQuestionCount,
     totalQuestionCount,
-    suffle,
     chapter,
     topic,
     subject,
@@ -69,12 +68,6 @@ const Page: React.FC<PageProps> = async (props) => {
               TotalQuestionCount:{" "}
             </span>
             {totalQuestionCount}
-          </p>
-          <p>
-            <span className="font-semibold tracking-wide text-primary">
-              suffle:{" "}
-            </span>
-            {suffle ? "TRUE" : "FALSE"}
           </p>
           <p className="block max-w-[50%]">
             <span className="font-semibold tracking-wide text-primary">

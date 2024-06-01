@@ -24,7 +24,6 @@ const Page: React.FC<PageProps> = async (props) => {
     title,
     description,
     isDeleted,
-    activity,
     worksheetTemplate,
     worksheetQuestions,
   } = worksheet;
@@ -51,12 +50,6 @@ const Page: React.FC<PageProps> = async (props) => {
             </span>
             <span>{isDeleted ? "Disabled" : "Enabled"}</span>
           </div>
-          {/* <p className="block max-w-[50%]">
-      <span className="font-semibold tracking-wide text-primary">
-        Activity:{" "}
-      </span>
-      {activity.title}
-    </p> */}
           <div className="block max-w-[50%]">
             <span className="font-semibold tracking-wide text-primary">
               WorksheetTemplate:{" "}

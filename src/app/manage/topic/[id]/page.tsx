@@ -19,7 +19,7 @@ const Page: React.FC<PageProps> = async (props) => {
 
   if (!topic) return notFound();
 
-  const { title, description, isDeleted, chapter, activities } = topic;
+  const { title, description, isDeleted, chapter } = topic;
 
   return (
     <>

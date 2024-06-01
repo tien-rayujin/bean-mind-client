@@ -3,12 +3,12 @@ import { Pagination } from "@/lib/common/Pagination";
 // #region Request Model
 type CreateQuestionAnswerRequestModel = Pick<
   QuestionAnswer,
-  "text" | "questionId" | "orderIndex" | "isCorrect"
+  "text" | "questionId" | "isCorrect"
 >;
 
 type UpdateQuestionAnswerRequestModel = Pick<
   QuestionAnswer,
-  "id" | "text" | "questionId" | "orderIndex" | "isCorrect"
+  "id" | "text" | "questionId" | "isCorrect"
 >;
 
 // #region Response Model
