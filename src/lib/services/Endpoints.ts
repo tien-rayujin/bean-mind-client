@@ -26,36 +26,6 @@ export const getUserInfoRequestEndpoint = apiURL.href.concat(
   `${authEndpoint}/info`,
 );
 
-// #region Activity
-const activityEndpoint = "/activities";
-export const getActivitiesEndpoint = (query: Object) =>
-  apiURL.href.concat(
-    `${activityEndpoint}${query && "?".concat(queryBuilder(query))}`,
-  );
-export const getActivityEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityEndpoint}/${id}`);
-export const createActivityEndpoint = apiURL.href.concat(`${activityEndpoint}`);
-export const updateActivityEndpoint = apiURL.href.concat(`${activityEndpoint}`);
-export const deleteActivityEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityEndpoint}/${id}`);
-
-// #region ActivityType
-const activityTypeEndpoint = "/activity-types";
-export const getActivityTypesEndpoint = (query: Object) =>
-  apiURL.href.concat(
-    `${activityTypeEndpoint}${query && "?".concat(queryBuilder(query))}`,
-  );
-export const getActivityTypeEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityTypeEndpoint}/${id}`);
-export const createActivityTypeEndpoint = apiURL.href.concat(
-  `${activityTypeEndpoint}`,
-);
-export const updateActivityTypeEndpoint = apiURL.href.concat(
-  `${activityTypeEndpoint}`,
-);
-export const deleteActivityTypeEndpoint = (id: string) =>
-  apiURL.href.concat(`${activityTypeEndpoint}/${id}`);
-
 // #region Chapter
 const chapterEndpoint = "/chapters";
 export const getChaptersEndpoint = (query: Object) =>
@@ -222,3 +192,20 @@ export const updateWorksheetTemplateEndpoint = apiURL.href.concat(
 );
 export const deleteWorksheetTemplateEndpoint = (id: string) =>
   apiURL.href.concat(`${worksheetTemplateEndpoint}/${id}`);
+
+// #region GradeLevel
+const gradeLevelEndpoint = "/grade-levels";
+export const getGradeLevelsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${gradeLevelEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getGradeLevelEndpoint = (id: string) =>
+  apiURL.href.concat(`${gradeLevelEndpoint}/${id}`);
+export const createGradeLevelEndpoint = apiURL.href.concat(
+  `${gradeLevelEndpoint}`,
+);
+export const updateGradeLevelEndpoint = apiURL.href.concat(
+  `${gradeLevelEndpoint}`,
+);
+export const deleteGradeLevelEndpoint = (id: string) =>
+  apiURL.href.concat(`${gradeLevelEndpoint}/${id}`);

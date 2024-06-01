@@ -9,10 +9,6 @@ const Page: React.FC<{}> = async (props) => {
     <>
       <Breadcrumb pageName="Home" />
       <div className="min-w-242.5">
-        {/* <Alert message="Some message" status="warning" title="Warning" />
-        <Alert message="Some message" status="danger" title="Danger" />
-        <Alert message="Some message" status="success" title="Success" /> */}
-
         <AlertSnack message="Some message" status="warning" title="Warning" />
         <AlertSnack message="Some message" status="danger" title="Danger" />
         <AlertSnack message="Some message" status="success" title="Success" />
@@ -33,9 +29,6 @@ const Page: React.FC<{}> = async (props) => {
         <Link href="/manage/topic">
           <StyButton>Manage Topic</StyButton>
         </Link>
-        <Link href="/manage/activityType">
-          <StyButton>Manage ActivityType</StyButton>
-        </Link>
         <Link href="/manage/questionType">
           <StyButton>Manage QuestionType</StyButton>
         </Link>
@@ -44,9 +37,6 @@ const Page: React.FC<{}> = async (props) => {
         </Link>
         <Link href="/manage/question">
           <StyButton>Manage Question</StyButton>
-        </Link>
-        <Link href="/manage/activity">
-          <StyButton>Manage Activity</StyButton>
         </Link>
         <Link href="/manage/worksheetTemplate">
           <StyButton>Manage WorksheetTemplate</StyButton>

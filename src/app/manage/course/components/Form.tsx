@@ -15,7 +15,11 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
 // #region Create
-interface CreateCourseFormProps extends FormWithPayload<Subject[]> {}
+interface CreateCourseFormProps
+  extends FormWithPayload<{
+    subjects: Subject[];
+    gradeLevels: GradeLevel[];
+  }> {}
 
 const createCourseFormInit: BaseResponse<GetCourseResponseModel> = {
   success: false,
@@ -89,20 +93,39 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = (props) => {
         required
         displayProp={"title"}
         valueProp={"id"}
-        datas={payload}
+        datas={payload?.subjects}
       />
       {!formState.success && formState.fieldErrors?.subjectId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.subjectId}
         </span>
       )}
+
+      <StyFormSelect<GradeLevel & { [key: string]: any }>
+        name="gradeLevelId"
+        placeholder="Please select gradeLevel"
+        required
+        displayProp={"name"}
+        valueProp={"id"}
+        datas={payload?.gradeLevels}
+      />
+      {!formState.success && formState.fieldErrors?.gradeLevelId && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.gradeLevelId}
+        </span>
+      )}
+
       <SubmitButton title="Create" extras="w-full" />
     </form>
   );
 };
 
 // #region Update
-interface UpdateCourseFormProps extends FormWithPayload<Subject[]> {
+interface UpdateCourseFormProps
+  extends FormWithPayload<{
+    subjects: Subject[];
+    gradeLevels: GradeLevel[];
+  }> {
   course: Course;
 }
 
@@ -181,12 +204,27 @@ const UpdateCourseForm: React.FC<UpdateCourseFormProps> = (props) => {
         required
         displayProp={"title"}
         valueProp={"id"}
-        datas={payload}
+        datas={payload?.subjects}
         defaultValue={course.subject.id}
       />
       {!formState.success && formState.fieldErrors?.subjectId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.subjectId}
+        </span>
+      )}
+
+      <StyFormSelect<GradeLevel & { [key: string]: any }>
+        name="gradeLevelId"
+        placeholder="Please select gradeLevel"
+        required
+        displayProp={"name"}
+        valueProp={"id"}
+        datas={payload?.gradeLevels}
+        defaultValue={course.gradeLevel.id}
+      />
+      {!formState.success && formState.fieldErrors?.gradeLevelId && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.gradeLevelId}
         </span>
       )}
 

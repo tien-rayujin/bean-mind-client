@@ -19,13 +19,48 @@ const managePage: NavItem[] = [
     label: "Manage",
     childrens: [
       {
-        href: "/manage/subject",
-        label: "Subject",
+        href: "/manage/course",
+        label: "Courses",
         icon: <FaFolder />,
       },
       {
-        href: "/manage/course",
-        label: "Courses",
+        href: "/manage/coursePackage",
+        label: "Course Package",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/package",
+        label: "Package",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/packageOrder",
+        label: "Package Order",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/payment",
+        label: "Payment",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/enrollment",
+        label: "Enrollment",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/session",
+        label: "Session",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/teachingSlot",
+        label: "Teaching Slot",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/slot",
+        label: "Slot",
         icon: <FaFolder />,
       },
       {
@@ -36,11 +71,6 @@ const managePage: NavItem[] = [
       {
         href: "/manage/topic",
         label: "Topic",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/activity",
-        label: "Activity",
         icon: <FaFolder />,
       },
       {
@@ -62,6 +92,11 @@ const configurationPage: NavItem[] = [
     label: "Configuration",
     childrens: [
       {
+        href: "/manage/subject",
+        label: "Subject",
+        icon: <FaFolder />,
+      },
+      {
         href: "/manage/worksheetTemplate",
         label: "Worksheet Template",
         icon: <FaFolder />,
@@ -72,13 +107,18 @@ const configurationPage: NavItem[] = [
         icon: <FaFolder />,
       },
       {
-        href: "/manage/activityType",
-        label: "Activity Type",
+        href: "/manage/questionLevel",
+        label: "Question Level",
         icon: <FaFolder />,
       },
       {
-        href: "/manage/questionLevel",
-        label: "Question Level",
+        href: "/manage/gradeLevel",
+        label: "Grade Level",
+        icon: <FaFolder />,
+      },
+      {
+        href: "/manage/teachable",
+        label: "Teacher Teachable",
         icon: <FaFolder />,
       },
     ],

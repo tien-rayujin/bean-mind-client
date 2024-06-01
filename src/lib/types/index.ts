@@ -10,10 +10,6 @@ interface BaseAuditableEntity {
   isDeleted: boolean;
 }
 
-interface Indexable {
-  orderIndex: number;
-}
-
 interface Subject extends BaseAuditableEntity {
   title: string;
   description: string;
@@ -118,7 +114,12 @@ interface Topic extends BaseAuditableEntity {
   worksheets: Array<Worksheet>;
 }
 
-interface GradeLevel extends BaseAuditableEntity {}
+interface GradeLevel extends BaseAuditableEntity {
+  name: string;
+  courses: Array<Course>;
+  packages: Array<Package>;
+  teachingSlots: Array<TeachingSlot>;
+}
 
 interface Question extends BaseAuditableEntity {
   text: string;

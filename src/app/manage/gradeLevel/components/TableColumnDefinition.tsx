@@ -1,28 +1,20 @@
 "use client";
 
 import { Chip } from "@/components/Chips";
-import { createColumnHelper } from "@tanstack/react-table";
-import Link from "next/link";
 import {
-  RestoreButton,
   DeleteButton,
+  RestoreButton,
   UpdateButton,
   ViewDetailButton,
 } from "@/components/Form/Button";
+import { createColumnHelper } from "@tanstack/react-table";
+import Link from "next/link";
 
-const columnHelper = createColumnHelper<Course>();
+const columnHelper = createColumnHelper<GradeLevel>();
 
 const columns = [
-  columnHelper.accessor("title", {
-    header: "Title",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("description", {
-    header: "Description",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("gradeLevel.name", {
-    header: "Grade Level",
+  columnHelper.accessor("name", {
+    header: "Name",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("isDeleted", {
@@ -38,18 +30,18 @@ const columns = [
     header: "Actions",
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
-        <Link href={`/manage/course/${info.row.original.id}`}>
+        <Link href={`/manage/gradeLevel/${info.row.original.id}`}>
           <ViewDetailButton />
         </Link>
-        <Link href={`/manage/course/${info.row.original.id}/update`}>
+        <Link href={`/manage/gradeLevel/${info.row.original.id}/update`}>
           <UpdateButton isIconOnly />
         </Link>
         {info.row.original.isDeleted ? (
-          <Link href={`/manage/course/${info.row.original.id}/restore`}>
+          <Link href={`/manage/gradeLevel/${info.row.original.id}/restore`}>
             <RestoreButton isIconOnly />
           </Link>
         ) : (
-          <Link href={`/manage/course/${info.row.original.id}/delete`}>
+          <Link href={`/manage/gradeLevel/${info.row.original.id}/delete`}>
             <DeleteButton isIconOnly />
           </Link>
         )}
