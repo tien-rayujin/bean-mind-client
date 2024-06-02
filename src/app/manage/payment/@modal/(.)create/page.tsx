@@ -12,16 +12,16 @@ const CreateInterceptRoute: React.FC<CreateInterceptRouteProp> = async (
   const payload = await Promise.all([
     GetPackageOrdersRequestHandler({ pageSize: 20 }),
   ]);
-  const packageorders = payload[0].data?.items;
+  const packageOrders = payload[0].data?.items;
 
-  if (!packageorders) return notFound();
+  if (!packageOrders) return notFound();
 
   return (
     <DefaultModal title="Create Payment">
       <div className="w-180">
         <CreatePaymentForm
           payload={{
-            packageOrders: packageorders,
+            packageOrders: packageOrders,
           }}
         />
       </div>
