@@ -10,6 +10,31 @@ interface BaseAuditableEntity {
   isDeleted: boolean;
 }
 
+interface AppUser {
+  userName: string;
+  email: string;
+  phoneNumber: string;
+}
+
+interface Student extends BaseAuditableEntity {
+  appUserId: string;
+  packageOrderId: string;
+
+  appUser: AppUser;
+  packageOrder: PackageOrder;
+  enrollments: Array<Enrollment>;
+}
+
+interface Lecturer extends BaseAuditableEntity {
+  appUserId: string;
+  appUser: AppUser;
+  teachables: Array<Teachable>;
+  enrollments: Array<Enrollment>;
+  sessions: Array<Session>;
+  teachingSlots: Array<TeachingSlot>;
+  worksheets: Array<Worksheet>;
+}
+
 interface Subject extends BaseAuditableEntity {
   title: string;
   description: string;
@@ -37,12 +62,13 @@ interface CoursePackage extends BaseAuditableEntity {
 
 interface Teachable extends BaseAuditableEntity {
   courseId: string;
-  // lecturerId: string;
+  lecturerId: string;
   course: Course;
-  // lecturer: Lecturer;
+  lecturer: Lecturer;
 }
 
 interface Package extends BaseAuditableEntity {
+  name: string;
   gradeLevelId: string;
 
   gradeLevel: GradeLevel;
@@ -55,39 +81,42 @@ interface PackageOrder extends BaseAuditableEntity {
   package: Package;
   payments: Array<Payment>;
   enrollments: Array<Enrollment>;
-  // students: Array<Student>;
+  students: Array<Student>;
 }
 
 interface Payment extends BaseAuditableEntity {
+  amount: number;
+  paymentDate: Date;
+  paymentStatus: number;
   packageOrderId: string;
   packageOrder: PackageOrder;
 }
 
 interface Enrollment extends BaseAuditableEntity {
   packageOrderId: string;
-  // studentId: string;
-  // lecturerId: string;
+  studentId: string;
+  lecturerId: string;
   packageOrder: PackageOrder;
-  // student: Student;
-  // lecturer: Lecturer;
+  student: Student;
+  lecturer: Lecturer;
   sessions: Array<Session>;
 }
 
 interface Session extends BaseAuditableEntity {
   enrollmentId: string;
-  // lecturerId: string;
+  lecturerId: string;
   teachingSlotId: string;
   enrollment: Enrollment;
-  // lecturer: Lecturer;
+  lecturer: Lecturer;
   teachingSlot: TeachingSlot;
 }
 
 interface TeachingSlot extends BaseAuditableEntity {
   gradeLevelId: string;
-  // lecturerId: string;
+  lecturerId: string;
   slotId: string;
   gradeLevel: GradeLevel;
-  // lecturer: Lecturer;
+  lecturer: Lecturer;
   slot: Slot;
   sessions: Array<Session>;
 }
@@ -158,7 +187,7 @@ interface Worksheet extends BaseAuditableEntity {
   lecturerId: string;
   worksheetTemplateId?: string;
   topic: Topic;
-  // lecturer: Lecturer;
+  lecturer: Lecturer;
   worksheetTemplate?: WorksheetTemplate;
   worksheetQuestions: Array<WorksheetQuestion>;
 }
