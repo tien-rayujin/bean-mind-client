@@ -209,3 +209,123 @@ export const updateGradeLevelEndpoint = apiURL.href.concat(
 );
 export const deleteGradeLevelEndpoint = (id: string) =>
   apiURL.href.concat(`${gradeLevelEndpoint}/${id}`);
+
+// #region Package
+const packageEndpoint = "/packages";
+export const getPackagesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${packageEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getPackageEndpoint = (id: string) =>
+  apiURL.href.concat(`${packageEndpoint}/${id}`);
+export const createPackageEndpoint = apiURL.href.concat(`${packageEndpoint}`);
+export const updatePackageEndpoint = apiURL.href.concat(`${packageEndpoint}`);
+export const deletePackageEndpoint = (id: string) =>
+  apiURL.href.concat(`${packageEndpoint}/${id}`);
+
+// #region CoursePackage
+const coursePackageEndpoint = "/course-packages";
+export const getCoursePackagesEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${coursePackageEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getCoursePackageEndpoint = (id: string) =>
+  apiURL.href.concat(`${coursePackageEndpoint}/${id}`);
+export const createCoursePackageEndpoint = apiURL.href.concat(
+  `${coursePackageEndpoint}`,
+);
+export const updateCoursePackageEndpoint = apiURL.href.concat(
+  `${coursePackageEndpoint}`,
+);
+export const deleteCoursePackageEndpoint = (id: string) =>
+  apiURL.href.concat(`${coursePackageEndpoint}/${id}`);
+
+// #region PackageOrder
+const packageOrderEndpoint = "/package-orders";
+export const getPackageOrdersEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${packageOrderEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getPackageOrderEndpoint = (id: string) =>
+  apiURL.href.concat(`${packageOrderEndpoint}/${id}`);
+export const createPackageOrderEndpoint = apiURL.href.concat(
+  `${packageOrderEndpoint}`,
+);
+export const updatePackageOrderEndpoint = apiURL.href.concat(
+  `${packageOrderEndpoint}`,
+);
+export const deletePackageOrderEndpoint = (id: string) =>
+  apiURL.href.concat(`${packageOrderEndpoint}/${id}`);
+
+// #region Payment
+const paymentEndpoint = "/payments";
+export const getPaymentsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${paymentEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getPaymentEndpoint = (id: string) =>
+  apiURL.href.concat(`${paymentEndpoint}/${id}`);
+export const createPaymentEndpoint = apiURL.href.concat(`${paymentEndpoint}`);
+export const updatePaymentEndpoint = apiURL.href.concat(`${paymentEndpoint}`);
+export const deletePaymentEndpoint = (id: string) =>
+  apiURL.href.concat(`${paymentEndpoint}/${id}`);
+
+// #region Enrollment
+const enrollmentEndpoint = "/enrollments";
+export const getEnrollmentsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${enrollmentEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getEnrollmentEndpoint = (id: string) =>
+  apiURL.href.concat(`${enrollmentEndpoint}/${id}`);
+export const createEnrollmentEndpoint = apiURL.href.concat(
+  `${enrollmentEndpoint}`,
+);
+export const updateEnrollmentEndpoint = apiURL.href.concat(
+  `${enrollmentEndpoint}`,
+);
+export const deleteEnrollmentEndpoint = (id: string) =>
+  apiURL.href.concat(`${enrollmentEndpoint}/${id}`);
+
+// #region Session
+const sessionEndpoint = "/sessions";
+export const getSessionsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${sessionEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getSessionEndpoint = (id: string) =>
+  apiURL.href.concat(`${sessionEndpoint}/${id}`);
+export const createSessionEndpoint = apiURL.href.concat(`${sessionEndpoint}`);
+export const updateSessionEndpoint = apiURL.href.concat(`${sessionEndpoint}`);
+export const deleteSessionEndpoint = (id: string) =>
+  apiURL.href.concat(`${sessionEndpoint}/${id}`);
+
+// #region TeachingSlot
+const teachingSlotEndpoint = "/teaching-slots";
+export const getTeachingSlotsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${teachingSlotEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getTeachingSlotEndpoint = (id: string) =>
+  apiURL.href.concat(`${teachingSlotEndpoint}/${id}`);
+export const createTeachingSlotEndpoint = apiURL.href.concat(
+  `${teachingSlotEndpoint}`,
+);
+export const updateTeachingSlotEndpoint = apiURL.href.concat(
+  `${teachingSlotEndpoint}`,
+);
+export const deleteTeachingSlotEndpoint = (id: string) =>
+  apiURL.href.concat(`${teachingSlotEndpoint}/${id}`);
+
+// #region Slot
+const slotEndpoint = "/slots";
+export const getSlotsEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${slotEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getSlotEndpoint = (id: string) =>
+  apiURL.href.concat(`${slotEndpoint}/${id}`);
+export const createSlotEndpoint = apiURL.href.concat(`${slotEndpoint}`);
+export const updateSlotEndpoint = apiURL.href.concat(`${slotEndpoint}`);
+export const deleteSlotEndpoint = (id: string) =>
+  apiURL.href.concat(`${slotEndpoint}/${id}`);
