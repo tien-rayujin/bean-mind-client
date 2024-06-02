@@ -3,21 +3,19 @@
 import { StyButton } from "@/components/Button";
 import { Alert } from "@/components/Alert";
 import { Toast } from "@/components/Toast";
-import { DeleteGradeLevelRequestHandler } from "@/lib/services/gradeLevel/Handlers";
+import { DeleteSlotRequestHandler } from "@/lib/services/slot/Handlers";
 import { useRouter } from "next/navigation";
 
-interface DeleteGradeLevelConfirmProps {
-  gradeLevel: GradeLevel;
+interface DeleteSlotConfirmProps {
+  slot: Slot;
 }
 
-const DeleteGradeLevelConfirm: React.FC<DeleteGradeLevelConfirmProps> = async (
-  props,
-) => {
-  const gradeLevel = props.gradeLevel;
+const DeleteSlotConfirm: React.FC<DeleteSlotConfirmProps> = async (props) => {
+  const slot = props.slot;
   const router = useRouter();
 
   const handleDelete = async () => {
-    const deleteResult = await DeleteGradeLevelRequestHandler(gradeLevel.id);
+    const deleteResult = await DeleteSlotRequestHandler(slot.id);
 
     Toast({
       type: "success",
@@ -34,7 +32,7 @@ const DeleteGradeLevelConfirm: React.FC<DeleteGradeLevelConfirmProps> = async (
     <>
       <Alert
         status={"danger"}
-        title={`Confirm delete for item \"${gradeLevel.name}\"`}
+        title={`Confirm delete for item \"${slot.startTime}\" - \"${slot.endTime}\"`}
         message="Are you sure to delete(disable) this item?"
         extras="mb-4"
       />
@@ -46,19 +44,17 @@ const DeleteGradeLevelConfirm: React.FC<DeleteGradeLevelConfirmProps> = async (
   );
 };
 
-interface RestoreGradeLevelConfirmProps {
-  gradeLevel: GradeLevel;
+interface RestoreSlotConfirmProps {
+  slot: Slot;
 }
 
-const RestoreGradeLevelConfirm: React.FC<
-  RestoreGradeLevelConfirmProps
-> = async (props) => {
-  const gradeLevel = props.gradeLevel;
+const RestoreSlotConfirm: React.FC<RestoreSlotConfirmProps> = async (props) => {
+  const slot = props.slot;
   const router = useRouter();
 
   const handleRestore = async () => {
     alert("Restoring...");
-    // const restoreResult = await RestoreGradeLevelRequestHandler(id);
+    // const restoreResult = await RestoreSlotRequestHandler(id);
     // Toast({
     //   type: "info",
     //   message: restoreResult.message,
@@ -72,7 +68,7 @@ const RestoreGradeLevelConfirm: React.FC<
     <>
       <Alert
         status={"warning"}
-        title={`Confirm restore for item \"${gradeLevel.name}\"`}
+        title={`Confirm restore for item \"${slot.startTime}\" - \"${slot.endTime}\"`}
         message="Are you sure to restore(re-enable) this item?"
         extras="mb-4"
       />
@@ -84,4 +80,4 @@ const RestoreGradeLevelConfirm: React.FC<
   );
 };
 
-export { DeleteGradeLevelConfirm, RestoreGradeLevelConfirm };
+export { DeleteSlotConfirm, RestoreSlotConfirm };
