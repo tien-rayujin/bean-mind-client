@@ -1,0 +1,18 @@
+import { PropsWithChildren } from "react";
+
+interface PaymentLayoutProps extends PropsWithChildren {
+  modal: React.ReactNode;
+}
+
+const Layout: React.FC<PaymentLayoutProps> = (props) => {
+  const { children, modal } = props;
+
+  return (
+    <div className="relative h-full">
+      {modal}
+      {children}
+    </div>
+  );
+};
+
+export default Layout;
