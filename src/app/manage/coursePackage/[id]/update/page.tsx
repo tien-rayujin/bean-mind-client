@@ -20,8 +20,6 @@ const UpdateCoursePackagePage: React.FC<UpdateCoursePackagePageProps> = async (
   const packages = payload[0].data?.items;
   const courses = payload[1].data?.items;
 
-  if (!packages || !courses) return notFound();
-
   if (!coursepackage || !packages || !courses) return notFound();
 
   return (

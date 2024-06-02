@@ -6,37 +6,35 @@ import { Toast } from "@/components/Toast";
 import { BaseResponse } from "@/lib/common/BasePayload";
 import { FormWithPayload } from "@/lib/common/FormWithPayload";
 import {
-  CreateCoursePackageRequestHandler,
-  UpdateCoursePackageRequestHandler,
-} from "@/lib/services/coursePackage/Handlers";
-import { GetCoursePackageResponseModel } from "@/lib/services/coursePackage/Models";
+  CreatePackageOrderRequestHandler,
+  UpdatePackageOrderRequestHandler,
+} from "@/lib/services/packageOrder/Handlers";
+import { GetPackageOrderResponseModel } from "@/lib/services/packageOrder/Models";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
 // #region Create
-interface CreateCoursePackageFormProps
+interface CreatePackageOrderFormProps
   extends FormWithPayload<{
     packages: Package[];
-    courses: Course[];
   }> {}
 
-const createCoursePackageFormInit: BaseResponse<GetCoursePackageResponseModel> =
-  {
-    success: false,
-    message: "",
-    data: undefined,
-    errors: [],
-    fieldErrors: {},
-  };
+const createPackageOrderFormInit: BaseResponse<GetPackageOrderResponseModel> = {
+  success: false,
+  message: "",
+  data: undefined,
+  errors: [],
+  fieldErrors: {},
+};
 
-const CreateCoursePackageForm: React.FC<CreateCoursePackageFormProps> = (
+const CreatePackageOrderForm: React.FC<CreatePackageOrderFormProps> = (
   props,
 ) => {
   const { payload } = props;
   const [formState, formAction] = useFormState(
-    CreateCoursePackageRequestHandler,
-    createCoursePackageFormInit,
+    CreatePackageOrderRequestHandler,
+    createPackageOrderFormInit,
   );
   const router = useRouter();
 
@@ -77,52 +75,36 @@ const CreateCoursePackageForm: React.FC<CreateCoursePackageFormProps> = (
         </span>
       )}
 
-      <StyFormSelect<Course & { [key: string]: any }>
-        name="courseId"
-        placeholder="Please select course"
-        required
-        displayProp={"title"}
-        valueProp={"id"}
-        datas={payload?.courses}
-      />
-      {!formState.success && formState.fieldErrors?.courseId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.courseId}
-        </span>
-      )}
-
       <SubmitButton title="Create" extras="w-full" />
     </form>
   );
 };
 
 // #region Update
-interface UpdateCoursePackageFormProps
+interface UpdatePackageOrderFormProps
   extends FormWithPayload<{
     packages: Package[];
-    courses: Course[];
   }> {
-  coursepackage: CoursePackage;
+  packageorder: PackageOrder;
 }
 
-const updateCoursePackageFormInit: BaseResponse<GetCoursePackageResponseModel> =
-  {
-    success: false,
-    message: "",
-    data: undefined,
-    errors: [],
-    fieldErrors: {},
-  };
+const updatePackageOrderFormInit: BaseResponse<GetPackageOrderResponseModel> = {
+  success: false,
+  message: "",
+  data: undefined,
+  errors: [],
+  fieldErrors: {},
+};
 
-const UpdateCoursePackageForm: React.FC<UpdateCoursePackageFormProps> = (
+const UpdatePackageOrderForm: React.FC<UpdatePackageOrderFormProps> = (
   props,
 ) => {
   const { payload } = props;
   const [formState, formAction] = useFormState(
-    UpdateCoursePackageRequestHandler,
-    updateCoursePackageFormInit,
+    UpdatePackageOrderRequestHandler,
+    updatePackageOrderFormInit,
   );
-  const coursepackage = props.coursepackage;
+  const packageorder = props.packageorder;
   const router = useRouter();
 
   useEffect(() => {
@@ -140,7 +122,7 @@ const UpdateCoursePackageForm: React.FC<UpdateCoursePackageFormProps> = (
 
   return (
     <form action={formAction} className="">
-      <input type="hidden" name="id" value={coursepackage.id} />
+      <input type="hidden" name="id" value={packageorder.id} />
       {!formState.success &&
         formState.errors &&
         formState.errors.map((eMsg) => (
@@ -153,29 +135,14 @@ const UpdateCoursePackageForm: React.FC<UpdateCoursePackageFormProps> = (
         name="packageId"
         placeholder="Please select package"
         required
-        displayProp={"name"}
+        displayProp={"title"}
         valueProp={"id"}
         datas={payload?.packages}
-        defaultValue={coursepackage.package.id}
+        defaultValue={packageorder.package.id}
       />
       {!formState.success && formState.fieldErrors?.packageId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.packageId}
-        </span>
-      )}
-
-      <StyFormSelect<Course & { [key: string]: any }>
-        name="courseId"
-        placeholder="Please select course"
-        required
-        displayProp={"title"}
-        valueProp={"id"}
-        datas={payload?.courses}
-        defaultValue={coursepackage.course.id}
-      />
-      {!formState.success && formState.fieldErrors?.courseId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.courseId}
         </span>
       )}
 
@@ -184,4 +151,4 @@ const UpdateCoursePackageForm: React.FC<UpdateCoursePackageFormProps> = (
   );
 };
 
-export { CreateCoursePackageForm, UpdateCoursePackageForm };
+export { CreatePackageOrderForm, UpdatePackageOrderForm };

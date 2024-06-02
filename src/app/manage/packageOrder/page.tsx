@@ -1,6 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import SearchBar from "@/components/SearchBar";
-import CoursePackageTable from "./components/Table";
+import PackageOrderTable from "./components/Table";
 import {
   CreateButton,
   FilterButton,
@@ -8,7 +8,7 @@ import {
 } from "@/components/Form/Button";
 import Link from "next/link";
 
-interface CoursePackagePageProps {
+interface PackageOrderPageProps {
   searchParams: {
     pageIndex: string;
     pageSize?: string;
@@ -16,7 +16,7 @@ interface CoursePackagePageProps {
   };
 }
 
-const Page: React.FC<CoursePackagePageProps> = async (props) => {
+const Page: React.FC<PackageOrderPageProps> = async (props) => {
   const searchParams = props.searchParams;
   const pageIndex = Number(searchParams.pageIndex) || 1;
   const pageSize =
@@ -25,14 +25,14 @@ const Page: React.FC<CoursePackagePageProps> = async (props) => {
 
   return (
     <div className="relative h-full">
-      <Breadcrumb pageName="CoursePackage" />
+      <Breadcrumb pageName="PackageOrder" />
 
       <section className="mb-4 w-full rounded-md bg-background/30 p-4 shadow-md">
         {/* Search area */}
         <div className="mb-4 flex items-center gap-4">
           <SearchBar extras="flex-1" />
-          <Link href={"coursePackage/create"}>
-            <CreateButton text="Create coursepackage" extras="h-12" />
+          <Link href={"packageorder/create"}>
+            <CreateButton text="Create packageorder" extras="h-12" />
           </Link>
           <FilterButton />
           <ReloadButton />
@@ -41,7 +41,7 @@ const Page: React.FC<CoursePackagePageProps> = async (props) => {
         {/* Filter area */}
       </section>
 
-      <CoursePackageTable
+      <PackageOrderTable
         pageIndex={pageIndex}
         pageSize={pageSize}
         term={term}

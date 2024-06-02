@@ -1,10 +1,9 @@
 import React from "react";
 import { DefaultModal } from "@/components/Modal";
-import { GetCoursePackageRequestHandler } from "@/lib/services/coursePackage/Handlers";
-import { UpdateCoursePackageForm } from "@/app/manage/coursePackage/components/Form";
+import { GetPackageOrderRequestHandler } from "@/lib/services/packageOrder/Handlers";
+import { UpdatePackageOrderForm } from "@/app/manage/packageOrder/components/Form";
 import { notFound } from "next/navigation";
 import { GetPackagesRequestHandler } from "@/lib/services/package/Handlers";
-import { GetCoursesRequestHandler } from "@/lib/services/course/Handlers";
 
 interface UpdateInterceptRouteProp {
   params: { id: string };
@@ -14,24 +13,21 @@ const UpdateInterceptRoute: React.FC<UpdateInterceptRouteProp> = async (
   props,
 ) => {
   const { id } = props.params;
-  const coursepackage = (await GetCoursePackageRequestHandler(id)).data;
+  const packageorder = (await GetPackageOrderRequestHandler(id)).data;
   const payload = await Promise.all([
     GetPackagesRequestHandler({ pageSize: 20 }),
-    GetCoursesRequestHandler({ pageSize: 20 }),
   ]);
   const packages = payload[0].data?.items;
-  const courses = payload[1].data?.items;
 
-  if (!coursepackage || !packages || !courses) return notFound();
+  if (!packageorder || !packages) return notFound();
 
   return (
-    <DefaultModal title="Update CoursePackage">
+    <DefaultModal title="Update PackageOrder">
       <div className="w-180">
-        <UpdateCoursePackageForm
-          coursepackage={coursepackage}
+        <UpdatePackageOrderForm
+          packageorder={packageorder}
           payload={{
             packages: packages,
-            courses: courses,
           }}
         />
       </div>
