@@ -1,8 +1,8 @@
 import React from "react";
 import { DefaultModal } from "@/components/Modal";
-import { GetGradeLevelRequestHandler } from "@/lib/services/gradeLevel/Handlers";
+import { GetTeachingSlotRequestHandler } from "@/lib/services/teachingSlot/Handlers";
 import { notFound } from "next/navigation";
-import { RestoreGradeLevelConfirm } from "@/app/manage/gradeLevel/components/Confirm";
+import { RestoreTeachingSlotConfirm } from "@/app/manage/teachingSlot/components/Confirm";
 
 interface RestoreInterceptRouteProp {
   params: { id: string };
@@ -12,14 +12,14 @@ const RestoreInterceptRoute: React.FC<RestoreInterceptRouteProp> = async (
   props,
 ) => {
   const { id } = props.params;
-  const gradeLevel = (await GetGradeLevelRequestHandler(id)).data;
+  const teachingSlot = (await GetTeachingSlotRequestHandler(id)).data;
 
-  if (!gradeLevel) return notFound();
+  if (!teachingSlot) return notFound();
 
   return (
-    <DefaultModal title="Restore GradeLevel">
+    <DefaultModal title="Restore TeachingSlot">
       <div className="w-180">
-        <RestoreGradeLevelConfirm gradeLevel={gradeLevel} />
+        <RestoreTeachingSlotConfirm teachingSlot={teachingSlot} />
       </div>
     </DefaultModal>
   );

@@ -10,13 +10,13 @@ const RestoreGradeLevelPage: React.FC<RestoreGradeLevelPageProps> = async (
   props,
 ) => {
   const { id } = props.params;
-  const gradelevel = (await GetGradeLevelRequestHandler(id)).data;
+  const gradeLevel = (await GetGradeLevelRequestHandler(id)).data;
 
-  if (!gradelevel) return notFound();
+  if (!gradeLevel) return notFound();
 
   return (
     <div className="flex h-full max-h-full flex-col overflow-y-hidden">
-      <RestoreGradeLevelConfirm gradelevel={gradelevel} />
+      <RestoreGradeLevelConfirm gradeLevel={gradeLevel} />
     </div>
   );
 };

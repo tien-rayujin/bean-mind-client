@@ -57,6 +57,20 @@ const CreateSlotForm: React.FC<CreateSlotFormProps> = (props) => {
 
       <StyFormInput
         type="text"
+        name="name"
+        placeholder="name"
+        required
+        extras="tracking-wide"
+        defaultValue={""}
+      />
+      {!formState.success && formState.fieldErrors?.name && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.name}
+        </span>
+      )}
+
+      <StyFormInput
+        type="text"
         name="startTime"
         placeholder="startTime"
         required
@@ -132,6 +146,20 @@ const UpdateSlotForm: React.FC<UpdateSlotFormProps> = (props) => {
             {eMsg}
           </p>
         ))}
+
+      <StyFormInput
+        type="text"
+        name="name"
+        placeholder="name"
+        required
+        extras="tracking-wide"
+        defaultValue={slot.name}
+      />
+      {!formState.success && formState.fieldErrors?.name && (
+        <span className="text-sm font-semibold text-accent">
+          {formState.fieldErrors?.name}
+        </span>
+      )}
 
       <StyFormInput
         type="text"

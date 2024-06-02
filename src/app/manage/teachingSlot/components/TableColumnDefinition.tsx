@@ -1,28 +1,32 @@
 "use client";
 
 import { Chip } from "@/components/Chips";
+import { createColumnHelper } from "@tanstack/react-table";
+import Link from "next/link";
 import {
-  DeleteButton,
   RestoreButton,
+  DeleteButton,
   UpdateButton,
   ViewDetailButton,
 } from "@/components/Form/Button";
-import { createColumnHelper } from "@tanstack/react-table";
-import Link from "next/link";
 
-const columnHelper = createColumnHelper<Slot>();
+const columnHelper = createColumnHelper<TeachingSlot>();
 
 const columns = [
-  columnHelper.accessor("name", {
-    header: "Name",
+  columnHelper.accessor("date", {
+    header: "Amount",
+    cell: (info) => info.getValue().toDateString(),
+  }),
+  columnHelper.accessor("gradeLevel.name", {
+    header: "Grade Level",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("startTime", {
-    header: "Start Time",
+  columnHelper.accessor("lecturer.appUser.userName", {
+    header: "Lecturer",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("endTime", {
-    header: "End Time",
+  columnHelper.accessor("slot.name", {
+    header: "Slot",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("isDeleted", {
@@ -38,18 +42,18 @@ const columns = [
     header: "Actions",
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
-        <Link href={`/manage/slot/${info.row.original.id}`}>
+        <Link href={`/manage/teachingSlot/${info.row.original.id}`}>
           <ViewDetailButton />
         </Link>
-        <Link href={`/manage/slot/${info.row.original.id}/update`}>
+        <Link href={`/manage/teachingSlot/${info.row.original.id}/update`}>
           <UpdateButton isIconOnly />
         </Link>
         {info.row.original.isDeleted ? (
-          <Link href={`/manage/slot/${info.row.original.id}/restore`}>
+          <Link href={`/manage/teachingSlot/${info.row.original.id}/restore`}>
             <RestoreButton isIconOnly />
           </Link>
         ) : (
-          <Link href={`/manage/slot/${info.row.original.id}/delete`}>
+          <Link href={`/manage/teachingSlot/${info.row.original.id}/delete`}>
             <DeleteButton isIconOnly />
           </Link>
         )}

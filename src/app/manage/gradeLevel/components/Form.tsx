@@ -76,7 +76,7 @@ const CreateGradeLevelForm: React.FC<CreateGradeLevelFormProps> = (props) => {
 
 // #region Update
 interface UpdateGradeLevelFormProps extends FormWithPayload<null> {
-  gradelevel: GradeLevel;
+  gradeLevel: GradeLevel;
 }
 
 const updateGradeLevelFormInit: BaseResponse<GetGradeLevelResponseModel> = {
@@ -92,7 +92,7 @@ const UpdateGradeLevelForm: React.FC<UpdateGradeLevelFormProps> = (props) => {
     UpdateGradeLevelRequestHandler,
     updateGradeLevelFormInit,
   );
-  const gradelevel = props.gradelevel;
+  const gradelevel = props.gradeLevel;
   const router = useRouter();
 
   useEffect(() => {

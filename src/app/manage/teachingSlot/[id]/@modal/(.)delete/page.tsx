@@ -1,8 +1,8 @@
 import React from "react";
 import { DefaultModal } from "@/components/Modal";
-import { GetGradeLevelRequestHandler } from "@/lib/services/gradeLevel/Handlers";
+import { GetTeachingSlotRequestHandler } from "@/lib/services/teachingSlot/Handlers";
 import { notFound } from "next/navigation";
-import { DeleteGradeLevelConfirm } from "@/app/manage/gradeLevel/components/Confirm";
+import { DeleteTeachingSlotConfirm } from "@/app/manage/teachingSlot/components/Confirm";
 
 interface DeleteInterceptRouteProp {
   params: { id: string };
@@ -12,14 +12,14 @@ const DeleteInterceptRoute: React.FC<DeleteInterceptRouteProp> = async (
   props,
 ) => {
   const { id } = props.params;
-  const gradeLevel = (await GetGradeLevelRequestHandler(id)).data;
+  const teachingSlot = (await GetTeachingSlotRequestHandler(id)).data;
 
-  if (!gradeLevel) return notFound();
+  if (!teachingSlot) return notFound();
 
   return (
-    <DefaultModal title="Delete GradeLevel">
+    <DefaultModal title="Delete TeachingSlot">
       <div className="w-180">
-        <DeleteGradeLevelConfirm gradeLevel={gradeLevel} />
+        <DeleteTeachingSlotConfirm teachingSlot={teachingSlot} />
       </div>
     </DefaultModal>
   );

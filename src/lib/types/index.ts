@@ -112,6 +112,7 @@ interface Session extends BaseAuditableEntity {
 }
 
 interface TeachingSlot extends BaseAuditableEntity {
+  date: Date;
   gradeLevelId: string;
   lecturerId: string;
   slotId: string;
@@ -122,6 +123,7 @@ interface TeachingSlot extends BaseAuditableEntity {
 }
 
 interface Slot extends BaseAuditableEntity {
+  name: string;
   startTime: string;
   endTime: string;
   teachingSlots: Array<TeachingSlot>;

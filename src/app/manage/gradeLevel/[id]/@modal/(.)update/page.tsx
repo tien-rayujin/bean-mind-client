@@ -12,14 +12,14 @@ const UpdateInterceptRoute: React.FC<UpdateInterceptRouteProp> = async (
   props,
 ) => {
   const { id } = props.params;
-  const gradelevel = (await GetGradeLevelRequestHandler(id)).data;
+  const gradeLevel = (await GetGradeLevelRequestHandler(id)).data;
 
-  if (!gradelevel) return notFound();
+  if (!gradeLevel) return notFound();
 
   return (
     <DefaultModal title="Update GradeLevel">
       <div className="w-180">
-        <UpdateGradeLevelForm gradelevel={gradelevel} />
+        <UpdateGradeLevelForm gradeLevel={gradeLevel} />
       </div>
     </DefaultModal>
   );
