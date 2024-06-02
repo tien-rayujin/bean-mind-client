@@ -60,7 +60,7 @@ const Page: React.FC = () => {
           placeholder="example@gmail.com"
           required
           extras="tracking-wide"
-          defaultValue="marchjeff145@gmail.com"
+          defaultValue="admin@localhost.com"
         ></StyFormInput>
         {!formState.success && formState.fieldErrors?.email && (
           <span className="text-sm font-semibold text-accent">
@@ -75,7 +75,7 @@ const Page: React.FC = () => {
           placeholder="Your password"
           extras="tracking-wide"
           required
-          defaultValue="12345Ab*"
+          defaultValue="Administrator1!"
         ></StyFormInput>
         {!formState.success && formState.fieldErrors?.password && (
           <span className="text-sm font-semibold text-accent">
