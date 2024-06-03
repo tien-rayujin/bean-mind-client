@@ -36,8 +36,6 @@ type ResetPasswordRequestModel = {
   newPassword: string;
 };
 
-type GetUserInfoRequestModel = {};
-
 // #region Response Model
 type RegisterResponseModel = {};
 
@@ -64,15 +62,6 @@ type ForgotPasswordResponseModel = {};
 
 type ResetPasswordResponseModel = {};
 
-type GetUserInfoResponseModel = {
-  id: string;
-  userName: string;
-  phoneNumber: string;
-  email: string;
-  emailConfirmed: boolean;
-  roles: Array<string>;
-};
-
 export type {
   RegisterRequestModel,
   LoginRequestModel,
@@ -90,6 +79,4 @@ export type {
   ResetPasswordResponseModel,
   ConfirmEmailRequestModel,
   ConfirmEmailResponseModel,
-  GetUserInfoRequestModel,
-  GetUserInfoResponseModel,
 };

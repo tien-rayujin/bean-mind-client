@@ -29,8 +29,6 @@ const resetPasswordSchema = z.object({
   newPassword: z.string().min(8, "Password must be at least 8 character"),
 });
 
-const getUserInfoSchema = z.object({});
-
 export {
   loginSchema,
   registerSchema,
@@ -38,5 +36,4 @@ export {
   resendConfirmEmailSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-  getUserInfoSchema,
 };

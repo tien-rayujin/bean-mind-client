@@ -22,9 +22,18 @@ export const resetPasswordRequestEndpoint = apiURL.href.concat(
 export const confirmEmailRequestEndpoint = apiURL.href.concat(
   `${authEndpoint}/confirmEmail`,
 );
-export const getUserInfoRequestEndpoint = apiURL.href.concat(
-  `${authEndpoint}/info`,
-);
+
+// #region User
+const userEndpoint = "/users";
+export const getUsersEndpoint = (query: Object) =>
+  apiURL.href.concat(
+    `${userEndpoint}${query && "?".concat(queryBuilder(query))}`,
+  );
+export const getUserEndpoint = () => apiURL.href.concat(`${userEndpoint}/info`);
+export const createUserEndpoint = apiURL.href.concat(`${userEndpoint}`);
+export const updateUserEndpoint = apiURL.href.concat(`${userEndpoint}`);
+export const deleteUserEndpoint = (id: string) =>
+  apiURL.href.concat(`${userEndpoint}/${id}`);
 
 // #region Chapter
 const chapterEndpoint = "/chapters";

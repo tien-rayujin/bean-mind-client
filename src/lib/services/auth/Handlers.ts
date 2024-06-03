@@ -3,7 +3,6 @@
 import {
   confirmEmailRequestEndpoint,
   forgotPasswordRequestEndpoint,
-  getUserInfoRequestEndpoint,
   loginRequestEndpoint,
   registerRequestEndpoint,
   resendConfirmEmailRequestEndpoint,
@@ -14,8 +13,6 @@ import {
   ConfirmEmailResponseModel,
   ForgotPasswordRequestModel,
   ForgotPasswordResponseModel,
-  GetUserInfoRequestModel,
-  GetUserInfoResponseModel,
   LoginRequestModel,
   LoginResponseModel,
   RegisterRequestModel,
@@ -28,7 +25,6 @@ import {
 import {
   confirmEmailSchema,
   forgotPasswordSchema,
-  getUserInfoSchema,
   loginSchema,
   registerSchema,
   resendConfirmEmailSchema,
@@ -155,30 +151,6 @@ const ResetPasswordRequestHandler = async (
   });
 };
 
-const GetUserInfoRequestHandler = async (): Promise<
-  BaseResponse<GetUserInfoResponseModel>
-> => {
-  const urlQuery = queryBuilder({});
-  const requestEndpoint = getUserInfoRequestEndpoint.concat("?", urlQuery);
-
-  const accessToken = await getAccessTokenSession();
-  if (!accessToken) {
-    return {
-      success: false,
-      message: "Authentication required to perform this action",
-    };
-  }
-
-  return BaseRequestHandler<GetUserInfoRequestModel, GetUserInfoResponseModel>({
-    options: {
-      endpoint: requestEndpoint,
-      method: "GET",
-      schema: getUserInfoSchema,
-      accessToken: accessToken,
-    },
-  });
-};
-
 const IsUserAuthenticated = async (): Promise<boolean> => {
   const cookieSession = cookies().get("session")?.value;
   // const session = await decrypt(cookieSession);
@@ -198,7 +170,6 @@ export {
   ResendConfirmEmailRequestHandler,
   ForgotPasswordRequestHandler,
   ResetPasswordRequestHandler,
-  GetUserInfoRequestHandler,
   IsUserAuthenticated,
   Logout,
 };

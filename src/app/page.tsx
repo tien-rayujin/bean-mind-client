@@ -3,12 +3,12 @@
 import { StyButton } from "@/components/Button";
 import { Toast } from "@/components/Toast";
 import UserLayout from "@/components/layouts/UserLayout";
-import { GetUserInfoRequestHandler } from "@/lib/services/auth/Handlers";
+import { GetUserRequestHandler } from "@/lib/services/user/Handlers";
 import Link from "next/link";
 
 const Page: React.FC = () => {
   const handleClick = async () => {
-    const response = await GetUserInfoRequestHandler();
+    const response = await GetUserRequestHandler();
     Toast({
       message: response.message,
       type: response.success ? "info" : "error",
