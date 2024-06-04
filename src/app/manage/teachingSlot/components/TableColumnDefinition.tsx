@@ -14,7 +14,7 @@ const columnHelper = createColumnHelper<TeachingSlot>();
 
 const columns = [
   columnHelper.accessor("date", {
-    header: "Amount",
+    header: "Date",
     cell: (info) => new Date(info.getValue()).toDateString(),
   }),
   columnHelper.accessor("gradeLevel.name", {

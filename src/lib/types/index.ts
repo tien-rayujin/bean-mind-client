@@ -36,6 +36,11 @@ interface Lecturer extends BaseAuditableEntity {
   worksheets: Array<Worksheet>;
 }
 
+interface Manager extends BaseAuditableEntity {
+  appUserId: string;
+  appUser: AppUser;
+}
+
 interface Subject extends BaseAuditableEntity {
   title: string;
   description: string;
@@ -78,6 +83,7 @@ interface Package extends BaseAuditableEntity {
 }
 
 interface PackageOrder extends BaseAuditableEntity {
+  code: string;
   packageId: string;
   package: Package;
   payments: Array<Payment>;

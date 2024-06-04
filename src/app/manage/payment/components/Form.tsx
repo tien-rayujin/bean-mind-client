@@ -118,7 +118,7 @@ const CreatePaymentForm: React.FC<CreatePaymentFormProps> = (props) => {
         name="packageOrderId"
         placeholder="Please select packageOrder"
         required
-        displayProp={"name"}
+        displayProp={"code"}
         valueProp={"id"}
         datas={payload?.packageOrders}
       />
@@ -242,7 +242,7 @@ const UpdatePaymentForm: React.FC<UpdatePaymentFormProps> = (props) => {
         name="packageOrderId"
         placeholder="Please select packageOrder"
         required
-        displayProp={"title"}
+        displayProp={"code"}
         valueProp={"id"}
         datas={payload?.packageOrders}
         defaultValue={payment.packageOrder.id}
