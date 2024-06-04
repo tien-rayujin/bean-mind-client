@@ -10,3 +10,5 @@ enum RoleEnum {
   Student = "Student",
   Lecturer = "Lecturer",
 }
+
+export { WorksheetTemplateClassificationEnum, RoleEnum };
