@@ -32,7 +32,7 @@ const Page: React.FC<PackageOrderPageProps> = async (props) => {
         <div className="mb-4 flex items-center gap-4">
           <SearchBar extras="flex-1" />
           <Link href={"packageorder/create"}>
-            <CreateButton text="Create packageorder" extras="h-12" />
+            <CreateButton text="Create package order" extras="h-12" />
           </Link>
           <FilterButton />
           <ReloadButton />

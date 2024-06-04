@@ -13,7 +13,7 @@ import {
 const columnHelper = createColumnHelper<Session>();
 
 const columns = [
-  columnHelper.accessor("enrollment", {
+  columnHelper.accessor("enrollment.id", {
     header: "Enrollment",
     cell: (info) => info.getValue(),
   }),
@@ -23,7 +23,7 @@ const columns = [
   }),
   columnHelper.accessor("teachingSlot.date", {
     header: "Teaching Slot date",
-    cell: (info) => info.getValue().toDateString(),
+    cell: (info) => new Date(info.getValue()).toDateString(),
   }),
   columnHelper.accessor("isDeleted", {
     header: "Status",

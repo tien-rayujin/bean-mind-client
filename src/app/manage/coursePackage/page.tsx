@@ -32,7 +32,7 @@ const Page: React.FC<CoursePackagePageProps> = async (props) => {
         <div className="mb-4 flex items-center gap-4">
           <SearchBar extras="flex-1" />
           <Link href={"coursePackage/create"}>
-            <CreateButton text="Create coursepackage" extras="h-12" />
+            <CreateButton text="Create course package" extras="h-12" />
           </Link>
           <FilterButton />
           <ReloadButton />

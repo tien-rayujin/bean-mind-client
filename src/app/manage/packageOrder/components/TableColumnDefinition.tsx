@@ -17,6 +17,17 @@ const columns = [
     header: "Package",
     cell: (info) => info.getValue(),
   }),
+  // columnHelper.accessor("students", {
+  //   header: "Students",
+  //   cell: (info) =>
+  //     info.getValue() &&
+  //     [...info.getValue()].map((x) => (
+  //       <div key={x.id}>
+  //         <h3>{x.appUser.userName}</h3>
+  //         <h2>{x.appUser.email}</h2>
+  //       </div>
+  //     )),
+  // }),
   columnHelper.accessor("isDeleted", {
     header: "Status",
     cell: (info) =>

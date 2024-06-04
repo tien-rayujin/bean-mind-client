@@ -18,24 +18,25 @@ const middleware = async (request: NextRequest) => {
   // }
 
   const user = getUserInfo.data;
-  // user tried to access manager page
+  // user tried to access admin page
   if (
     request.nextUrl.pathname.startsWith("/admin") &&
-    !user?.roles.includes("Administrator")
+    !user?.roleNames.includes("Administrator")
   ) {
     console.log(
-      `Invalid access: From [${user?.email} - ${user?.roles}] To [${request.nextUrl.pathname}]`,
+      `Invalid access: From [${user?.email} - ${user?.roleNames}] To [${request.nextUrl.pathname}]`,
     );
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 
   // user tried to access manager page
+  // console.log({ user });
   if (
     request.nextUrl.pathname.startsWith("/manage") &&
-    !user?.roles.includes("Manager")
+    !user?.roleNames.includes("Manager")
   ) {
     console.log(
-      `Invalid access: From [${user?.email} - ${user?.roles}] To [${request.nextUrl.pathname}]`,
+      `Invalid access: From [${user?.email} - ${user?.roleNames}] To [${request.nextUrl.pathname}]`,
     );
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }

@@ -2,13 +2,6 @@
 type GetUserRequestModel = {};
 
 // #region Response Model
-type GetUserResponseModel = {
-  id: string;
-  userName: string;
-  phoneNumber: string;
-  email: string;
-  emailConfirmed: boolean;
-  roles: Array<string>;
-};
+type GetUserResponseModel = AppUser;
 
 export type { GetUserRequestModel, GetUserResponseModel };

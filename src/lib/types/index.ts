@@ -14,6 +14,7 @@ interface AppUser {
   userName: string;
   email: string;
   phoneNumber: string;
+  roleNames: Array<string>;
 }
 
 interface Student extends BaseAuditableEntity {
