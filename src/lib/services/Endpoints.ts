@@ -29,7 +29,10 @@ export const getUsersEndpoint = (query: Object) =>
   apiURL.href.concat(
     `${userEndpoint}${query && "?".concat(queryBuilder(query))}`,
   );
-export const getUserEndpoint = () => apiURL.href.concat(`${userEndpoint}/info`);
+export const getUserInfoEndpoint = () =>
+  apiURL.href.concat(`${userEndpoint}/info`);
+export const getUserEndpoint = (id: string) =>
+  apiURL.href.concat(`${userEndpoint}/${id}`);
 export const createUserEndpoint = apiURL.href.concat(`${userEndpoint}`);
 export const updateUserEndpoint = apiURL.href.concat(`${userEndpoint}`);
 export const deleteUserEndpoint = (id: string) =>

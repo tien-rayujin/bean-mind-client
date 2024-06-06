@@ -13,6 +13,10 @@ import {
 const columnHelper = createColumnHelper<PackageOrder>();
 
 const columns = [
+  columnHelper.accessor("code", {
+    header: "Package Code",
+    cell: (info) => info.getValue(),
+  }),
   columnHelper.accessor("package.name", {
     header: "Package",
     cell: (info) => info.getValue(),

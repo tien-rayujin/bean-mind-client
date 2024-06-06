@@ -1,6 +1,6 @@
 import { BaseFilter, FilterItemProps } from "@/components/Filter";
 
-const slotFilterDefinition: FilterItemProps[] = [
+const userFilterDefinition: FilterItemProps[] = [
   {
     name: "isDeleted",
     datas: [
@@ -12,9 +12,9 @@ const slotFilterDefinition: FilterItemProps[] = [
   },
 ];
 
-interface SlotFilterProps {}
+interface UserFilterProps {}
 
-const SlotFilter: React.FC<SlotFilterProps> = (props) => {
-  return <BaseFilter dataList={slotFilterDefinition} />;
+const UserFilter: React.FC<UserFilterProps> = (props) => {
+  return <BaseFilter dataList={userFilterDefinition} />;
 };
-export { SlotFilter };
+export { UserFilter };

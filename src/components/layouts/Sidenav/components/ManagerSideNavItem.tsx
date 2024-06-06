@@ -83,6 +83,11 @@ const managePage: NavItem[] = [
         label: "question",
         icon: <FaFolder />,
       },
+      {
+        href: "/manage/user",
+        label: "user",
+        icon: <FaFolder />,
+      },
     ],
   },
 ];

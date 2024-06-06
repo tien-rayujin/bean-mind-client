@@ -1,10 +1,11 @@
 import { StyButton } from "@/components/Button";
+import { Chip } from "@/components/Chips";
 import {
   DeleteButton,
   RestoreButton,
   UpdateButton,
 } from "@/components/Form/Button";
-import { GetSlotRequestHandler } from "@/lib/services/slot/Handlers";
+import { GetUserRequestHandler } from "@/lib/services/user/Handlers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaPen, FaTrash, FaRedo } from "react-icons/fa";
@@ -17,11 +18,11 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = async (props) => {
   const { id } = props.params;
-  const slot = (await GetSlotRequestHandler(id)).data;
+  const user = (await GetUserRequestHandler(id)).data;
 
-  if (!slot) return notFound();
+  if (!user) return notFound();
 
-  const { startTime, endTime, isDeleted, teachingSlots } = slot;
+  const { userName, email, phoneNumber, roleNames, isDeleted } = user;
 
   return (
     <>
@@ -29,21 +30,30 @@ const Page: React.FC<PageProps> = async (props) => {
         <div className="relative bg-background p-8 leading-relaxed">
           <p>
             <span className="font-semibold tracking-wide text-primary">
-              Start Time:{" "}
+              Username:{" "}
             </span>
-            {startTime}
+            {userName}
           </p>
           <p>
             <span className="font-semibold tracking-wide text-primary">
-              End Time:{" "}
+              Email:{" "}
             </span>
-            {endTime}
+            {email}
           </p>
-          <div className="flex items-center justify-start gap-2.5">
+          <p>
             <span className="font-semibold tracking-wide text-primary">
-              Status:{" "}
+              Phone Number:{" "}
             </span>
-            <span>{isDeleted ? "Disabled" : "Enabled"}</span>
+            {phoneNumber}
+          </p>
+          <div>
+            <span className="font-semibold tracking-wide text-primary">
+              Role:{" "}
+            </span>
+            <div className="flex items-center gap-x-2.5">
+              {roleNames &&
+                roleNames.map((role) => <Chip key={role} title={role} />)}
+            </div>
           </div>
         </div>
       </div>

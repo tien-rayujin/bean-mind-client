@@ -1,29 +1,41 @@
 "use client";
 
 import { Chip } from "@/components/Chips";
-import { createColumnHelper } from "@tanstack/react-table";
-import Link from "next/link";
 import {
-  RestoreButton,
   DeleteButton,
+  RestoreButton,
   UpdateButton,
   ViewDetailButton,
 } from "@/components/Form/Button";
+import { createColumnHelper } from "@tanstack/react-table";
+import Link from "next/link";
 
-const columnHelper = createColumnHelper<Enrollment>();
+const columnHelper = createColumnHelper<AppUser>();
 
 const columns = [
-  columnHelper.accessor("packageOrder.code", {
-    header: "Package Order",
+  columnHelper.accessor("userName", {
+    header: "User Name",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("student.appUser.userName", {
-    header: "Student",
+  columnHelper.accessor("email", {
+    header: "Email",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("lecturer.appUser.userName", {
-    header: "Lecturer",
+  columnHelper.accessor("phoneNumber", {
+    header: "Phone",
     cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("roleNames", {
+    header: "Roles",
+    cell: (info) => {
+      const roleNames: Array<string> = info.getValue();
+      return (
+        <div className="flex items-center gap-x-2.5">
+          {roleNames &&
+            roleNames.map((role) => <Chip key={role} title={role} />)}
+        </div>
+      );
+    },
   }),
   columnHelper.accessor("isDeleted", {
     header: "Status",
@@ -38,18 +50,18 @@ const columns = [
     header: "Actions",
     cell: (info) => (
       <div className="flex items-center gap-x-3.5">
-        <Link href={`/manage/enrollment/${info.row.original.id}`}>
+        <Link href={`/manage/user/${info.row.original.id}`}>
           <ViewDetailButton />
         </Link>
-        <Link href={`/manage/enrollment/${info.row.original.id}/update`}>
+        <Link href={`/manage/user/${info.row.original.id}/update`}>
           <UpdateButton isIconOnly />
         </Link>
         {info.row.original.isDeleted ? (
-          <Link href={`/manage/enrollment/${info.row.original.id}/restore`}>
+          <Link href={`/manage/user/${info.row.original.id}/restore`}>
             <RestoreButton isIconOnly />
           </Link>
         ) : (
-          <Link href={`/manage/enrollment/${info.row.original.id}/delete`}>
+          <Link href={`/manage/user/${info.row.original.id}/delete`}>
             <DeleteButton isIconOnly />
           </Link>
         )}

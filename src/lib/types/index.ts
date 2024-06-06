@@ -15,6 +15,9 @@ interface AppUser {
   email: string;
   phoneNumber: string;
   roleNames: Array<string>;
+
+  id: string;
+  isDeleted: boolean;
 }
 
 interface Student extends BaseAuditableEntity {

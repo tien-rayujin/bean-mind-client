@@ -7,25 +7,14 @@
 }
 
 @layer base {
-  /* :root {
-    --text: 33, 37, 41;
-    --background: 255, 255, 255;
-    --primary: 66, 133, 244;
-    --secondary: 108, 117, 125;
-    --accent: 255, 87, 34;
-    --text-dark: 52, 58, 64;
-    --background-dark: 248, 249, 250;
-    --primary-dark: 50, 103, 188;
-    --secondary-dark: 73, 80, 87;
-    --accent-dark: 216, 67, 21;
-  } */
 
+  /* LIGHT - default */
   :root {
-    --text: 51, 51, 51;
-    --background: 240, 240, 240;
-    --primary: 65, 105, 225;
-    --secondary: 119, 136, 153;
-    --accent: 255, 127, 80;
+    --text: 93, 64, 55;
+    --background: 249, 246, 246;
+    --primary: 255, 110, 66;
+    --secondary: 126, 86, 194;
+    --accent: 211, 49, 49;
     --text-dark: 52, 58, 64;
     --background-dark: 248, 249, 250;
     --primary-dark: 50, 103, 188;
@@ -33,7 +22,21 @@
     --accent-dark: 216, 67, 21;
   }
 
-  @media (prefers-color-scheme: dark) {
+  :root[data-theme="light"] {
+    --text: 93, 64, 55;
+    --background: 249, 246, 246;
+    --primary: 255, 110, 66;
+    --secondary: 126, 86, 194;
+    --accent: 211, 49, 49;
+    --text-dark: 52, 58, 64;
+    --background-dark: 248, 249, 250;
+    --primary-dark: 50, 103, 188;
+    --secondary-dark: 73, 80, 87;
+    --accent-dark: 216, 67, 21;
+  }
+
+  /* DARK */
+  /* @media (prefers-color-scheme: dark) {
     :root {
       --text: 248, 240, 227;
       --background: 43, 45, 66;
@@ -59,33 +62,7 @@
     --primary-dark: 119, 65, 42;
     --secondary-dark: 39, 46, 58;
     --accent-dark: 107, 43, 64;
-  }
-
-  /* :root[data-theme="light"] {
-    --text: 33, 37, 41;
-    --background: 255, 255, 255;
-    --primary: 65, 105, 225;
-    --secondary: 108, 117, 125;
-    --accent: 255, 87, 34;
-    --text-dark: 52, 58, 64;
-    --background-dark: 248, 249, 250;
-    --primary-dark: 50, 103, 188;
-    --secondary-dark: 73, 80, 87;
-    --accent-dark: 216, 67, 21;
   } */
-
-  :root[data-theme="light"] {
-    --text: 33, 37, 41;
-    --background: 255, 255, 255;
-    --primary: 65, 105, 225;
-    --secondary: 108, 117, 125;
-    --accent: 255, 87, 34;
-    --text-dark: 52, 58, 64;
-    --background-dark: 248, 249, 250;
-    --primary-dark: 50, 103, 188;
-    --secondary-dark: 73, 80, 87;
-    --accent-dark: 216, 67, 21;
-  }
 
   body {
     @apply relative z-1 bg-whiten font-poppin text-base font-normal text-text;

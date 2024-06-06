@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GetUserRequestHandler } from "./lib/services/user/Handlers";
+import { GetUserInfoRequestHandler } from "./lib/services/user/Handlers";
 
 export const config = {
   matcher: ["/manage/:path*", "/admin/:path*"],
@@ -7,7 +7,7 @@ export const config = {
 
 const middleware = async (request: NextRequest) => {
   // get user infor if existed in cookies("session")
-  const getUserInfo = await GetUserRequestHandler();
+  const getUserInfo = await GetUserInfoRequestHandler();
   if (!getUserInfo.success) {
     console.log("Can not get user information");
     return NextResponse.redirect(new URL("/auth/login", request.url));

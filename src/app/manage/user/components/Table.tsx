@@ -1,23 +1,23 @@
 import TableThree from "@/components/Table";
 import { columns } from "./TableColumnDefinition";
-import { GetSlotsRequestHandler } from "@/lib/services/slot/Handlers";
+import { GetUsersRequestHandler } from "@/lib/services/user/Handlers";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
 import { notFound } from "next/navigation";
 import Pagination from "@/components/Pagination";
 
-interface SlotTableProps {
+interface UserTableProps {
   pageIndex: number;
   pageSize: number;
   term: string;
   isDeleted: string;
 }
 
-const SlotTable: React.FC<SlotTableProps> = async (props) => {
+const UserTable: React.FC<UserTableProps> = async (props) => {
   const { term, pageIndex, pageSize, isDeleted } = props;
-  const slots = (await GetSlotsRequestHandler({ ...props })).data;
-  if (!slots) return notFound();
-  const { items, totalPage } = slots;
+  const users = (await GetUsersRequestHandler({ ...props })).data;
+  if (!users) return notFound();
+  const { items, totalPage } = users;
 
   return (
     <>
@@ -30,4 +30,4 @@ const SlotTable: React.FC<SlotTableProps> = async (props) => {
   );
 };
 
-export default SlotTable;
+export default UserTable;

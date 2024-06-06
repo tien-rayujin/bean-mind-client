@@ -13,13 +13,17 @@ import {
 const columnHelper = createColumnHelper<Payment>();
 
 const columns = [
+  columnHelper.accessor("packageOrder.code", {
+    header: "Code",
+    cell: (info) => info.getValue(),
+  }),
   columnHelper.accessor("amount", {
     header: "Amount",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("paymentDate", {
     header: "Date",
-    cell: (info) => info.getValue(),
+    cell: (info) => new Date(info.getValue()).toDateString(),
   }),
   columnHelper.accessor("paymentStatus", {
     header: "Status",
