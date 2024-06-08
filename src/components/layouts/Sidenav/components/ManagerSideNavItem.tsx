@@ -187,7 +187,7 @@ const ManagerSideNavItem: React.FC<{ navItem: NavItem }> = (props) => {
 
 const ManagerSideNavExpanded: React.FC<{}> = (props) => {
   return (
-    <div className="flex h-full w-60 max-w-60 flex-col overflow-x-scroll">
+    <div className="flex h-full w-[15%] flex-col overflow-x-scroll">
       {/* Header */}
       <section className="flex w-full items-center justify-center border-b border-primary border-opacity-40 p-4">
         <AppLogo />

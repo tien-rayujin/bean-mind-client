@@ -15,7 +15,7 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
   props: ManagerSideNavProps,
 ) => {
   return (
-    <div className="relative h-full w-25 overflow-x-hidden bg-primary py-2.5">
+    <div className="relative h-full w-[4%] overflow-x-hidden bg-primary py-2.5">
       {/* <AppLogo /> */}
       {/* <div className="absolute left-0 right-0 top-0 grid h-30 w-full place-items-center">
         <AppLogoIcon />

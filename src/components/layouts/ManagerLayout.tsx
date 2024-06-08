@@ -10,7 +10,7 @@ const ManagerLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
       <ManagerSideNavExpanded />
       {/* <!-- ===== Navigation End ===== --> */}
-      <div className="h-full flex-1 bg-primary/10 p-12">
+      <div className="h-full grow bg-primary/10 p-12">
         {/* <!-- ===== Content Start ===== --> */}
         <main className="h-full w-full">
           <div className="relative h-full">{children}</div>
