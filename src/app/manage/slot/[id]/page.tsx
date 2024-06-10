@@ -21,7 +21,7 @@ const Page: React.FC<PageProps> = async (props) => {
 
   if (!slot) return notFound();
 
-  const { startTime, endTime, isDeleted, teachingSlots } = slot;
+  const { startTime, endTime, isDeleted } = slot;
 
   return (
     <>

@@ -24,46 +24,6 @@ const managePage: NavItem[] = [
         icon: <FaFolder />,
       },
       {
-        href: "/manage/coursePackage",
-        label: "Course Package",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/package",
-        label: "Package",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/packageOrder",
-        label: "Package Order",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/payment",
-        label: "Payment",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/enrollment",
-        label: "Enrollment",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/session",
-        label: "Session",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/teachingSlot",
-        label: "Teaching Slot",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/slot",
-        label: "Slot",
-        icon: <FaFolder />,
-      },
-      {
         href: "/manage/chapter",
         label: "Chapter",
         icon: <FaFolder />,
@@ -114,16 +74,6 @@ const configurationPage: NavItem[] = [
       {
         href: "/manage/questionLevel",
         label: "Question Level",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/gradeLevel",
-        label: "Grade Level",
-        icon: <FaFolder />,
-      },
-      {
-        href: "/manage/teachable",
-        label: "Teacher Teachable",
         icon: <FaFolder />,
       },
     ],
@@ -187,7 +137,7 @@ const ManagerSideNavItem: React.FC<{ navItem: NavItem }> = (props) => {
 
 const ManagerSideNavExpanded: React.FC<{}> = (props) => {
   return (
-    <div className="flex h-full w-[15%] flex-col overflow-x-scroll">
+    <div className="flex h-full w-[15%] flex-col overflow-x-scroll border-r border-stroke">
       {/* Header */}
       <section className="flex w-full items-center justify-center border-b border-primary border-opacity-40 p-4">
         <AppLogo />

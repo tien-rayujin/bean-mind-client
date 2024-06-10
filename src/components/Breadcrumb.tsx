@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { StyButton, ThemeToggleButton } from "./Button";
+import { StyButton } from "./Button";
 import { isGuid } from "@/lib/utils";
 import { FaArrowLeft, FaCircle, FaInbox, FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
@@ -39,7 +39,7 @@ const Breadcrumb = ({ pageName, sub }: BreadcrumbProps) => {
       {/* Place the user information here */}
       <div className="flex items-center justify-end gap-2.5">
         {/* Change theme */}
-        <ThemeToggleButton />
+        {/* <ThemeToggleButton /> */}
 
         {/* Message */}
         <div className="text-md relative grid h-10 w-10 cursor-pointer place-items-center rounded-md border border-stroke bg-white text-primary hover:bg-opacity-60">

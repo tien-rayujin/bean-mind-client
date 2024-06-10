@@ -21,7 +21,7 @@ const ManagerSideNav: React.FC<ManagerSideNavProps> = (
         <AppLogoIcon />
       </div> */}
 
-      <div className="relative grid h-30 w-full place-items-center">
+      <div className="h-30 relative my-4 grid w-full place-items-center">
         <AppLogoIcon />
       </div>
 

@@ -182,7 +182,7 @@ interface FilterButtonProps {}
 
 const FilterButton: React.FC<FilterButtonProps> = (props) => {
   return (
-    <StyButton extras="h-12 w-12 shadow-sm !bg-primary hover:!bg-opacity-80 !text-white hover:!-translate-y-0">
+    <StyButton extras="h-12 w-12 shadow-sm !bg-accent hover:!bg-opacity-80 !text-white hover:!-translate-y-0">
       <FaFilter />
     </StyButton>
   );

@@ -4,7 +4,7 @@ import { GiJellyBeans } from "react-icons/gi";
 const AppLogo = () => {
   return (
     <div>
-      <h2 className="bg-gradient-to-r from-primary to-primary/90 bg-clip-text text-3xl font-semibold text-transparent">
+      <h2 className="bg-gradient-to-r from-primary to-primary/90 bg-clip-text text-2xl font-semibold text-transparent">
         BeanMind
       </h2>
       <p className="flex -translate-y-2 items-center justify-center gap-x-1 text-sm font-semibold uppercase">

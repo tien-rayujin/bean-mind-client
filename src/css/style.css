@@ -10,19 +10,26 @@
 
   /* LIGHT - default */
   :root {
-    --text: 93, 64, 55;
+    --text: 33, 33, 33;
+    --background: 250, 250, 250;
+    --primary: 76, 175, 80;
+    --secondary: 255, 152, 0;
+    --accent: 33, 150, 0;
+
+    /* --text: 93, 64, 55;
     --background: 249, 246, 246;
     --primary: 255, 110, 66;
     --secondary: 126, 86, 194;
-    --accent: 211, 49, 49;
-    --text-dark: 52, 58, 64;
+    --accent: 211, 49, 49; */
+
+    /* --text-dark: 52, 58, 64;
     --background-dark: 248, 249, 250;
     --primary-dark: 50, 103, 188;
     --secondary-dark: 73, 80, 87;
-    --accent-dark: 216, 67, 21;
+    --accent-dark: 216, 67, 21; */
   }
 
-  :root[data-theme="light"] {
+  /* :root[data-theme="light"] {
     --text: 93, 64, 55;
     --background: 249, 246, 246;
     --primary: 255, 110, 66;
@@ -33,7 +40,7 @@
     --primary-dark: 50, 103, 188;
     --secondary-dark: 73, 80, 87;
     --accent-dark: 216, 67, 21;
-  }
+  } */
 
   /* DARK */
   /* @media (prefers-color-scheme: dark) {

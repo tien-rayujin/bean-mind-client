@@ -25,17 +25,11 @@ interface Student extends BaseAuditableEntity {
   packageOrderId: string;
 
   appUser: AppUser;
-  packageOrder: PackageOrder;
-  enrollments: Array<Enrollment>;
 }
 
 interface Lecturer extends BaseAuditableEntity {
   appUserId: string;
   appUser: AppUser;
-  teachables: Array<Teachable>;
-  enrollments: Array<Enrollment>;
-  sessions: Array<Session>;
-  teachingSlots: Array<TeachingSlot>;
   worksheets: Array<Worksheet>;
 }
 
@@ -58,85 +52,12 @@ interface Course extends BaseAuditableEntity {
   subject: Subject;
   gradeLevel: GradeLevel;
   chapters: Array<Chapter>;
-  coursePackages: Array<CoursePackage>;
-  teachables: Array<Teachable>;
-}
-
-interface CoursePackage extends BaseAuditableEntity {
-  courseId: string;
-  packageId: string;
-  course: Course;
-  package: Package;
-}
-
-interface Teachable extends BaseAuditableEntity {
-  courseId: string;
-  lecturerId: string;
-  course: Course;
-  lecturer: Lecturer;
-}
-
-interface Package extends BaseAuditableEntity {
-  name: string;
-  gradeLevelId: string;
-
-  gradeLevel: GradeLevel;
-  coursePackages: Array<CoursePackage>;
-  packageOrders: Array<PackageOrder>;
-}
-
-interface PackageOrder extends BaseAuditableEntity {
-  code: string;
-  packageId: string;
-  package: Package;
-  payments: Array<Payment>;
-  enrollments: Array<Enrollment>;
-  students: Array<Student>;
-}
-
-interface Payment extends BaseAuditableEntity {
-  amount: number;
-  paymentDate: Date;
-  paymentStatus: number;
-  packageOrderId: string;
-  packageOrder: PackageOrder;
-}
-
-interface Enrollment extends BaseAuditableEntity {
-  packageOrderId: string;
-  studentId: string;
-  lecturerId: string;
-  packageOrder: PackageOrder;
-  student: Student;
-  lecturer: Lecturer;
-  sessions: Array<Session>;
-}
-
-interface Session extends BaseAuditableEntity {
-  enrollmentId: string;
-  lecturerId: string;
-  teachingSlotId: string;
-  enrollment: Enrollment;
-  lecturer: Lecturer;
-  teachingSlot: TeachingSlot;
-}
-
-interface TeachingSlot extends BaseAuditableEntity {
-  date: Date;
-  gradeLevelId: string;
-  lecturerId: string;
-  slotId: string;
-  gradeLevel: GradeLevel;
-  lecturer: Lecturer;
-  slot: Slot;
-  sessions: Array<Session>;
 }
 
 interface Slot extends BaseAuditableEntity {
   name: string;
   startTime: string;
   endTime: string;
-  teachingSlots: Array<TeachingSlot>;
 }
 
 interface Chapter extends BaseAuditableEntity {
@@ -158,8 +79,6 @@ interface Topic extends BaseAuditableEntity {
 interface GradeLevel extends BaseAuditableEntity {
   name: string;
   courses: Array<Course>;
-  packages: Array<Package>;
-  teachingSlots: Array<TeachingSlot>;
 }
 
 interface Question extends BaseAuditableEntity {

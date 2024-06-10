@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { LogoutButton, LoginButton } from "../../Button";
-import { Toast } from "../../Toast";
+// import { Toast } from "../../Toast";
 
 interface UserHeaderProps {}
 
@@ -33,7 +33,7 @@ const UserHeader: React.FC<UserHeaderProps> = () => {
       </h2>
 
       {/* Navigation */}
-      <ul className="inline-flex gap-18">
+      <ul className="gap-18 inline-flex">
         <Link
           href="/"
           className="transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:cursor-pointer hover:font-semibold hover:text-accent"

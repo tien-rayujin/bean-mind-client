@@ -32,14 +32,14 @@ const TableThree = ({ columns, objData }: TableProps) => {
   });
 
   return (
-    <div className="shadow-default rounded-xl px-5 pb-2.5 pt-6 shadow-md  sm:px-7.5 xl:pb-1">
+    <div className="shadow-default rounded-xl bg-background px-5 py-6 shadow-md sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr
                 key={headerGroup.id}
-                className="dark:bg-meta-4 bg-background text-left"
+                className="dark:bg-meta-4 overflow-hidden rounded-xl border-b-2 border-primary bg-background text-left text-sm uppercase"
               >
                 {headerGroup.headers.map((header, index) => (
                   <th
@@ -47,7 +47,7 @@ const TableThree = ({ columns, objData }: TableProps) => {
                     colSpan={header.colSpan}
                     onClick={header.column.getToggleSortingHandler()}
                     className={clsx(
-                      "min-w-[220px] px-4 py-4 font-medium text-primary dark:text-white",
+                      "min-w-[220px] px-4 py-4 font-medium text-primary",
                       index === 0 && "xl:pl-11",
                     )}
                   >
@@ -62,7 +62,7 @@ const TableThree = ({ columns, objData }: TableProps) => {
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody className="bg-background">
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell, index) => (

@@ -18,7 +18,6 @@ import { useFormState } from "react-dom";
 interface CreateCourseFormProps
   extends FormWithPayload<{
     subjects: Subject[];
-    gradeLevels: GradeLevel[];
   }> {}
 
 const createCourseFormInit: BaseResponse<GetCourseResponseModel> = {
@@ -101,20 +100,6 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = (props) => {
         </span>
       )}
 
-      <StyFormSelect<GradeLevel & { [key: string]: any }>
-        name="gradeLevelId"
-        placeholder="Please select gradeLevel"
-        required
-        displayProp={"name"}
-        valueProp={"id"}
-        datas={payload?.gradeLevels}
-      />
-      {!formState.success && formState.fieldErrors?.gradeLevelId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.gradeLevelId}
-        </span>
-      )}
-
       <SubmitButton title="Create" extras="w-full" />
     </form>
   );
@@ -124,7 +109,6 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = (props) => {
 interface UpdateCourseFormProps
   extends FormWithPayload<{
     subjects: Subject[];
-    gradeLevels: GradeLevel[];
   }> {
   course: Course;
 }
@@ -210,21 +194,6 @@ const UpdateCourseForm: React.FC<UpdateCourseFormProps> = (props) => {
       {!formState.success && formState.fieldErrors?.subjectId && (
         <span className="text-sm font-semibold text-accent">
           {formState.fieldErrors?.subjectId}
-        </span>
-      )}
-
-      <StyFormSelect<GradeLevel & { [key: string]: any }>
-        name="gradeLevelId"
-        placeholder="Please select gradeLevel"
-        required
-        displayProp={"name"}
-        valueProp={"id"}
-        datas={payload?.gradeLevels}
-        defaultValue={course.gradeLevel.id}
-      />
-      {!formState.success && formState.fieldErrors?.gradeLevelId && (
-        <span className="text-sm font-semibold text-accent">
-          {formState.fieldErrors?.gradeLevelId}
         </span>
       )}
 

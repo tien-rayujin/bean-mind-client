@@ -5,7 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { Logout } from "@/lib/services/auth/Handlers";
 import { useRouter } from "next/navigation";
-import { Toast } from "./Toast";
+// import { Toast } from "./Toast";
 import { FaCircle, FaMoon, FaSun } from "react-icons/fa";
 import { ThemeContext } from "@/lib/contexts/themeProvider";
 
@@ -37,7 +37,7 @@ const GoogleLoginButton: FC<GoogleLoginButtonProp> = (props) => {
   return (
     <button
       className={clsx(
-        "flex items-center justify-between rounded-md border border-stroke bg-whiten px-3 py-2 text-sm font-normal text-body transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring",
+        "bg-whiten text-body flex items-center justify-between rounded-md border border-stroke px-3 py-2 text-sm font-normal transition-all duration-200 ease-linear focus:border-primary focus:outline-none focus:ring",
         props.extras,
       )}
       onClick={() => props.handleClick()}
@@ -59,7 +59,7 @@ const NavigationButton: React.FC<NavigationButtonProp> = (props) => {
   const { icon, title } = props;
 
   return (
-    <button className="grid h-8 w-8 place-items-center rounded-md bg-whiter font-semibold text-accent transition-all duration-200 ease-linear hover:-translate-y-1 hover:shadow-md">
+    <button className="bg-whiter grid h-8 w-8 place-items-center rounded-md font-semibold text-accent transition-all duration-200 ease-linear hover:-translate-y-1 hover:shadow-md">
       {icon && icon} {title && title}
     </button>
   );
@@ -78,33 +78,33 @@ const LoginButton: React.FC<{}> = (props) => {
   );
 };
 
-interface ThemeToggleButtonProps {
-  extras?: string;
-}
+// interface ThemeToggleButtonProps {
+//   extras?: string;
+// }
 
-const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = (props) => {
-  const context = useContext(ThemeContext);
+// const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = (props) => {
+//   const context = useContext(ThemeContext);
 
-  if (!context) {
-    throw new Error("ThemeToggleButton must be used within a ThemeProvider");
-  }
+//   if (!context) {
+//     throw new Error("ThemeToggleButton must be used within a ThemeProvider");
+//   }
 
-  const { theme, toggleTheme } = context;
+//   const { theme, toggleTheme } = context;
 
-  const icon = theme === "light" ? <FaMoon /> : <FaSun />;
+//   const icon = theme === "light" ? <FaMoon /> : <FaSun />;
 
-  return (
-    <button
-      onClick={toggleTheme}
-      className={clsx(
-        "grid h-10 w-10 place-items-center rounded-full bg-background",
-        props.extras,
-      )}
-    >
-      <div className="text-text">{icon}</div>
-    </button>
-  );
-};
+//   return (
+//     <button
+//       onClick={toggleTheme}
+//       className={clsx(
+//         "grid h-10 w-10 place-items-center rounded-full bg-background",
+//         props.extras,
+//       )}
+//     >
+//       <div className="text-text">{icon}</div>
+//     </button>
+//   );
+// };
 
 interface LogoutButtonProps {
   // handleClick: () => void;
@@ -127,7 +127,7 @@ const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
         }
         Logout().then(() => {
           router.push("/auth/login");
-          Toast({ message: "Logout successfully", type: "success" });
+          // Toast({ message: "Logout successfully", type: "success" });
         });
       }}
     >
@@ -150,7 +150,7 @@ const BiStateButton: React.FC<BiStateButtonProps> = (props) => {
     <button
       type="button"
       className={clsx(
-        "grid h-8 w-8 place-items-center rounded-full bg-body/70",
+        "bg-body/70 grid h-8 w-8 place-items-center rounded-full",
         style,
       )}
       {...rest}
@@ -167,6 +167,5 @@ export {
   LoginButton,
   LogoutButton,
   BiStateButton,
-  ThemeToggleButton,
   type BaseButtonProp,
 };
